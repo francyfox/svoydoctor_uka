@@ -10,7 +10,7 @@
 ![Squidex](https://img.shields.io/badge/Squidex-CMS-4A90D9?style=flat-square)
 ![PWA](https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
-[![Figma](https://img.shields.io/badge/Figma-Design-F24E1E?style=flat-square&logo=figma&logoColor=white)](https://www.figma.com/design/gxSA4oNDwAlspNuLmpwneW)
+[![Penpot](https://img.shields.io/badge/Penpot-Design-6E4FE0?style=flat-square&logo=penpot&logoColor=white)](http://localhost:9001/#/view?file-id=f8c16428-9131-80df-8008-5c3e55c08a7b&page-id=f8c16428-9131-80df-8008-5c3e55c08a7c&section=interactions&index=0&share-id=5f9b543d-1449-8033-8008-63d35a2a44bf)
 
 ## Документация проекта
 
@@ -21,7 +21,7 @@
 - [`ux-strategy.md`](./docs/ux-strategy.md) — цель, гипотеза, сценарии, IA, флоу, метрики
 - [`sitemap.md`](./docs/sitemap.md) — карта сайта
 - [`ui-design-system.md`](./docs/ui-design-system.md), [`visual-identity.md`](./docs/visual-identity.md), [`moodboard.md`](./docs/moodboard.md) — визуальные решения и референсы
-- [Дизайн в Figma](https://www.figma.com/design/gxSA4oNDwAlspNuLmpwneW) — черновой вайрфрейм и макет
+- [Дизайн в Penpot](http://localhost:9001/#/view?file-id=f8c16428-9131-80df-8008-5c3e55c08a7b&page-id=f8c16428-9131-80df-8008-5c3e55c08a7c&section=interactions&index=0&share-id=5f9b543d-1449-8033-8008-63d35a2a44bf) — черновой вайрфрейм и макет
 
 ## Стек
 

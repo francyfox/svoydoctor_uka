@@ -4,12 +4,16 @@
 			"type": "stdio",
 			"command": "npx",
 			"env": {
-				
+
 			},
 			"args": [
 				"-y",
 				"@sveltejs/mcp"
 			]
+		},
+		"penpot": {
+			"type": "http",
+			"url": "http://localhost:9001/mcp/stream?userToken=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIn0.PZPpTm15JpLxg7KMBZh3nBKI-VSrX_bwKHBGrsRKphWxyx6VApWVyA.RrbDKXzuJdrvbIfP.611TxGcXZceLB56GXJxAtqGR0KBIgda09-5Z53-8k3__4fA-jXIT0wKwhu4QwDubWdqPRl-OAkFUO2Wyx1jqNDCIQ3IgJLQGTT4Oe6hDC5j0PNFYysc7VsKpO1uVO6OlGrKOh29pErX8oiH57z4rAU7ASn7-qtAr4VBMBnIIysN2C_pAXBqnaukxJSsrCcqxaBs3MfBbKyY7.XIawzWHjYyPsJzQswp03Yw"
 		}
 	}
 }

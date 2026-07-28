@@ -1,1 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=LXGW+Marker+Gothic&family=PT+Sans:wght@400;700&display=swap');
 @import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	/* Brand palette — docs/ui-design-system.md §2, Penpot UI_KIT → Colors */
+	--color-brand-primary: #6e2c8c;
+	--color-brand-primary-dark: #4e1f66;
+	--color-brand-accent: #b5459c;
+	--color-brand-cream: #fbf7f5;
+	--color-brand-ink: #1f1b24;
+	--color-day-off: #e3dce0;
+	--color-illustration-bg: #efe6d8;
+	--color-photo-placeholder: #b8aeb5;
+	--color-warning: #c17a1f;
+	--color-warning-bg: #fbf3e7;
+	--color-warning-fg: #7a5a20;
+	--color-success: #3e9b5c;
+
+	/* shadcn semantic slots, remapped to brand palette instead of the neutral default */
+	--background: #ffffff;
+	--foreground: var(--color-brand-ink);
+	--card: #ffffff;
+	--card-foreground: var(--color-brand-ink);
+	--popover: #ffffff;
+	--popover-foreground: var(--color-brand-ink);
+	--primary: var(--color-brand-primary);
+	--primary-foreground: #ffffff;
+	--secondary: var(--color-brand-cream);
+	--secondary-foreground: var(--color-brand-ink);
+	--muted: var(--color-day-off);
+	--muted-foreground: #6b6b70;
+	--accent: var(--color-brand-accent);
+	--accent-foreground: #ffffff;
+	--destructive: #dc2626;
+	--destructive-foreground: #ffffff;
+	--border: #d9d0d6;
+	--input: #d9d0d6;
+	--input-placeholder: #9a9296;
+	--ring: var(--color-brand-primary);
+	--radius: 0rem;
+
+	/* Плиточная шкала («10 футов») — Penpot UI_KIT → TileTypography */
+	--font-tile-display: 112px;
+	--font-tile-h1: 80px;
+	--font-tile-h2: 64px;
+	--font-tile-h3: 44px;
+	--font-tile-body-lg: 24px;
+	--font-tile-small: 18px;
+
+	/* Тень/стекло на плитках — Penpot UI_KIT → Shadows */
+	--shadow-glass: 0 4px 16px rgb(0 0 0 / 0.12);
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+
+	--radius-sm: var(--radius);
+	--radius-md: var(--radius);
+	--radius-lg: var(--radius);
+	--radius-xl: var(--radius);
+
+	--font-sans: 'PT Sans', ui-sans-serif, system-ui, sans-serif;
+	--font-heading: 'LXGW Marker Gothic', 'PT Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground font-sans;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		@apply font-heading;
+	}
+}

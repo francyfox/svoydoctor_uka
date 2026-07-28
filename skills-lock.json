@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "penpot-mcp": {
+      "source": "ar27111994/penpot-mcp",
+      "sourceType": "github",
+      "skillPath": "penpot-mcp/SKILL.md",
+      "computedHash": "8ee9708ca603e0b3fda7359e36054cd6c2846568f6b759bd6f62f6b18dc8a190"
+    }
+  }
+}
