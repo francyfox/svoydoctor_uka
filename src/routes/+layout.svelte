@@ -1,21 +1,32 @@
 <script lang="ts">
-	import type { Pathname } from '$app/types';
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { locales, localizeHref } from '$lib/paraglide/runtime';
+	import { QueryClientProvider, HydrationBoundary, createQuery } from '@tanstack/svelte-query';
+	import { Header } from '$components/header/index.js';
+	import { settingsQueryOptions } from '$lib/queries/settings';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 
-	let { children } = $props();
+	let { data, children } = $props();
+
+	const settingsQuery = createQuery(
+		() => settingsQueryOptions(),
+		() => data.queryClient
+	);
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-{@render children()}
-
-<div style="display:none">
-	{#each locales as locale (locale)}
-		<a
-			href={resolve(localizeHref(page.url.pathname, { locale }) as Pathname)}
-		>{locale}</a>
-	{/each}
-</div>
+<QueryClientProvider client={data.queryClient}>
+	<HydrationBoundary
+		state={data.dehydratedState}
+		queryClient={data.queryClient}
+		options={undefined}
+	>
+		{#if settingsQuery.data}
+			<Header
+				siteName={settingsQuery.data.siteName}
+				phone={settingsQuery.data.phone}
+				logoUrl={settingsQuery.data.logoUrl}
+			/>
+		{/if}
+		{@render children()}
+	</HydrationBoundary>
+</QueryClientProvider>

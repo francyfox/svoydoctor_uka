@@ -41,12 +41,24 @@
 	--input-placeholder: #9a9296;
 	--ring: var(--color-brand-primary);
 	--radius: 0rem;
+	--success: var(--color-success);
+	--success-foreground: #ffffff;
+	--warning: var(--color-warning);
+	--warning-foreground: #ffffff;
 
-	/* Плиточная шкала («10 футов») — Penpot UI_KIT → TileTypography */
-	--font-tile-display: 112px;
-	--font-tile-h1: 80px;
-	--font-tile-h2: 64px;
-	--font-tile-h3: 44px;
+	/*
+	 * Плиточная шкала («10 футов») — Penpot UI_KIT → TileTypography.
+	 * 2026-07-29: верхняя граница урезана ~на 25% от макета (112/80/64/44 → 84/60/48/32) —
+	 * в браузере плиточные заголовки читались крупнее, чем нужно. Значения ≤24px не трогаем.
+	 * Fluid — clamp() линейно интерполирует между 375px (мин. ширина, см. ui-design-system.md §4)
+	 * и 1440px (--container-content). Коэффициенты (rem + N·vw) посчитаны под каждую пару
+	 * мин/макс-размеров — стандартная форма (как у Utopia/CSS-Tricks fluid type), без деления
+	 * length/length в calc() (не проходит везде одинаково предсказуемо).
+	 */
+	--font-tile-display: clamp(2.5rem, 1.5317rem + 4.1315vw, 5.25rem);
+	--font-tile-h1: clamp(2rem, 1.3838rem + 2.6291vw, 3.75rem);
+	--font-tile-h2: clamp(1.75rem, 1.3099rem + 1.8779vw, 3rem);
+	--font-tile-h3: clamp(1.375rem, 1.1549rem + 0.939vw, 2rem);
 	--font-tile-body-lg: 24px;
 	--font-tile-small: 18px;
 
@@ -74,6 +86,10 @@
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
 
 	--radius-sm: var(--radius);
 	--radius-md: var(--radius);
@@ -82,6 +98,9 @@
 
 	--font-sans: 'PT Sans', ui-sans-serif, system-ui, sans-serif;
 	--font-heading: 'LXGW Marker Gothic', 'PT Sans', ui-sans-serif, system-ui, sans-serif;
+
+	/* Ширина десктоп-контейнера — Penpot, фрейм 1680, содержимое 1440 (используй max-w-content) */
+	--container-content: 1440px;
 }
 
 @layer base {
@@ -98,5 +117,13 @@
 	h3,
 	h4 {
 		@apply font-heading;
+	}
+}
+
+@layer components {
+	/* Плитка hero-грида — Penpot UI_KIT → Shadows: тонкая белая обводка + мягкая тень поверх любого фона */
+	.tile-frame {
+		border: 1px solid rgb(255 255 255 / 0.18);
+		box-shadow: var(--shadow-glass);
 	}
 }

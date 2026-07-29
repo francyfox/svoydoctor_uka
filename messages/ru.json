@@ -1,4 +1,18 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from ru!"
+	"hello_world": "Hello, {name} from ru!",
+	"nav_home": "Главная",
+	"nav_services": "Услуги",
+	"nav_about": "О клинике",
+	"nav_we_help": "Мы помогаем",
+	"nav_contacts": "Контакты",
+	"cta_apply": "Записаться",
+	"nav_menu_open": "Открыть меню",
+	"nav_menu_close": "Закрыть меню",
+	"nav_language": "Язык",
+	"hero_photo_placeholder": "фото клиники",
+	"hero_photo2_placeholder": "фото приёма",
+	"hero_promo_label": "Акция",
+	"hero_link_symptoms": "Тревожные сигналы?",
+	"hero_link_contacts": "Где мы находимся?"
 }
