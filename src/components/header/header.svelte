@@ -15,11 +15,13 @@
 		siteName,
 		phone,
 		logoUrl,
+		editToken,
 		class: className
 	}: {
 		siteName: string;
 		phone: string;
 		logoUrl?: string;
+		editToken?: string;
 		class?: string;
 	} = $props();
 
@@ -31,12 +33,11 @@
 
 <header
 	data-slot="header"
-	class={cn('sticky top-0 z-40 bg-background transition-shadow', className)}
+	class={cn('sticky top-0 z-40 bg-background py-2 transition-shadow', className)}
 	style={scrolled ? 'box-shadow: var(--shadow-glass)' : ''}
+	data-squidex-token={editToken}
 >
-	<div
-		class="mx-auto flex h-[84px] max-w-content items-center justify-between gap-4 px-4 lg:h-[133px] lg:px-6"
-	>
+	<div class="container flex items-center justify-between gap-4">
 		<Logo {siteName} {logoUrl} />
 
 		<div class="hidden items-center gap-7 lg:flex">

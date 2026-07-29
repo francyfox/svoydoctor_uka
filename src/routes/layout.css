@@ -127,3 +127,17 @@
 		box-shadow: var(--shadow-glass);
 	}
 }
+
+/*
+ * section -> .container -> блоки: section — полноширинная секция (фон/цвет),
+ * .container — центрирование + ограничение ширины + отступы по краям, блоки — контент внутри.
+ */
+@utility container {
+	margin-inline: auto;
+	max-width: var(--container-content);
+	padding-inline: 1rem;
+
+	@media (width >= 64rem) {
+		padding-inline: 1.5rem;
+	}
+}

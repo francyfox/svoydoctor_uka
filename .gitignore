@@ -17,7 +17,11 @@ Thumbs.db
 .env.*
 !.env.example
 !.env.test
+squidex.config.json
 
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Local Squidex (self-hosted, dev only)
+docker/squidex/data/

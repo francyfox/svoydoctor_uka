@@ -67,18 +67,21 @@ function assetUrl(asset: SquidexAsset | undefined): string | undefined {
 
 export async function getSettings(): Promise<Settings> {
 	const result = await client.contents.getContents('settings', {});
-	const data = result.items[0].data as SettingsData;
+	const item = result.items[0];
+	const data = item.data as SettingsData;
 
 	return {
 		siteName: data.siteName.iv,
 		phone: data.phone.iv,
-		logoUrl: assetUrl(data.logo.iv)
+		logoUrl: assetUrl(data.logo.iv),
+		editToken: item.editToken ?? undefined
 	};
 }
 
 export async function getSectionHero(locale: string): Promise<SectionHero> {
 	const result = await client.contents.getContents('section-hero', {});
-	const data = result.items[0].data as SectionHeroData;
+	const item = result.items[0];
+	const data = item.data as SectionHeroData;
 	const blocks = data.blocks[locale] ?? [];
 	const advantages = data.advantages[locale] ?? [];
 
@@ -92,6 +95,7 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 		advantages: advantages.map((advantage) => ({
 			text: advantage.text,
 			iconUrl: assetUrl(advantage.icon)
-		}))
+		})),
+		editToken: item.editToken ?? undefined
 	};
 }

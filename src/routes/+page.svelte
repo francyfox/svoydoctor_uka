@@ -5,6 +5,7 @@
 	import { heroQueryOptions } from '$lib/queries/hero';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { getLocaleForUrl } from '$lib/paraglide/runtime';
+	import { isPreview } from '$lib/preview';
 
 	let { data } = $props();
 
@@ -16,6 +17,8 @@
 		() => settingsQueryOptions(),
 		() => data.queryClient
 	);
+
+	const preview = $derived(isPreview());
 </script>
 
 {#if heroQuery.data && settingsQuery.data}
@@ -23,5 +26,6 @@
 		blocks={heroQuery.data.blocks}
 		advantages={heroQuery.data.advantages}
 		phone={settingsQuery.data.phone}
+		editToken={preview ? heroQuery.data.editToken : undefined}
 	/>
 {/if}

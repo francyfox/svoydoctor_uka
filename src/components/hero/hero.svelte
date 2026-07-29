@@ -14,18 +14,20 @@
 		blocks,
 		advantages,
 		phone,
+		editToken,
 		class: className
 	}: {
 		blocks: HeroBlock[];
 		advantages: HeroAdvantage[];
 		phone: string;
+		editToken?: string;
 		class?: string;
 	} = $props();
 
 	const [title, photo, promo] = $derived(blocks);
 </script>
 
-<section data-slot="hero" class={cn('mx-auto max-w-content px-4 lg:px-6', className)}>
+<section data-slot="hero" class={cn('container', className)} data-squidex-token={editToken}>
 	<div
 		class="grid auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"
 	>

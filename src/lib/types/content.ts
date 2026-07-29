@@ -2,6 +2,7 @@ export type Settings = {
 	siteName: string;
 	phone: string;
 	logoUrl: string | undefined;
+	editToken: string | undefined;
 };
 
 export type HeroBlock = {
@@ -19,4 +20,5 @@ export type HeroAdvantage = {
 export type SectionHero = {
 	blocks: HeroBlock[];
 	advantages: HeroAdvantage[];
+	editToken: string | undefined;
 };
