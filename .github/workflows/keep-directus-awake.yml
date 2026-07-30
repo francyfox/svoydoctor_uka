@@ -10,4 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Directus admin
-        run: curl -fsS -o /dev/null -w "status: %{http_code}\n" https://directus-12-2.onrender.com
+        run: |
+          curl -fsS -o /dev/null -w "status: %{http_code}\n" https://directus-12-2.onrender.com
