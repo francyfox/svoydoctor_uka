@@ -31,5 +31,10 @@
 	"contacts_day_fri": "Пт",
 	"contacts_day_sat": "Сб",
 	"contacts_day_sun": "Вс",
-	"footer_copyright": "© {year} {siteName}"
+	"footer_copyright": "© {year} {siteName}",
+	"error_404_title": "Страница не найдена",
+	"error_404_message": "Похоже, такой страницы не существует — возможно, ссылка устарела или содержит опечатку.",
+	"error_generic_title": "Что-то пошло не так",
+	"error_generic_message": "Попробуйте обновить страницу или вернуться на главную.",
+	"error_back_home": "На главную"
 }

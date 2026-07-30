@@ -24,40 +24,42 @@
 	);
 </script>
 
-<section
-	id="services"
-	data-slot="services"
-	class={cn('py-2', className)}
-	data-squidex-token={editToken}
->
-	<div class="container">
-		<AccordionStrip items={stripItems} class="tile-frame">
-			{#snippet content(item: StripItem)}
-				<div class="flex h-full flex-col gap-4 sm:flex-row">
-					<div
-						class="relative h-28 w-full shrink-0 overflow-hidden bg-[color:var(--color-photo-placeholder)] sm:h-full sm:w-48"
-					>
-						{#if item.illustrationUrl}
-							<img src={item.illustrationUrl} alt="" class="size-full object-cover" />
-						{:else}
-							<span class="absolute inset-0 flex items-end p-3 text-sm text-[#3A3A3D]">
-								{m.services_illustration_placeholder()}
-							</span>
-						{/if}
-					</div>
-					<div class="flex flex-1 flex-col justify-between gap-4">
-						{#if item.description}
-							<p>{item.description}</p>
-						{/if}
-						<a
-							href={resolve(localizeHref('/apply') as Pathname)}
-							class="font-heading self-start bg-primary px-6 py-3 text-base text-white"
+{#if stripItems.length > 0}
+	<section
+		id="services"
+		data-slot="services"
+		class={cn('py-2', className)}
+		data-squidex-token={editToken}
+	>
+		<div class="container">
+			<AccordionStrip items={stripItems} class="tile-frame">
+				{#snippet content(item: StripItem)}
+					<div class="flex h-full flex-col gap-4 sm:flex-row">
+						<div
+							class="relative h-28 w-full shrink-0 overflow-hidden bg-[color:var(--color-photo-placeholder)] sm:h-full sm:w-48"
 						>
-							{item.ctaLabel}
-						</a>
+							{#if item.illustrationUrl}
+								<img src={item.illustrationUrl} alt="" class="size-full object-cover" />
+							{:else}
+								<span class="absolute inset-0 flex items-end p-3 text-sm text-[#3A3A3D]">
+									{m.services_illustration_placeholder()}
+								</span>
+							{/if}
+						</div>
+						<div class="flex flex-1 flex-col justify-between gap-4">
+							{#if item.description}
+								<p>{item.description}</p>
+							{/if}
+							<a
+								href={resolve(localizeHref('/apply') as Pathname)}
+								class="font-heading self-start bg-primary px-6 py-3 text-base text-white"
+							>
+								{item.ctaLabel}
+							</a>
+						</div>
 					</div>
-				</div>
-			{/snippet}
-		</AccordionStrip>
-	</div>
-</section>
+				{/snippet}
+			</AccordionStrip>
+		</div>
+	</section>
+{/if}

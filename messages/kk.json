@@ -31,5 +31,10 @@
 	"contacts_day_fri": "Жм",
 	"contacts_day_sat": "Сб",
 	"contacts_day_sun": "Жс",
-	"footer_copyright": "© {year} {siteName}"
+	"footer_copyright": "© {year} {siteName}",
+	"error_404_title": "Бет табылмады",
+	"error_404_message": "Мұндай бет жоқ сияқты — сілтеме ескірген немесе қате басылған болуы мүмкін.",
+	"error_generic_title": "Бірдеңе дұрыс болмады",
+	"error_generic_message": "Бетті жаңартып көріңіз немесе басты бетке оралыңыз.",
+	"error_back_home": "Басты бетке"
 }

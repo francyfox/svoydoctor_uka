@@ -19,16 +19,16 @@
 	} = $props();
 </script>
 
-<section
-	id="we-help"
-	data-slot="we-help"
-	class={cn('py-10 lg:py-16', className)}
-	data-squidex-token={editToken}
->
-	<div class="container flex flex-col gap-6">
-		<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
+{#if items.length > 0}
+	<section
+		id="we-help"
+		data-slot="we-help"
+		class={cn('py-10 lg:py-16', className)}
+		data-squidex-token={editToken}
+	>
+		<div class="container flex flex-col gap-6">
+			<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
 
-		{#if items.length > 0}
 			<Slider {items}>
 				{#snippet card(item: WeHelpItem)}
 					<TileLink href={item.link} class="block w-64 sm:w-72">
@@ -54,6 +54,6 @@
 					</TileLink>
 				{/snippet}
 			</Slider>
-		{/if}
-	</div>
-</section>
+		</div>
+	</section>
+{/if}
