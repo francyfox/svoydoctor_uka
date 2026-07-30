@@ -27,60 +27,62 @@
 	const [title, photo, promo] = $derived(blocks);
 </script>
 
-<section data-slot="hero" class={cn('container', className)} data-squidex-token={editToken}>
-	<div
-		class="grid auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"
-	>
-		{#if title}
-			<HeroTileTitle
-				title={title.title}
-				description={title.description}
-				link={title.link}
-				class="col-span-2 row-span-2 sm:col-span-4 lg:col-span-4 lg:row-span-4"
+<section data-slot="hero" class={cn('h-[calc(100vh-200px)] py-2', className)} data-squidex-token={editToken}>
+	<div class="container h-full">
+		<div
+			class="h-full grid auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"
+		>
+			{#if title}
+				<HeroTileTitle
+						title={title.title}
+						description={title.description}
+						link={title.link}
+						class="col-span-2 row-span-2 sm:col-span-4 lg:col-span-4 lg:row-span-4"
+				/>
+			{/if}
+
+			<HeroTilePhoto
+					imageUrl={photo?.backgroundImageUrl}
+					link={photo?.link}
+					placeholder={m.hero_photo_placeholder()}
+					placeholderClass="text-lg"
+					class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-5 lg:col-span-2"
 			/>
-		{/if}
 
-		<HeroTilePhoto
-			imageUrl={photo?.backgroundImageUrl}
-			link={photo?.link}
-			placeholder={m.hero_photo_placeholder()}
-			placeholderClass="text-lg"
-			class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-5 lg:col-span-2"
-		/>
+			{#if promo}
+				<HeroTilePromo
+						title={promo.title}
+						link={promo.link}
+						class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-7 lg:col-span-2"
+				/>
+			{/if}
 
-		{#if promo}
-			<HeroTilePromo
-				title={promo.title}
-				link={promo.link}
-				class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-7 lg:col-span-2"
+			<IconLink
+					icon="whatsapp"
+					href={whatsappHref(phone)}
+					label="WhatsApp"
+					class="tile-frame bg-success lg:col-start-5 lg:row-start-3"
 			/>
-		{/if}
 
-		<IconLink
-			icon="whatsapp"
-			href={whatsappHref(phone)}
-			label="WhatsApp"
-			class="tile-frame bg-success lg:col-start-5 lg:row-start-3"
-		/>
+			<IconLink
+					icon="instagram"
+					href={instagramUrl}
+					label="Instagram"
+					class="tile-frame bg-[color:var(--color-brand-primary-dark)] lg:col-start-6 lg:row-start-3"
+			/>
 
-		<IconLink
-			icon="instagram"
-			href={instagramUrl}
-			label="Instagram"
-			class="tile-frame bg-[color:var(--color-brand-primary-dark)] lg:col-start-6 lg:row-start-3"
-		/>
+			<HeroTileAdvantages
+					{advantages}
+					class="col-span-2 row-span-1 sm:row-span-2 lg:col-start-7 lg:col-span-2 lg:row-start-3 lg:row-span-2"
+			/>
 
-		<HeroTileAdvantages
-			{advantages}
-			class="col-span-2 row-span-1 sm:row-span-2 lg:col-start-7 lg:col-span-2 lg:row-start-3 lg:row-span-2"
-		/>
+			<HeroTilePhoto
+					placeholder={m.hero_photo2_placeholder()}
+					placeholderClass="text-sm"
+					class="col-span-2 row-span-1 lg:col-start-5 lg:col-span-2 lg:row-start-4 lg:row-span-1"
+			/>
+		</div>
 
-		<HeroTilePhoto
-			placeholder={m.hero_photo2_placeholder()}
-			placeholderClass="text-sm"
-			class="col-span-2 row-span-1 lg:col-start-5 lg:col-span-2 lg:row-start-4 lg:row-span-1"
-		/>
+		<HeroActionBar applyHref={title?.link} />
 	</div>
-
-	<HeroActionBar applyHref={title?.link} />
 </section>
