@@ -1,13 +1,17 @@
-<script lang="ts">
+<script lang="ts" generics="T extends { id: string; label: string }">
 	import { cn } from '$lib/utils.js';
-
-	type Item = { id: string; label: string; content: import('svelte').Snippet };
 
 	let {
 		items,
 		openId = $bindable(items[0]?.id),
+		content,
 		class: className
-	}: { items: Item[]; openId?: string; class?: string } = $props();
+	}: {
+		items: T[];
+		openId?: string;
+		content: import('svelte').Snippet<[T]>;
+		class?: string;
+	} = $props();
 </script>
 
 <div data-slot="accordion-strip" class={cn('flex h-[200px]', className)}>
@@ -24,7 +28,7 @@
 			</button>
 			{#if isOpen}
 				<div class="min-w-0 flex-1 bg-[var(--color-illustration-bg)] p-4 text-[13px] text-[#8A7A5C]">
-					{@render item.content()}
+					{@render content(item)}
 				</div>
 			{/if}
 		</div>

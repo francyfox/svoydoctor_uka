@@ -14,5 +14,22 @@
 	"hero_photo2_placeholder": "қабылдау фотосы",
 	"hero_promo_label": "Акция",
 	"hero_link_symptoms": "Мазасыздандыратын белгілер?",
-	"hero_link_contacts": "Біз қайда орналасқанбыз?"
+	"hero_link_contacts": "Біз қайда орналасқанбыз?",
+	"services_illustration_placeholder": "сурет",
+	"symptoms_tab_cat": "Мысықтар",
+	"symptoms_tab_dog": "Иттер",
+	"we_help_photo_placeholder": "фото",
+	"contacts_hours_title": "Жұмыс уақыты",
+	"contacts_photo_placeholder": "клиника фотосы",
+	"contacts_map_unavailable": "Карта жақында пайда болады",
+	"contacts_reviews_link": "2ГИС-те пікірлерді қарау →",
+	"contacts_map_title": "Жол картасы",
+	"contacts_day_mon": "Дс",
+	"contacts_day_tue": "Сс",
+	"contacts_day_wed": "Ср",
+	"contacts_day_thu": "Бс",
+	"contacts_day_fri": "Жм",
+	"contacts_day_sat": "Сб",
+	"contacts_day_sun": "Жс",
+	"footer_copyright": "© {year} {siteName}"
 }

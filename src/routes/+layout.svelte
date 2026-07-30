@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { QueryClientProvider, HydrationBoundary, createQuery } from '@tanstack/svelte-query';
+	import { page } from '$app/state';
 	import { Header } from '$components/header/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
+	import { getLocaleForUrl } from '$lib/paraglide/runtime';
 	import { isPreview } from '$lib/preview';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -9,7 +11,7 @@
 	let { data, children } = $props();
 
 	const settingsQuery = createQuery(
-		() => settingsQueryOptions(),
+		() => settingsQueryOptions(getLocaleForUrl(page.url)),
 		() => data.queryClient
 	);
 

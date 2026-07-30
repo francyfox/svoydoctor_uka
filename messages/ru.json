@@ -14,5 +14,22 @@
 	"hero_photo2_placeholder": "фото приёма",
 	"hero_promo_label": "Акция",
 	"hero_link_symptoms": "Тревожные сигналы?",
-	"hero_link_contacts": "Где мы находимся?"
+	"hero_link_contacts": "Где мы находимся?",
+	"services_illustration_placeholder": "иллюстрация",
+	"symptoms_tab_cat": "Кошки",
+	"symptoms_tab_dog": "Собаки",
+	"we_help_photo_placeholder": "фото",
+	"contacts_hours_title": "Часы работы",
+	"contacts_photo_placeholder": "фото клиники",
+	"contacts_map_unavailable": "Карта появится позже",
+	"contacts_reviews_link": "Смотреть отзывы на 2ГИС →",
+	"contacts_map_title": "Карта проезда",
+	"contacts_day_mon": "Пн",
+	"contacts_day_tue": "Вт",
+	"contacts_day_wed": "Ср",
+	"contacts_day_thu": "Чт",
+	"contacts_day_fri": "Пт",
+	"contacts_day_sat": "Сб",
+	"contacts_day_sun": "Вс",
+	"footer_copyright": "© {year} {siteName}"
 }

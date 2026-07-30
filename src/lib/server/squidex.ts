@@ -1,8 +1,30 @@
 import { SquidexClient } from '@squidex/squidex';
 import { env } from '$lib/server/env';
-import type { Settings, HeroBlock, HeroAdvantage, SectionHero } from '$lib/types/content';
+import type {
+	Settings,
+	HeroBlock,
+	HeroAdvantage,
+	SectionHero,
+	ServiceItem,
+	SectionServices,
+	SymptomItem,
+	SectionSymptoms,
+	WeHelpItem,
+	SectionWeHelp
+} from '$lib/types/content';
 
-export type { Settings, HeroBlock, HeroAdvantage, SectionHero };
+export type {
+	Settings,
+	HeroBlock,
+	HeroAdvantage,
+	SectionHero,
+	ServiceItem,
+	SectionServices,
+	SymptomItem,
+	SectionSymptoms,
+	WeHelpItem,
+	SectionWeHelp
+};
 
 type SquidexToken = { accessToken: string; expiresIn: number; expiresAt: number };
 
@@ -41,6 +63,15 @@ export type SettingsData = {
 	siteName: { iv: string };
 	phone: { iv: string };
 	logo: { iv: SquidexAsset };
+	address: Record<string, string>;
+	hoursWeekday: Record<string, string>;
+	hoursSaturday: Record<string, string>;
+	offDays: { iv: string };
+	ratingValue: { iv: string };
+	ratingLabel: Record<string, string>;
+	reviewsUrl: { iv: string };
+	mapEmbedUrl: { iv: string };
+	clinicPhoto?: { iv: SquidexAsset };
 };
 
 export type HeroBlockData = {
@@ -60,12 +91,46 @@ export type SectionHeroData = {
 	advantages: Record<string, HeroAdvantageData[]>;
 };
 
+export type ServiceItemData = {
+	label: string;
+	description?: string;
+	illustration: SquidexAsset;
+	ctaLabel: string;
+};
+
+export type SectionServicesData = {
+	items: Record<string, ServiceItemData[]>;
+};
+
+export type SymptomItemData = {
+	text: string;
+	species?: 'cat' | 'dog' | 'both';
+};
+
+export type SectionSymptomsData = {
+	title: Record<string, string>;
+	subtitle?: Record<string, string>;
+	symptoms: Record<string, SymptomItemData[]>;
+};
+
+export type WeHelpItemData = {
+	title: string;
+	description?: string;
+	photo: SquidexAsset;
+	link?: string;
+};
+
+export type SectionWeHelpData = {
+	title: Record<string, string>;
+	items: Record<string, WeHelpItemData[]>;
+};
+
 function assetUrl(asset: SquidexAsset | undefined): string | undefined {
 	const id = asset?.[0];
 	return id ? `${env.SQUIDEX_URL}/api/assets/${env.SQUIDEX_APP}/${id}` : undefined;
 }
 
-export async function getSettings(): Promise<Settings> {
+export async function getSettings(locale: string): Promise<Settings> {
 	const result = await client.contents.getContents('settings', {});
 	const item = result.items[0];
 	const data = item.data as SettingsData;
@@ -74,6 +139,72 @@ export async function getSettings(): Promise<Settings> {
 		siteName: data.siteName.iv,
 		phone: data.phone.iv,
 		logoUrl: assetUrl(data.logo.iv),
+		address: data.address?.[locale],
+		hoursWeekday: data.hoursWeekday?.[locale],
+		hoursSaturday: data.hoursSaturday?.[locale],
+		offDays: data.offDays?.iv
+			? data.offDays.iv
+					.split(',')
+					.map((value) => Number(value.trim()))
+					.filter((value) => !Number.isNaN(value))
+			: [],
+		ratingValue: data.ratingValue?.iv,
+		ratingLabel: data.ratingLabel?.[locale],
+		reviewsUrl: data.reviewsUrl?.iv || undefined,
+		mapEmbedUrl: data.mapEmbedUrl?.iv || undefined,
+		clinicPhotoUrl: assetUrl(data.clinicPhoto?.iv),
+		editToken: item.editToken ?? undefined
+	};
+}
+
+export async function getSectionServices(locale: string): Promise<SectionServices> {
+	const result = await client.contents.getContents('section-services', {});
+	const item = result.items[0];
+	const data = item.data as SectionServicesData;
+	const items = data.items[locale] ?? [];
+
+	return {
+		items: items.map((service) => ({
+			label: service.label,
+			description: service.description,
+			illustrationUrl: assetUrl(service.illustration),
+			ctaLabel: service.ctaLabel
+		})),
+		editToken: item.editToken ?? undefined
+	};
+}
+
+export async function getSectionSymptoms(locale: string): Promise<SectionSymptoms> {
+	const result = await client.contents.getContents('section-symptoms', {});
+	const item = result.items[0];
+	const data = item.data as SectionSymptomsData;
+	const symptoms = data.symptoms[locale] ?? [];
+
+	return {
+		title: data.title[locale],
+		subtitle: data.subtitle?.[locale],
+		symptoms: symptoms.map((symptom) => ({
+			text: symptom.text,
+			species: symptom.species ?? 'both'
+		})),
+		editToken: item.editToken ?? undefined
+	};
+}
+
+export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
+	const result = await client.contents.getContents('section-we-help', {});
+	const item = result.items[0];
+	const data = item.data as SectionWeHelpData;
+	const items = data.items[locale] ?? [];
+
+	return {
+		title: data.title[locale],
+		items: items.map((weHelpItem) => ({
+			title: weHelpItem.title,
+			description: weHelpItem.description,
+			photoUrl: assetUrl(weHelpItem.photo),
+			link: weHelpItem.link
+		})),
 		editToken: item.editToken ?? undefined
 	};
 }

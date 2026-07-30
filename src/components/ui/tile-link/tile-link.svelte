@@ -12,10 +12,16 @@
 		class?: string;
 		children: Snippet;
 	} = $props();
+
+	const isExternal = $derived(href ? /^https?:\/\//.test(href) : false);
 </script>
 
 {#if href}
-	<a href={resolve(href as Pathname)} class={className}>{@render children()}</a>
+	{#if isExternal}
+		<a {href} class={className} target="_blank" rel="noopener noreferrer">{@render children()}</a>
+	{:else}
+		<a href={resolve(href as Pathname)} class={className}>{@render children()}</a>
+	{/if}
 {:else}
 	<div class={className}>{@render children()}</div>
 {/if}
