@@ -36,6 +36,7 @@
 		"@icons-pack/svelte-simple-icons": "^7.2.0",
 		"@t3-oss/env-core": "^0.13.11",
 		"@tanstack/svelte-query": "^6.1.38",
+		"@tanstack/svelte-query-devtools": "^6.1.38",
 		"runed": "^0.37.1",
 		"zod": "^4.4.3"
 	}

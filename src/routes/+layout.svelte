@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { QueryClientProvider, HydrationBoundary, createQuery } from '@tanstack/svelte-query';
+	import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools'
 	import { page } from '$app/state';
 	import { Header } from '$components/header/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
@@ -16,7 +17,7 @@
 	);
 
 	$effect(() => {
-		initializeVisualEditor();
+		initializeVisualEditor(data.queryClient);
 		return () => cleanupVisualEditor();
 	});
 </script>
@@ -47,4 +48,6 @@
 		{/if}
 		{@render children()}
 	</HydrationBoundary>
+
+	<SvelteQueryDevtools />
 </QueryClientProvider>
