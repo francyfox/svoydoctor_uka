@@ -4,7 +4,6 @@
 	import { Header } from '$components/header/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { getLocaleForUrl } from '$lib/paraglide/runtime';
-	import { isPreview } from '$lib/preview';
 	import { initializeVisualEditor, cleanupVisualEditor, setAttr } from '$lib/visual-editor';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -16,10 +15,7 @@
 		() => data.queryClient
 	);
 
-	const preview = $derived(isPreview());
-
 	$effect(() => {
-		if (!preview) return;
 		initializeVisualEditor();
 		return () => cleanupVisualEditor();
 	});
@@ -39,7 +35,7 @@
 				siteName={settingsQuery.data.siteName}
 				phone={settingsQuery.data.phone}
 				logoUrl={settingsQuery.data.logoUrl}
-				directusAttr={preview && settingsQuery.data.directusId
+				directusAttr={settingsQuery.data.directusId
 					? setAttr({
 							collection: 'settings',
 							item: settingsQuery.data.directusId,

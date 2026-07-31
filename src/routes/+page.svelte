@@ -13,15 +13,12 @@
 	import { weHelpQueryOptions } from '$lib/queries/we-help';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { getLocaleForUrl } from '$lib/paraglide/runtime';
-	import { isPreview } from '$lib/preview';
 	import { setAttr } from '$lib/visual-editor';
 
 	let { data } = $props();
 
-	const preview = $derived(isPreview());
-
 	function editAttr(collection: string, item: number | undefined, fields: string[]) {
-		return preview && item ? setAttr({ collection, item, fields, mode: 'drawer' as const }) : undefined;
+		return item ? setAttr({ collection, item, fields, mode: 'drawer' as const }) : undefined;
 	}
 
 	const heroQuery = createQuery(
