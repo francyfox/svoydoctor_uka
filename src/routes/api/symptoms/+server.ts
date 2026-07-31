@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { getSectionSymptoms } from '$lib/server/squidex';
+import { getSectionSymptoms } from '$lib/server/directus';
 import { getLocale } from '$lib/paraglide/runtime';
 import type { RequestHandler } from './$types';
 

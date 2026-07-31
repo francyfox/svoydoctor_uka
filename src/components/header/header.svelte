@@ -15,13 +15,13 @@
 		siteName,
 		phone,
 		logoUrl,
-		editToken,
+		directusAttr,
 		class: className
 	}: {
 		siteName: string;
 		phone: string;
 		logoUrl?: string;
-		editToken?: string;
+		directusAttr?: string;
 		class?: string;
 	} = $props();
 
@@ -35,7 +35,7 @@
 	data-slot="header"
 	class={cn('sticky top-0 z-40 bg-background py-2 transition-shadow', className)}
 	style={scrolled ? 'box-shadow: var(--shadow-glass)' : ''}
-	data-squidex-token={editToken}
+	data-directus={directusAttr}
 >
 	<div class="container flex items-center justify-between gap-4">
 		<Logo {siteName} {logoUrl} />

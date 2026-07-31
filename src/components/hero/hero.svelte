@@ -14,20 +14,20 @@
 		blocks,
 		advantages,
 		phone,
-		editToken,
+		directusAttr,
 		class: className
 	}: {
 		blocks: HeroBlock[];
 		advantages: HeroAdvantage[];
 		phone: string;
-		editToken?: string;
+		directusAttr?: string;
 		class?: string;
 	} = $props();
 
 	const [title, photo, promo] = $derived(blocks);
 </script>
 
-<section data-slot="hero" class={cn('h-[calc(100vh-200px)] py-2', className)} data-squidex-token={editToken}>
+<section data-slot="hero" class={cn('h-[calc(100vh-200px)] py-2', className)} data-directus={directusAttr}>
 	<div class="container h-full">
 		<div
 			class="h-full grid auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"

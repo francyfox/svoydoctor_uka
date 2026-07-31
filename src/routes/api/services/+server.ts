@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { getSectionServices } from '$lib/server/squidex';
+import { getSectionServices } from '$lib/server/directus';
 import { getLocale } from '$lib/paraglide/runtime';
 import type { RequestHandler } from './$types';
 

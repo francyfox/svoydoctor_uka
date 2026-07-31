@@ -14,8 +14,15 @@
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { getLocaleForUrl } from '$lib/paraglide/runtime';
 	import { isPreview } from '$lib/preview';
+	import { setAttr } from '$lib/visual-editor';
 
 	let { data } = $props();
+
+	const preview = $derived(isPreview());
+
+	function editAttr(collection: string, item: number | undefined, fields: string[]) {
+		return preview && item ? setAttr({ collection, item, fields, mode: 'drawer' as const }) : undefined;
+	}
 
 	const heroQuery = createQuery(
 		() => heroQueryOptions(getLocaleForUrl(page.url)),
@@ -37,8 +44,6 @@
 		() => settingsQueryOptions(getLocaleForUrl(page.url)),
 		() => data.queryClient
 	);
-
-	const preview = $derived(isPreview());
 </script>
 
 {#if heroQuery.data && settingsQuery.data}
@@ -46,14 +51,19 @@
 		blocks={heroQuery.data.blocks}
 		advantages={heroQuery.data.advantages}
 		phone={settingsQuery.data.phone}
-		editToken={preview ? heroQuery.data.editToken : undefined}
+		directusAttr={editAttr('section_hero_translations', heroQuery.data.translationId, [
+			'blocks',
+			'advantages'
+		])}
 	/>
 {/if}
 
 {#if servicesQuery.data}
 	<Services
 		items={servicesQuery.data.items}
-		editToken={preview ? servicesQuery.data.editToken : undefined}
+		directusAttr={editAttr('section_services_translations', servicesQuery.data.translationId, [
+			'items'
+		])}
 	/>
 {/if}
 
@@ -62,7 +72,11 @@
 		title={symptomsQuery.data.title}
 		subtitle={symptomsQuery.data.subtitle}
 		symptoms={symptomsQuery.data.symptoms}
-		editToken={preview ? symptomsQuery.data.editToken : undefined}
+		directusAttr={editAttr('section_symptoms_translations', symptomsQuery.data.translationId, [
+			'title',
+			'subtitle',
+			'symptoms'
+		])}
 	/>
 {/if}
 
@@ -70,7 +84,10 @@
 	<WeHelp
 		title={weHelpQuery.data.title}
 		items={weHelpQuery.data.items}
-		editToken={preview ? weHelpQuery.data.editToken : undefined}
+		directusAttr={editAttr('section_we_help_translations', weHelpQuery.data.translationId, [
+			'title',
+			'items'
+		])}
 	/>
 {/if}
 
@@ -85,7 +102,12 @@
 		reviewsUrl={settingsQuery.data.reviewsUrl}
 		mapEmbedUrl={settingsQuery.data.mapEmbedUrl}
 		clinicPhotoUrl={settingsQuery.data.clinicPhotoUrl}
-		editToken={preview ? settingsQuery.data.editToken : undefined}
+		directusAttr={editAttr('settings_translations', settingsQuery.data.translationId, [
+			'address',
+			'hours_weekday',
+			'hours_saturday',
+			'rating_label'
+		])}
 	/>
 
 	<Footer siteName={settingsQuery.data.siteName} logoUrl={settingsQuery.data.logoUrl} />

@@ -11,7 +11,8 @@ export type Settings = {
 	reviewsUrl: string | undefined;
 	mapEmbedUrl: string | undefined;
 	clinicPhotoUrl: string | undefined;
-	editToken: string | undefined;
+	directusId: number | undefined;
+	translationId: number | undefined;
 };
 
 export type HeroBlock = {
@@ -29,7 +30,8 @@ export type HeroAdvantage = {
 export type SectionHero = {
 	blocks: HeroBlock[];
 	advantages: HeroAdvantage[];
-	editToken: string | undefined;
+	directusId: number | undefined;
+	translationId: number | undefined;
 };
 
 export type ServiceItem = {
@@ -41,7 +43,8 @@ export type ServiceItem = {
 
 export type SectionServices = {
 	items: ServiceItem[];
-	editToken: string | undefined;
+	directusId: number | undefined;
+	translationId: number | undefined;
 };
 
 export type SymptomSpecies = 'cat' | 'dog' | 'both';
@@ -55,7 +58,8 @@ export type SectionSymptoms = {
 	title: string;
 	subtitle: string | undefined;
 	symptoms: SymptomItem[];
-	editToken: string | undefined;
+	directusId: number | undefined;
+	translationId: number | undefined;
 };
 
 export type WeHelpItem = {
@@ -68,5 +72,6 @@ export type WeHelpItem = {
 export type SectionWeHelp = {
 	title: string;
 	items: WeHelpItem[];
-	editToken: string | undefined;
+	directusId: number | undefined;
+	translationId: number | undefined;
 };

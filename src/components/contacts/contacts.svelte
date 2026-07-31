@@ -13,7 +13,7 @@
 		reviewsUrl,
 		mapEmbedUrl,
 		clinicPhotoUrl,
-		editToken,
+		directusAttr,
 		class: className
 	}: {
 		address?: string;
@@ -25,7 +25,7 @@
 		reviewsUrl?: string;
 		mapEmbedUrl?: string;
 		clinicPhotoUrl?: string;
-		editToken?: string;
+		directusAttr?: string;
 		class?: string;
 	} = $props();
 
@@ -52,7 +52,7 @@
 	id="contacts"
 	data-slot="contacts"
 	class={cn('py-10 lg:py-16', className)}
-	data-squidex-token={editToken}
+	data-directus={directusAttr}
 >
 	<div class="container">
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">

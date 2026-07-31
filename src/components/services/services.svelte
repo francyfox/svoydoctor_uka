@@ -11,11 +11,11 @@
 
 	let {
 		items,
-		editToken,
+		directusAttr,
 		class: className
 	}: {
 		items: ServiceItem[];
-		editToken?: string;
+		directusAttr?: string;
 		class?: string;
 	} = $props();
 
@@ -29,7 +29,7 @@
 		id="services"
 		data-slot="services"
 		class={cn('py-2', className)}
-		data-squidex-token={editToken}
+		data-directus={directusAttr}
 	>
 		<div class="container">
 			<AccordionStrip items={stripItems} class="tile-frame">

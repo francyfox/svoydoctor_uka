@@ -9,7 +9,7 @@ import SiTelegram from '@icons-pack/svelte-simple-icons/icons/SiTelegram';
 /**
  * Curated name -> component registry. Keep this list explicit (no wildcard
  * re-export of the full simple-icons/lucide sets) so only icons actually used
- * end up in the bundle. Extend when a new icon is needed — e.g. once Squidex
+ * end up in the bundle. Extend when a new icon is needed — e.g. once Directus
  * content editors can pick an icon by name for advantages/social links.
  */
 export const iconRegistry = {

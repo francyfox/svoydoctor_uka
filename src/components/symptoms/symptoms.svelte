@@ -9,13 +9,13 @@
 		title,
 		subtitle,
 		symptoms,
-		editToken,
+		directusAttr,
 		class: className
 	}: {
 		title: string;
 		subtitle?: string;
 		symptoms: SymptomItem[];
-		editToken?: string;
+		directusAttr?: string;
 		class?: string;
 	} = $props();
 
@@ -36,7 +36,7 @@
 		id="symptoms"
 		data-slot="symptoms"
 		class={cn('bg-secondary py-10 lg:py-16', className)}
-		data-squidex-token={editToken}
+		data-directus={directusAttr}
 	>
 		<div class="container flex flex-col gap-6">
 			<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

@@ -7,7 +7,7 @@
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![shadcn-svelte](https://img.shields.io/badge/shadcn--svelte-000000?style=flat-square)
 ![ElysiaJS](https://img.shields.io/badge/ElysiaJS-6B46C1?style=flat-square)
-![Squidex](https://img.shields.io/badge/Squidex-CMS-4A90D9?style=flat-square)
+![Directus](https://img.shields.io/badge/Directus-CMS-263238?style=flat-square&logo=directus&logoColor=white)
 ![PWA](https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 [![Penpot](https://img.shields.io/badge/Penpot-Design-6E4FE0?style=flat-square&logo=penpot&logoColor=white)](http://localhost:9001/#/view?file-id=f8c16428-9131-80df-8008-5c3e55c08a7b&page-id=f8c16428-9131-80df-8008-5c3e55c08a7c&section=interactions&index=0&share-id=5f9b543d-1449-8033-8008-63d35a2a44bf)
@@ -25,7 +25,7 @@
 
 ## Стек
 
-SvelteKit + TypeScript, TailwindCSS + shadcn-svelte, SSR (Vercel adapter) — сайт редактируется сотрудниками клиники через Squidex (облако, бесплатный тариф) без участия разработчика. ElysiaJS как serverless-функции на Vercel рядом с сайтом. PWA для установки на телефон. Paraglide подключён для ru/kk (см. `project.inlang`).
+SvelteKit + TypeScript, TailwindCSS + shadcn-svelte, SSR (Vercel adapter) — сайт редактируется сотрудниками клиники через Directus без участия разработчика. ElysiaJS как serverless-функции на Vercel рядом с сайтом. PWA для установки на телефон. Paraglide подключён для ru/kk (см. `project.inlang`).
 
 ## Разработка
 

@@ -10,7 +10,7 @@
 - **Package Manager**: bun
 - **Add-ons**: tailwindcss, sveltekit-adapter, paraglide, mcp
 - **UI**: shadcn-svelte поверх Tailwind — см. `docs/ui-design-system.md` за токенами и мэппингом компонентов
-- **Backend**: Squidex (облако, CMS для контента, который редактируют сотрудники клиники) + ElysiaJS (serverless на Vercel)
+- **Backend**: Directus (CMS для контента, который редактируют сотрудники клиники, с click-to-edit через Visual Editor) + ElysiaJS (serverless на Vercel)
 - **Deploy**: Vercel, SSR, PWA
 
 ---
