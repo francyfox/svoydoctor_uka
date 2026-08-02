@@ -4,6 +4,8 @@ import { settingsQueryOptions } from '$lib/queries/settings';
 import { getLocale } from '$lib/paraglide/runtime';
 import type { LayoutLoad } from './$types';
 
+export const prerender = true;
+
 export const load: LayoutLoad = async ({ fetch }) => {
 	const queryClient = getQueryClient();
 	const locale = getLocale();

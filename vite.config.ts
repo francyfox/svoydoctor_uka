@@ -16,6 +16,11 @@ export default defineConfig({
 			alias: {
 				'$components': 'src/components',
 				'$components/*': 'src/components/*'
+			},
+			prerender: {
+				// /apply and /about are content-driven link targets that don't have routes yet;
+				// don't fail the static build over them.
+				handleHttpError: 'warn'
 			}
 		}),
 
