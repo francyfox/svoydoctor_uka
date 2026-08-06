@@ -4,6 +4,37 @@
 
 Дизайн ведётся в Penpot: https://design.penpot.app/#/workspace?team-id=7ad540b5-8190-815d-8005-5e4a1e725ae0&file-id=bd31e32d-d69f-81e2-8008-6055cfeaab1c&page-id=b1f58a1c-6572-80c1-8008-5daa727ff8e1
 
+## Правила работы
+
+- После значимой задачи (особенно после успеха или неудачи, от которых стоит извлечь урок) обновляй этот файл: фиксируй, что сработало, что не сработало и почему, чтобы не наступать на те же грабли в следующий раз.
+- Удаляй неиспользуемый и устаревший код, файлы, поля схемы, зависимости и заметки — не оставляй мёртвый код и не копи техдолг "на всякий случай".
+
+## Directus — модель контента
+
+- Один инстанс, без staging: `https://directus-11-17-4.onrender.com` (Render + Neon Postgres + R2). Все схемные изменения через MCP/API идут сразу в прод.
+- Контент организован как singleton-коллекции (`settings`, `section_hero`, `section_services`, `section_symptoms`, `section_we_help`) с O2M в `*_translations` (по одной строке на локаль `ru`/`kk`).
+- Повторяющиеся элементы внутри секции — НЕ JSON-репитеры, а отдельные дочерние коллекции (напр. `section_hero_block`, `section_hero_advantage`, `section_services_item`, `section_symptom`, `section_we_help_item`), связанные O2M с соответствующей `*_translations`. Раньше это были JSON-поля (`advantages`, `items`, `symptoms`) — их конвертировали в коллекции 2026-08-06, т.к. репитеры неудобно редактировать.
+- Паттерн дочерней коллекции: скрытое поле `sort` (integer, порядок drag-n-drop) + скрытое `ref_id` (integer FK → `<parent>_translations.id`, `on_delete: SET NULL`), на родителе — alias-поле того же имени (`special: ["o2m"]`, `interface: "list-o2m"`) с `relation.meta.sort_field: "sort"`.
+- MCP-инструменты `mcp__directus__*` НЕ включают создание/удаление коллекций, полей-связей (relations) — для этого нужны прямые REST-вызовы (`curl` к `$DIRECTUS_URL` с `Authorization: Bearer $DIRECTUS_TOKEN` из `.env`): `POST /collections`, `POST /relations`, `DELETE /fields/:collection/:field`.
+- Маппинг Directus-строк → типы приложения (`src/lib/types/content.ts`) живёт в одном месте — `src/lib/server/directus.ts`. При правках схемы менять нужно только его; вниз по стеку (`+server.ts`, `queries/*.ts`, компоненты) ничего трогать не надо, пока форма `Settings`/`Section*` не меняется.
+
+## Изображения, видео и иконки из Directus
+
+- `src/components/ui/image/image.svelte` (`Image`) — компонент для растровых фото из Directus (лого, фото клиники, иллюстрации услуг, фото блока "мы помогаем", фон hero-тайла). Использует `@unpic/svelte` (`cdn="directus"`) + Directus on-the-fly transform API (`/assets/:id?width=&format=&fit=`, публично доступен без токена). Пропсы: `id` (UUID файла или `undefined`), `width`/`height`, `fit`, `priority` (для контента над сгибом — лого, первый hero-тайл). **Если `id` не передан — сам рисует нейтральный визуальный плейсхолдер (иконка, без текста)**; вызывающему компоненту НЕ нужно писать свой `{:else}` с текстом типа "фото клиники" — просто рендерить `<Image>` безусловно.
+- `src/components/ui/video/video.svelte` (`Video`) — фоновое видео из Directus (напр. hero-тайл), автоплей+луп+mute+playsinline по умолчанию (обязательно для автоплея в браузерах), тот же паттерн skeleton/error, что и у `Image`. Directus не трансформирует не-картиночные файлы — `src` строится через `buildAssetUrl(id)` без параметров.
+- `src/components/ui/directus-icon/icon.svelte` (экспортируется как `Icon` из `ui/directus-icon/index.ts` — не путать с `ui/icon/icon.svelte`, который тоже `Icon`, но для статичных app-иконок типа whatsapp/instagram; при коллизии импортов алиасить на месте) — для SVG-иконок (напр. `HeroAdvantage.iconId`), без format-negotiation, через `src/lib/directus/assets.ts` (`buildAssetUrl`).
+- Типы в `content.ts` хранят **id файла** (`logoId`, `illustrationId`, ...), а не готовый URL — компонент сам строит нужные варианты (ширины/форматы). Собирает и мапит их `src/lib/server/directus.ts`.
+- `HeroBlock.background: { id, kind: 'image'|'video' } | undefined` — `kind` определяется по mime-типу файла (`media.type` из `directus_files`, начинается с `video/` → video). `hero-tile-media.svelte` рендерит `Image` или `Video` в зависимости от `kind`, и если у тайла есть `title`/`description` — рисует тёмный градиент (`bg-gradient-to-t from-black/70`) поверх медиа для читаемости текста. `hero-tile-title.svelte`/`hero-tile-promo.svelte` умеют то же самое (опциональный `background`/`backgroundId` проп) — если фона нет, остаются сплошным цветом (`bg-primary`/`bg-accent`) как раньше.
+- `section_hero_block` изначально (до 2026-08-06) был не O2M, а фактический O2O — `ref_id` имел `is_unique: true`, из-за чего на перевод помещался только ОДИН блок. Позиции тайлов в `hero.svelte` строго позиционные (`[title, photo, promo, description, media] = blocks`, сортировка по полю `sort`) — чтобы дотянуться до 5-й позиции (media-тайл под иконками), нужны все 5 блоков по порядку, даже если 4-й (`description`) нигде не рендерится (заполняй service-заглушкой, не оставляй дыру в sort). Не путай эту позиционную модель с UI-ready O2M-коллекциями остальных секций — здесь редактирование через Directus admin потребует знания, что четвёртая карточка технически "мёртвая".
+- Above-the-fold картинки/видео ОБЯЗАТЕЛЬНО с `priority` (иначе `loading="lazy"` — в связке с окружением `claude-in-chrome` это часто вообще не грузится, см. ниже). Забыл `priority` на `hero-tile-title`/`hero-tile-promo` при их создании — картинка застревала на `naturalWidth: 0` даже в реальном браузере, не только в автоматизации.
+- Тестировать автоплей видео через `claude-in-chrome` не получится — в этом окружении `<video>` не проигрывает вообще ничего (даже публичный тестовый mp4 зависает на `readyState: 0`), это ограничение браузерной автоматизации, а не баг компонента. Проверяй атрибуты (`autoplay`/`muted`/`loop`/`playsinline` на элементе) через JS-инспекцию DOM, не жди реального воспроизведения в скриншотах.
+
+**Грабли `@unpic/svelte` 1.0.1 (учтено в реализации, не наступай снова):**
+1. `<Image cdn="directus" operations={{...}}>` — `operations` ОБЯЗАН быть объектом, ключ по имени CDN: `{ directus: { format: 'auto', fit: 'cover' } }`, а не плоский `{ format: 'auto' }` — иначе тихо отбрасывается (`operations?.[cdn]` в `@unpic/core`).
+2. `<Image>` не годится для format-негоциации (avif/webp): её собственный `srcset`-билдер передаёт `format: undefined` поверх `operations.format` (баг порядка spread в `@unpic/core/getSrcSet`) — реальный запрос никогда не получает `format`. Рабочий вариант — ручной `<picture>` с явными `<Source type="image/avif">` / `<Source type="image/webp">` + `<Image>` как fallback (так и сделано в `image.svelte`).
+3. `<Image>` не прокидывает `onload`/`onerror` на реальный `<img>` (описаны в типах, но реально не долетают) и её `class`-проп схватывается один раз при монтировании (не реактивно) — поэтому: (a) состояние загрузки/ошибки отслеживается вручную через `{@attach}` на обёртке (`container.querySelector('img')` + `addEventListener`, плюс проверка `img.complete` на случай, когда SSR-рендеренная картинка уже догрузилась до гидратации); (b) fade-переход по `loaded` навешан на СВОЙ `<div>`-обёртку, а не как `class` на `<Image>`.
+4. Directus: без явного `format=auto` в query отдаёт оригинальный формат независимо от `Accept`-заголовка — параметр обязателен для негоциации, само его отсутствие не включает её.
+
 ## Project Configuration
 
 - **Language**: TypeScript

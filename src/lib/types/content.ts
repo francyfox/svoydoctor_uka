@@ -1,7 +1,7 @@
 export type Settings = {
 	siteName: string;
 	phone: string;
-	logoUrl: string | undefined;
+	logoId: string | undefined;
 	address: string | undefined;
 	hoursWeekday: string | undefined;
 	hoursSaturday: string | undefined;
@@ -10,21 +10,28 @@ export type Settings = {
 	ratingLabel: string | undefined;
 	reviewsUrl: string | undefined;
 	mapEmbedUrl: string | undefined;
-	clinicPhotoUrl: string | undefined;
+	clinicPhotoId: string | undefined;
 	directusId: number | undefined;
 	translationId: number | undefined;
 };
 
+export type HeroBackgroundMedia = {
+	id: string;
+	kind: 'image' | 'video';
+};
+
 export type HeroBlock = {
+	id: number;
 	title: string;
 	description: string | undefined;
 	link: string | undefined;
-	backgroundImageUrl: string | undefined;
+	background: HeroBackgroundMedia | undefined;
 };
 
 export type HeroAdvantage = {
+	id: number;
 	text: string;
-	iconUrl: string | undefined;
+	iconId: string | undefined;
 };
 
 export type SectionHero = {
@@ -35,9 +42,10 @@ export type SectionHero = {
 };
 
 export type ServiceItem = {
+	id: number;
 	label: string;
 	description: string | undefined;
-	illustrationUrl: string | undefined;
+	illustrationId: string | undefined;
 	ctaLabel: string;
 };
 
@@ -50,6 +58,7 @@ export type SectionServices = {
 export type SymptomSpecies = 'cat' | 'dog' | 'both';
 
 export type SymptomItem = {
+	id: number;
 	text: string;
 	species: SymptomSpecies;
 };
@@ -63,9 +72,10 @@ export type SectionSymptoms = {
 };
 
 export type WeHelpItem = {
+	id: number;
 	title: string;
 	description: string | undefined;
-	photoUrl: string | undefined;
+	photoId: string | undefined;
 	link: string | undefined;
 };
 

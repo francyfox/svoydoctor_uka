@@ -98,7 +98,7 @@
 		ratingLabel={settingsQuery.data.ratingLabel}
 		reviewsUrl={settingsQuery.data.reviewsUrl}
 		mapEmbedUrl={settingsQuery.data.mapEmbedUrl}
-		clinicPhotoUrl={settingsQuery.data.clinicPhotoUrl}
+		clinicPhotoId={settingsQuery.data.clinicPhotoId}
 		directusAttr={editAttr('settings_translations', settingsQuery.data.translationId, [
 			'address',
 			'hours_weekday',
@@ -107,5 +107,5 @@
 		])}
 	/>
 
-	<Footer siteName={settingsQuery.data.siteName} logoUrl={settingsQuery.data.logoUrl} />
+	<Footer siteName={settingsQuery.data.siteName} logoId={settingsQuery.data.logoId} />
 {/if}

@@ -2,6 +2,7 @@
 	import { cn } from '$lib/utils.js';
 	import * as m from '$lib/paraglide/messages.js';
 	import { DaySquare, type DaySquareVariant } from '$components/ui/day-square/index.js';
+	import { Image } from '$components/ui/image/index.js';
 
 	let {
 		address,
@@ -12,7 +13,7 @@
 		ratingLabel,
 		reviewsUrl,
 		mapEmbedUrl,
-		clinicPhotoUrl,
+		clinicPhotoId,
 		directusAttr,
 		class: className
 	}: {
@@ -24,7 +25,7 @@
 		ratingLabel?: string;
 		reviewsUrl?: string;
 		mapEmbedUrl?: string;
-		clinicPhotoUrl?: string;
+		clinicPhotoId?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
@@ -92,13 +93,7 @@
 			<div
 				class="tile-frame relative h-40 overflow-hidden bg-[color:var(--color-photo-placeholder)] lg:h-full"
 			>
-				{#if clinicPhotoUrl}
-					<img src={clinicPhotoUrl} alt="" class="size-full object-cover" />
-				{:else}
-					<span class="absolute inset-0 flex items-end p-4 text-[#3A3A3D]">
-						{m.contacts_photo_placeholder()}
-					</span>
-				{/if}
+				<Image id={clinicPhotoId} alt="" width={400} height={256} />
 			</div>
 
 			{#if ratingValue}

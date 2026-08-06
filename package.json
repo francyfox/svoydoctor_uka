@@ -37,6 +37,7 @@
 		"@t3-oss/env-core": "^0.13.11",
 		"@tanstack/svelte-query": "^6.1.38",
 		"@tanstack/svelte-query-devtools": "^6.1.38",
+		"@unpic/svelte": "^1.0.1",
 		"runed": "^0.37.1",
 		"zod": "^4.4.3"
 	}

@@ -35,7 +35,7 @@
 			<Header
 				siteName={settingsQuery.data.siteName}
 				phone={settingsQuery.data.phone}
-				logoUrl={settingsQuery.data.logoUrl}
+				logoId={settingsQuery.data.logoId}
 				directusAttr={settingsQuery.data.directusId
 					? setAttr({
 							collection: 'settings',

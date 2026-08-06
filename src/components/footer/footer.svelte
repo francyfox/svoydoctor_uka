@@ -4,14 +4,15 @@
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import { cn } from '$lib/utils.js';
 	import * as m from '$lib/paraglide/messages.js';
+	import { Image } from '$components/ui/image/index.js';
 
 	let {
 		siteName,
-		logoUrl,
+		logoId,
 		class: className
 	}: {
 		siteName: string;
-		logoUrl?: string;
+		logoId?: string;
 		class?: string;
 	} = $props();
 
@@ -27,10 +28,8 @@
 			href={resolve(localizeHref('/') as Pathname)}
 			class="flex shrink-0 items-center gap-3"
 		>
-			<span class="bg-primary size-11 shrink-0 overflow-hidden rounded-full">
-				{#if logoUrl}
-					<img src={logoUrl} alt="" class="size-full object-cover" />
-				{/if}
+			<span class="bg-primary relative size-11 shrink-0 overflow-hidden rounded-full">
+				<Image id={logoId} alt="" width={44} height={44} />
 			</span>
 			<span class="font-heading text-xl whitespace-nowrap">{siteName}</span>
 		</a>

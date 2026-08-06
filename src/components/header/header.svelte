@@ -14,13 +14,13 @@
 	let {
 		siteName,
 		phone,
-		logoUrl,
+		logoId,
 		directusAttr,
 		class: className
 	}: {
 		siteName: string;
 		phone: string;
-		logoUrl?: string;
+		logoId?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
@@ -38,7 +38,7 @@
 	data-directus={directusAttr}
 >
 	<div class="container flex items-center justify-between gap-4">
-		<Logo {siteName} {logoUrl} />
+		<Logo {siteName} {logoId} />
 
 		<div class="hidden items-center gap-7 lg:flex">
 			<PhoneLink {phone} class="text-2xl lg:text-[length:var(--font-tile-h3)]" />

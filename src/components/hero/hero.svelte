@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { cn, whatsappHref } from '$lib/utils.js';
 	import type { HeroBlock, HeroAdvantage } from '$lib/types/content';
-	import * as m from '$lib/paraglide/messages.js';
 	import { IconLink } from '$components/ui/icon-link/index.js';
 	import HeroTileTitle from './hero-tile-title.svelte';
-	import HeroTilePhoto from './hero-tile-photo.svelte';
+	import HeroTileMedia from './hero-tile-media.svelte';
 	import HeroTilePromo from './hero-tile-promo.svelte';
 	import HeroTileAdvantages from './hero-tile-advantages.svelte';
 	import HeroActionBar from './hero-action-bar.svelte';
@@ -24,7 +23,7 @@
 		class?: string;
 	} = $props();
 
-	const [title, photo, promo] = $derived(blocks);
+	const [title, photo, promo, description, media] = $derived(blocks);
 </script>
 
 <section data-slot="hero" class={cn('h-[calc(100vh-200px)] py-2', className)} data-directus={directusAttr}>
@@ -37,15 +36,14 @@
 						title={title.title}
 						description={title.description}
 						link={title.link}
+						background={title.background}
 						class="col-span-2 row-span-2 sm:col-span-4 lg:col-span-4 lg:row-span-4"
 				/>
 			{/if}
 
-			<HeroTilePhoto
-					imageUrl={photo?.backgroundImageUrl}
+			<HeroTileMedia
+					background={photo?.background}
 					link={photo?.link}
-					placeholder={m.hero_photo_placeholder()}
-					placeholderClass="text-lg"
 					class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-5 lg:col-span-2"
 			/>
 
@@ -53,6 +51,7 @@
 				<HeroTilePromo
 						title={promo.title}
 						link={promo.link}
+						backgroundId={promo.background?.id}
 						class="col-span-1 row-span-2 sm:col-span-2 lg:col-start-7 lg:col-span-2"
 				/>
 			{/if}
@@ -76,9 +75,9 @@
 					class="col-span-2 row-span-1 sm:row-span-2 lg:col-start-7 lg:col-span-2 lg:row-start-3 lg:row-span-2"
 			/>
 
-			<HeroTilePhoto
-					placeholder={m.hero_photo2_placeholder()}
-					placeholderClass="text-sm"
+			<HeroTileMedia
+					background={media?.background}
+					link={media?.link}
 					class="col-span-2 row-span-1 lg:col-start-5 lg:col-span-2 lg:row-start-4 lg:row-span-1"
 			/>
 		</div>

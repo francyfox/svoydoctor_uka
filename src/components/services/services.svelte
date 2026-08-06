@@ -4,10 +4,10 @@
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import { cn } from '$lib/utils.js';
 	import type { ServiceItem } from '$lib/types/content';
-	import * as m from '$lib/paraglide/messages.js';
 	import { AccordionStrip } from '$components/ui/accordion-strip/index.js';
+	import { Image } from '$components/ui/image/index.js';
 
-	type StripItem = ServiceItem & { id: string; label: string };
+	type StripItem = Omit<ServiceItem, 'id'> & { id: string };
 
 	let {
 		items,
@@ -19,9 +19,7 @@
 		class?: string;
 	} = $props();
 
-	const stripItems = $derived(
-		items.map((item): StripItem => ({ ...item, id: item.label, label: item.label }))
-	);
+	const stripItems = $derived(items.map((item): StripItem => ({ ...item, id: String(item.id) })));
 </script>
 
 {#if stripItems.length > 0}
@@ -38,13 +36,7 @@
 						<div
 							class="relative h-28 w-full shrink-0 overflow-hidden bg-[color:var(--color-photo-placeholder)] sm:h-full sm:w-48"
 						>
-							{#if item.illustrationUrl}
-								<img src={item.illustrationUrl} alt="" class="size-full object-cover" />
-							{:else}
-								<span class="absolute inset-0 flex items-end p-3 text-sm text-[#3A3A3D]">
-									{m.services_illustration_placeholder()}
-								</span>
-							{/if}
+							<Image id={item.illustrationId} alt="" width={192} height={256} />
 						</div>
 						<div class="flex flex-1 flex-col justify-between gap-4">
 							{#if item.description}
