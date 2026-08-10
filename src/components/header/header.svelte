@@ -6,6 +6,8 @@
 	import { cn, whatsappHref } from '$lib/utils.js';
 	import { ScrollState } from 'runed';
 	import { IconLink } from '$components/ui/icon-link/index.js';
+	import { ShaderBackground } from '$components/ui/shader-background/index.js';
+	import headerShader from '$lib/webgl/shaders/scenes.frag.glsl?raw';
 	import Logo from './logo.svelte';
 	import PhoneLink from './phone-link.svelte';
 	import LocaleSwitch from './locale-switch.svelte';
@@ -33,11 +35,14 @@
 
 <header
 	data-slot="header"
-	class={cn('sticky top-0 z-40 bg-background py-2 transition-shadow', className)}
+	class={cn('sticky top-0 z-40 overflow-hidden py-2 transition-shadow', className)}
 	style={scrolled ? 'box-shadow: var(--shadow-glass)' : ''}
 	data-directus={directusAttr}
 >
-	<div class="container flex items-center justify-between gap-4">
+	<ShaderBackground class="absolute inset-0" fragment={headerShader} mode="page" />
+	<div class="bg-background/80 absolute inset-0 backdrop-blur-sm"></div>
+
+	<div class="container relative flex items-center justify-between gap-4">
 		<Logo {siteName} {logoId} />
 
 		<div class="hidden items-center gap-7 lg:flex">

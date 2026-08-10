@@ -5,6 +5,8 @@
 	import { Card, CardContent, CardTitle, CardDescription } from '$components/ui/card/index.js';
 	import { TileLink } from '$components/ui/tile-link/index.js';
 	import { Image } from '$components/ui/image/index.js';
+	import { ShaderBackground } from '$components/ui/shader-background/index.js';
+	import mosaicShader from '$lib/webgl/shaders/mosaic.frag.glsl?raw';
 
 	let {
 		title,
@@ -23,11 +25,16 @@
 	<section
 		id="we-help"
 		data-slot="we-help"
-		class={cn('py-10 lg:py-16', className)}
+		class={cn(
+			'bg-[color:var(--color-brand-primary-dark)] relative flex min-h-dvh flex-col justify-center overflow-hidden py-10 lg:py-16',
+			className
+		)}
 		data-directus={directusAttr}
 	>
-		<div class="container flex flex-col gap-6">
-			<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
+		<ShaderBackground class="absolute inset-0" fragment={mosaicShader} />
+
+		<div class="container relative flex flex-col gap-6">
+			<h2 class="font-heading text-3xl text-secondary lg:text-[length:var(--font-tile-h2)]">{title}</h2>
 
 			<Slider {items}>
 				{#snippet card(item: WeHelpItem)}

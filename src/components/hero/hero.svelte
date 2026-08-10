@@ -2,6 +2,8 @@
 	import { cn, whatsappHref } from '$lib/utils.js';
 	import type { HeroBlock, HeroAdvantage } from '$lib/types/content';
 	import { IconLink } from '$components/ui/icon-link/index.js';
+	import { ShaderBackground } from '$components/ui/shader-background/index.js';
+	import auraShader from '$lib/webgl/shaders/aura.frag.glsl?raw';
 	import HeroTileTitle from './hero-tile-title.svelte';
 	import HeroTileMedia from './hero-tile-media.svelte';
 	import HeroTilePromo from './hero-tile-promo.svelte';
@@ -26,10 +28,16 @@
 	const [title, photo, promo, description, media] = $derived(blocks);
 </script>
 
-<section data-slot="hero" class={cn('h-[calc(100vh-200px)] py-2', className)} data-directus={directusAttr}>
-	<div class="container h-full">
+<section
+	data-slot="hero"
+	class={cn('relative flex min-h-[calc(100dvh-86px)] flex-col overflow-hidden py-5', className)}
+	data-directus={directusAttr}
+>
+	<ShaderBackground class="absolute inset-0" fragment={auraShader} />
+
+	<div class="container relative flex flex-1 flex-col">
 		<div
-			class="h-full grid auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"
+			class="grid flex-1 auto-rows-[174px] grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8 lg:grid-rows-4"
 		>
 			{#if title}
 				<HeroTileTitle
@@ -58,6 +66,7 @@
 
 			<IconLink
 					icon="whatsapp"
+					iconClass="size-12"
 					href={whatsappHref(phone)}
 					label="WhatsApp"
 					class="tile-frame bg-success lg:col-start-5 lg:row-start-3"
@@ -65,6 +74,7 @@
 
 			<IconLink
 					icon="instagram"
+					iconClass="size-12"
 					href={instagramUrl}
 					label="Instagram"
 					class="tile-frame bg-[color:var(--color-brand-primary-dark)] lg:col-start-6 lg:row-start-3"

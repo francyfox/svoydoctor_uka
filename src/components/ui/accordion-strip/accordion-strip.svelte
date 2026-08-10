@@ -14,23 +14,42 @@
 	} = $props();
 </script>
 
-<div data-slot="accordion-strip" class={cn('flex h-[200px]', className)}>
-	{#each items as item (item.id)}
+<div data-slot="accordion-strip" class={cn('flex min-h-[70dvh]', className)}>
+	{#each items as item, i (item.id)}
 		{@const isOpen = openId === item.id}
 		<div class={cn('flex h-full', isOpen ? 'flex-1' : '')}>
 			<button
 				type="button"
 				aria-expanded={isOpen}
 				onclick={() => (openId = item.id)}
-				class="flex w-[60px] shrink-0 items-center justify-center bg-primary font-heading text-base text-primary-foreground"
+				class={cn(i % 2 === 0 ? "bg-primary" : "bg-[var(--color-brand-accent)]", "flex w-[60px] shrink-0 py-5 items-start justify-center font-heading text-primary-foreground border-gradient")}
 			>
-				<span class="[writing-mode:vertical-rl]">{item.label}</span>
+				<span class="accordion-strip-label uppercase">{item.label}</span>
 			</button>
 			{#if isOpen}
-				<div class="min-w-0 flex-1 bg-[var(--color-illustration-bg)] p-4 text-[13px] text-[#8A7A5C]">
+				<div class="min-w-0 flex-1 accordion-strip-content p-4 text-[13px] text-slate-950">
 					{@render content(item)}
 				</div>
 			{/if}
 		</div>
 	{/each}
 </div>
+
+<style>
+	[data-slot='accordion-strip'] {
+		& .accordion-strip-label {
+			writing-mode: vertical-lr;
+			text-orientation: upright;
+			font-size: var(--font-tile-vertical-label);
+		}
+	}
+
+	.accordion-strip-content {
+		background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.9), rgba(180, 140, 200, 0.4)) !important;
+	}
+
+	button.border-gradient {
+		border: 2px solid;
+		border-image: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent)) 1;
+	}
+</style>

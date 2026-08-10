@@ -3,6 +3,8 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { DaySquare, type DaySquareVariant } from '$components/ui/day-square/index.js';
 	import { Image } from '$components/ui/image/index.js';
+	import { ShaderBackground } from '$components/ui/shader-background/index.js';
+	import spectrumShader from '$lib/webgl/shaders/spectrum.frag.glsl?raw';
 
 	let {
 		address,
@@ -52,10 +54,15 @@
 <section
 	id="contacts"
 	data-slot="contacts"
-	class={cn('py-10 lg:py-16', className)}
+	class={cn(
+		'relative flex min-h-dvh flex-col justify-center overflow-hidden py-10 lg:py-16',
+		className
+	)}
 	data-directus={directusAttr}
 >
-	<div class="container">
+	<ShaderBackground class="absolute inset-0" fragment={spectrumShader} />
+
+	<div class="container relative">
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
 			<div class="tile-frame bg-secondary flex flex-col gap-4 p-6 lg:col-span-2">
 				<h3 class="font-heading text-lg">{m.contacts_hours_title()}</h3>

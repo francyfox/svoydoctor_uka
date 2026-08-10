@@ -4,6 +4,8 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { TabGroup } from '$components/ui/tab-group/index.js';
 	import { Slider } from '$components/ui/slider/index.js';
+	import { ShaderBackground } from '$components/ui/shader-background/index.js';
+	import cellsShader from '$lib/webgl/shaders/cells.frag.glsl?raw';
 
 	let {
 		title,
@@ -35,10 +37,15 @@
 	<section
 		id="symptoms"
 		data-slot="symptoms"
-		class={cn('bg-secondary py-10 lg:py-16', className)}
+		class={cn(
+			'relative flex min-h-dvh flex-col justify-center overflow-hidden py-10 lg:py-16',
+			className
+		)}
 		data-directus={directusAttr}
 	>
-		<div class="container flex flex-col gap-6">
+		<ShaderBackground class="absolute inset-0" fragment={cellsShader} />
+
+		<div class="container relative flex flex-col gap-6">
 			<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 				<div>
 					<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
