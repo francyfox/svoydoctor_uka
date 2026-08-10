@@ -47,15 +47,14 @@
 		<ShaderBackground class="absolute inset-0" fragment={cellsShader} />
 
 		<Reveal class="container relative flex flex-col gap-6">
-			<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-				<div>
-					<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
-					{#if subtitle}
-						<p class="text-muted-foreground mt-2 text-lg">{subtitle}</p>
-					{/if}
-				</div>
-				<TabGroup options={tabOptions} bind:value={species} />
+			<div class="flex flex-col gap-4 items-center">
+				<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
+				{#if subtitle}
+					<p class="text-muted-foreground mt-2 text-lg">{subtitle}</p>
+				{/if}
 			</div>
+
+			<TabGroup options={tabOptions} bind:value={species} />
 
 			{#if filtered.length > 0}
 				{#key species}

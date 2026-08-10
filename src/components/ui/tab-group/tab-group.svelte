@@ -11,7 +11,7 @@
 	}: { options: Option[]; value?: string; class?: string } & Record<string, unknown> = $props();
 </script>
 
-<div data-slot="tab-group" role="tablist" class={cn('inline-flex gap-1.5', className)} {...restProps}>
+<div data-slot="tab-group" role="tablist" class={cn('inline-flex justify-center gap-1.5', className)} {...restProps}>
 	{#each options as option (option.value)}
 		<button
 			type="button"

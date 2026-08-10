@@ -27,7 +27,8 @@
 		autoWidth: true,
 		gap: '0.5rem',
 		pagination: false,
-		arrows: false
+		arrows: false,
+		autoplay: true
 	};
 </script>
 
