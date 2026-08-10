@@ -2,6 +2,7 @@
 	import type { HeroAdvantage } from '$lib/types/content';
 	import { cn } from '$lib/utils.js';
 	import { Icon } from '$components/ui/directus-icon/index.js';
+	import HeroTile from './hero-tile.svelte';
 
 	let {
 		advantages,
@@ -12,14 +13,14 @@
 	} = $props();
 </script>
 
-<div
+<HeroTile
 	class={cn(
-		'tile-frame flex flex-col justify-center gap-3 bg-[color:var(--color-brand-primary-dark)] p-5',
+		'flex flex-col justify-center gap-3 bg-[color:var(--color-brand-primary-dark)] p-5',
 		className
 	)}
 >
 	{#each advantages as advantage (advantage.id)}
-		<div class="flex items-center gap-2">
+		<div class="relative flex items-center gap-2">
 			{#if advantage.iconId}
 				<Icon id={advantage.iconId} alt="" size={20} />
 			{/if}
@@ -31,4 +32,4 @@
 			</p>
 		</div>
 	{/each}
-</div>
+</HeroTile>

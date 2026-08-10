@@ -1,4 +1,8 @@
 <script lang="ts" generics="T">
+	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
+	import '@splidejs/svelte-splide/css/splide-core.min.css';
+	import type { Options, Splide as SplideInstance } from '@splidejs/splide';
+	import type { MoveEventDetail } from '@splidejs/svelte-splide/types';
 	import Button from '$components/ui/button/button.svelte';
 	import PaginationDot from '$components/ui/pagination-dot/pagination-dot.svelte';
 	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
@@ -7,37 +11,57 @@
 
 	let {
 		items,
-		index = $bindable(0),
 		card,
 		class: className
 	}: {
 		items: T[];
-		index?: number;
 		card: import('svelte').Snippet<[T, number]>;
 		class?: string;
 	} = $props();
 
-	function prev() {
-		index = index === 0 ? items.length - 1 : index - 1;
-	}
-	function next() {
-		index = index === items.length - 1 ? 0 : index + 1;
-	}
+	let splideInstance: SplideInstance | undefined = $state();
+	let index = $state(0);
+
+	const options: Options = {
+		type: 'slide',
+		autoWidth: true,
+		gap: '0.5rem',
+		pagination: false,
+		arrows: false
+	};
 </script>
 
 <div data-slot="slider" class={cn('flex flex-col gap-4', className)}>
 	<div class="flex items-center gap-3">
-		<Button variant="dark" size="icon" onclick={prev} aria-label="Предыдущий">
+		<Button
+			variant="dark"
+			size="icon"
+			onclick={() => splideInstance?.go('<')}
+			aria-label="Предыдущий"
+		>
 			<ChevronLeft />
 		</Button>
-		<div class="flex flex-1 gap-2 overflow-hidden">
-			{#each items as item, i (i)}
-				<div class={cn('shrink-0 transition-opacity', i === index ? 'opacity-100' : 'opacity-40')}>
-					{@render card(item, i)}
-				</div>
-			{/each}
+		<div class="min-w-0 flex-1">
+			<Splide
+				bind:splide={splideInstance}
+				{options}
+				on:moved={(e?: CustomEvent<MoveEventDetail>) => {
+					if (e) index = e.detail.index;
+				}}
+			>
+				{#each items as item, i (i)}
+					<SplideSlide>
+						{@render card(item, i)}
+					</SplideSlide>
+				{/each}
+			</Splide>
 		</div>
-		<Button variant="dark" size="icon" onclick={next} aria-label="Следующий">
+		<Button
+			variant="dark"
+			size="icon"
+			onclick={() => splideInstance?.go('>')}
+			aria-label="Следующий"
+		>
 			<ChevronRight />
 		</Button>
 	</div>

@@ -5,7 +5,9 @@
 	import { cn } from '$lib/utils.js';
 	import type { ServiceItem } from '$lib/types/content';
 	import { AccordionStrip } from '$components/ui/accordion-strip/index.js';
+	import { ApplyButton } from '$components/ui/apply-button/index.js';
 	import { Image } from '$components/ui/image/index.js';
+	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
 	import flowShader from '$lib/webgl/shaders/flow.frag.glsl?raw';
 
@@ -33,7 +35,7 @@
 	>
 		<ShaderBackground class="absolute inset-0" fragment={flowShader} />
 
-		<div class="container relative">
+		<Reveal class="container relative">
 			<div class="flex">
 				<AccordionStrip items={stripItems}>
 					{#snippet content(item: StripItem)}
@@ -50,17 +52,17 @@
 								{#if item.description}
 									<p class="text-2xl">{item.description}</p>
 								{/if}
-								<a
+								<ApplyButton
 										href={resolve(localizeHref('/apply') as Pathname)}
-										class="font-heading self-start bg-primary px-6 py-3 text-base text-white"
+										class="self-start px-6 py-3 text-lg uppercase"
 								>
 									{item.ctaLabel}
-								</a>
+								</ApplyButton>
 							</div>
 						</div>
 					{/snippet}
 				</AccordionStrip>
 			</div>
-		</div>
+		</Reveal>
 	</section>
 {/if}

@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { TileLink } from '$components/ui/tile-link/index.js';
-	import { Image } from '$components/ui/image/index.js';
-	import { Video } from '$components/ui/video/index.js';
+	import HeroTile from './hero-tile.svelte';
 	import { cn } from '$lib/utils.js';
 	import type { HeroBackgroundMedia } from '$lib/types/content';
 
@@ -20,20 +18,14 @@
 	} = $props();
 </script>
 
-<TileLink
+<HeroTile
 	href={link}
-	class={cn(
-		'tile-frame relative flex flex-col justify-end overflow-hidden bg-primary p-6 lg:p-10',
-		className
-	)}
+	{background}
+	backgroundWidth={560}
+	backgroundHeight={696}
+	overlay={!!background}
+	class={cn('flex flex-col justify-end bg-primary p-6 lg:p-10', className)}
 >
-	{#if background?.kind === 'video'}
-		<Video id={background.id} />
-		<div class="absolute inset-0 bg-gradient-to-t from-primary/100 via-black/20 to-transparent"></div>
-	{:else if background}
-		<Image id={background.id} alt="" width={560} height={696} priority />
-		<div class="absolute inset-0 bg-gradient-to-t from-black/100 via-black/20 to-transparent"></div>
-	{/if}
 	<h1
 		class="relative font-heading text-5xl leading-[0.95] text-white lg:text-[length:var(--font-tile-display)]"
 	>
@@ -47,4 +39,4 @@
 			{description}
 		</p>
 	{/if}
-</TileLink>
+</HeroTile>

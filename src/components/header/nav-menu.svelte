@@ -3,7 +3,7 @@
 	import type { Pathname } from '$app/types';
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
-	import { Button } from '$components/ui/button/index.js';
+	import { ApplyButton } from '$components/ui/apply-button/index.js';
 	import { Icon } from '$components/ui/icon/index.js';
 	import * as Sheet from '$components/ui/sheet/index.js';
 	import { navItems } from './header.data';
@@ -51,8 +51,8 @@
 		<div class="lg:hidden">
 			<LocaleSwitch variant="tab" />
 		</div>
-		<Button href={applyHref} size="lg" onclick={() => (open = false)}>
+		<ApplyButton href={applyHref} class="px-6 py-3 text-base" onclick={() => (open = false)}>
 			{m.cta_apply()}
-		</Button>
+		</ApplyButton>
 	</Sheet.Content>
 </Sheet.Root>

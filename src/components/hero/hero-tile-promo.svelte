@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { TileLink } from '$components/ui/tile-link/index.js';
-	import { Image } from '$components/ui/image/index.js';
+	import HeroTile from './hero-tile.svelte';
 	import * as m from '$lib/paraglide/messages.js';
 	import { cn } from '$lib/utils.js';
+	import type { HeroBackgroundMedia } from '$lib/types/content';
 
 	let {
 		title,
@@ -15,16 +15,20 @@
 		backgroundId?: string;
 		class?: string;
 	} = $props();
+
+	const background = $derived<HeroBackgroundMedia | undefined>(
+		backgroundId ? { id: backgroundId, kind: 'image' } : undefined
+	);
 </script>
 
-<TileLink
+<HeroTile
 	href={link}
-	class={cn('tile-frame relative flex flex-col justify-end overflow-hidden bg-accent p-4', className)}
+	{background}
+	backgroundWidth={280}
+	backgroundHeight={348}
+	overlay={!!background}
+	class={cn('flex flex-col justify-end bg-accent p-4', className)}
 >
-	{#if backgroundId}
-		<Image id={backgroundId} alt="" width={280} height={348} priority />
-		<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-	{/if}
 	<span class="relative text-sm font-medium tracking-wide text-[#FBE6F4] uppercase">
 		{m.hero_promo_label()}
 	</span>
@@ -33,4 +37,4 @@
 	>
 		{title}
 	</h2>
-</TileLink>
+</HeroTile>

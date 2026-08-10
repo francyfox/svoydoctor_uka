@@ -3,6 +3,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { DaySquare, type DaySquareVariant } from '$components/ui/day-square/index.js';
 	import { Image } from '$components/ui/image/index.js';
+	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
 	import spectrumShader from '$lib/webgl/shaders/spectrum.frag.glsl?raw';
 
@@ -62,7 +63,7 @@
 >
 	<ShaderBackground class="absolute inset-0" fragment={spectrumShader} />
 
-	<div class="container relative">
+	<Reveal class="container relative">
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
 			<div class="tile-frame bg-secondary flex flex-col gap-4 p-6 lg:col-span-2">
 				<h3 class="font-heading text-lg">{m.contacts_hours_title()}</h3>
@@ -123,5 +124,5 @@
 				</div>
 			{/if}
 		</div>
-	</div>
+	</Reveal>
 </section>

@@ -4,6 +4,7 @@
 	import * as m from '$lib/paraglide/messages.js';
 	import { TabGroup } from '$components/ui/tab-group/index.js';
 	import { Slider } from '$components/ui/slider/index.js';
+	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
 	import cellsShader from '$lib/webgl/shaders/cells.frag.glsl?raw';
 
@@ -45,7 +46,7 @@
 	>
 		<ShaderBackground class="absolute inset-0" fragment={cellsShader} />
 
-		<div class="container relative flex flex-col gap-6">
+		<Reveal class="container relative flex flex-col gap-6">
 			<div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 				<div>
 					<h2 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h2>
@@ -69,6 +70,6 @@
 					</Slider>
 				{/key}
 			{/if}
-		</div>
+		</Reveal>
 	</section>
 {/if}

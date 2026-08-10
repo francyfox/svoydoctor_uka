@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import * as m from '$lib/paraglide/messages.js';
+	import { ApplyButton } from '$components/ui/apply-button/index.js';
 
 	let {
 		applyHref
@@ -22,11 +23,11 @@
 		</a>
 	</nav>
 	{#if applyHref}
-		<a
+		<ApplyButton
 			href={resolve(applyHref as Pathname)}
-			class="font-heading bg-primary px-8 py-4 text-center text-lg text-white sm:text-xl"
+			class="px-8 py-4 text-center text-lg sm:text-xl"
 		>
 			{m.cta_apply()}
-		</a>
+		</ApplyButton>
 	{/if}
 </div>

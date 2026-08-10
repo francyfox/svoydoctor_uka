@@ -34,6 +34,7 @@
 		"@directus/sdk": "^24.0.0",
 		"@directus/visual-editing": "^2.1.0",
 		"@icons-pack/svelte-simple-icons": "^7.2.0",
+		"@splidejs/svelte-splide": "^0.2.9",
 		"@t3-oss/env-core": "^0.13.11",
 		"@tanstack/svelte-query": "^6.1.38",
 		"@tanstack/svelte-query-devtools": "^6.1.38",

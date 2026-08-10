@@ -141,6 +141,43 @@
 		border: 1px solid rgb(255 255 255 / 0.18);
 		box-shadow: var(--shadow-glass);
 	}
+
+	/*
+	 * Вариант tile-frame с градиентной обводкой (primary → accent) — только hero-карточки.
+	 * border-image (не background+padding-box трюк): не перебивает динамический bg-* класс
+	 * карточки, т.к. не трогает свойство background вообще. --radius:0 в проекте, так что
+	 * несовместимость border-image с border-radius тут не имеет значения.
+	 */
+	.tile-frame-gradient {
+		border: 2px solid;
+		border-image: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-accent)) 1;
+		box-shadow: var(--shadow-glass);
+	}
+
+	/*
+	 * Появление блока при входе во вьюпорт (zoom-in-fade) — src/components/ui/reveal/reveal.svelte
+	 * переключает .reveal-visible через runed IsInViewport({ once: true }). Transform, не scroll-driven
+	 * animation API (см. CLAUDE.md — тот же паттерн, что и envelope в GLSL-фонах, но на CSS).
+	 */
+	.reveal {
+		opacity: 0;
+		transform: scale(0.92);
+		transition:
+			opacity 0.6s ease-out,
+			transform 0.6s ease-out;
+	}
+
+	.reveal-visible {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.reveal {
+			transform: none;
+			transition: opacity 0.3s ease-out;
+		}
+	}
 }
 
 /*
