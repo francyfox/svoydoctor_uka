@@ -114,6 +114,13 @@
 		position: relative;
 	}
 
+	/* Плавный скролл к якорям (#symptoms, #contacts...) по всему сайту — не только hero-ссылки. */
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
 	/*
 	 * Сайтовый градиентный фон — фиксированный слой позади контента, а не
 	 * background-attachment:fixed на body (тормозит скролл в мобильном Safari).
@@ -176,6 +183,33 @@
 		.reveal {
 			transform: none;
 			transition: opacity 0.3s ease-out;
+		}
+	}
+
+	/*
+	 * Общий hover для интерактивных элементов сайта — лёгкий zoom + переход в акцентный цвет.
+	 * Один переиспользуемый примитив вместо разрозненных hover:* на каждом компоненте.
+	 */
+	.hover-zoom {
+		transition:
+			transform 0.15s ease-out,
+			color 0.15s ease-out;
+
+		&:hover,
+		&:focus-visible {
+			transform: scale(1.08);
+			color: var(--color-brand-accent);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hover-zoom {
+			transition: color 0.15s ease-out;
+
+			&:hover,
+			&:focus-visible {
+				transform: none;
+			}
 		}
 	}
 }

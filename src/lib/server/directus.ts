@@ -4,6 +4,7 @@ import type {
 	Settings,
 	HeroBlock,
 	HeroAdvantage,
+	HeroLink,
 	SectionHero,
 	ServiceItem,
 	SectionServices,
@@ -17,6 +18,7 @@ export type {
 	Settings,
 	HeroBlock,
 	HeroAdvantage,
+	HeroLink,
 	SectionHero,
 	ServiceItem,
 	SectionServices,
@@ -26,7 +28,7 @@ export type {
 	SectionWeHelp
 };
 
-type DirectusFileRow = { id: string; type: string | null };
+type DirectusFileRow = { id: string; type: string | null; description: string | null };
 type HeroBlockRow = {
 	id: number;
 	title: string;
@@ -34,15 +36,22 @@ type HeroBlockRow = {
 	media: DirectusFileRow | null;
 };
 type HeroAdvantageRow = { id: number; text: string; icon: string | null };
+type HeroLinkRow = { id: number; label: string; href: string };
 type ServiceItemRow = {
 	id: number;
 	label: string;
 	description: string | null;
-	illustration: string | null;
+	illustration: DirectusFileRow | null;
 	cta_label: string;
 };
 type SymptomItemRow = { id: number; text: string; species: 'cat' | 'dog' | 'both' | null };
-type WeHelpItemRow = { id: number; title: string; description: string | null; photo: string | null; link: string | null };
+type WeHelpItemRow = {
+	id: number;
+	title: string;
+	description: string | null;
+	photo: DirectusFileRow | null;
+	link: string | null;
+};
 
 type SettingsTranslationRow = {
 	id: number;
@@ -56,12 +65,12 @@ type SettingsRow = {
 	id: number;
 	site_name: string;
 	phone: string;
-	logo: string | null;
+	logo: DirectusFileRow | null;
 	off_days: string;
 	rating_value: string;
 	reviews_url: string;
 	map_embed_url: string;
-	clinic_photo: string | null;
+	clinic_photo: DirectusFileRow | null;
 	translations: SettingsTranslationRow[];
 };
 
@@ -70,6 +79,7 @@ type SectionHeroTranslationRow = {
 	languages_code: string;
 	blocks: HeroBlockRow[];
 	advantages: HeroAdvantageRow[];
+	links: HeroLinkRow[];
 };
 type SectionHeroRow = { id: number; translations: SectionHeroTranslationRow[] };
 
@@ -96,6 +106,7 @@ type Schema = {
 	section_hero_translations: SectionHeroTranslationRow[];
 	section_hero_block: HeroBlockRow[];
 	section_hero_advantage: HeroAdvantageRow[];
+	section_hero_link: HeroLinkRow[];
 	section_services: SectionServicesRow;
 	section_services_translations: SectionServicesTranslationRow[];
 	section_services_item: ServiceItemRow[];
@@ -112,7 +123,11 @@ const client = createDirectus<Schema>(env.DIRECTUS_URL).with(staticToken(env.DIR
 export async function getSettings(locale: string): Promise<Settings> {
 	const row = await client.request(
 		readSingleton('settings', {
-			fields: ['*', { translations: ['*'] }],
+			fields: [
+				'*',
+				{ logo: ['id', 'description'], clinic_photo: ['id', 'description'] },
+				{ translations: ['*'] }
+			],
 			deep: { translations: { _filter: { languages_code: { _eq: locale } } } }
 		})
 	);
@@ -121,7 +136,8 @@ export async function getSettings(locale: string): Promise<Settings> {
 	return {
 		siteName: row.site_name,
 		phone: row.phone,
-		logoId: row.logo || undefined,
+		logoId: row.logo?.id || undefined,
+		logoAlt: row.logo?.description || undefined,
 		address: t?.address || undefined,
 		hoursWeekday: t?.hours_weekday || undefined,
 		hoursSaturday: t?.hours_saturday || undefined,
@@ -135,7 +151,8 @@ export async function getSettings(locale: string): Promise<Settings> {
 		ratingLabel: t?.rating_label || undefined,
 		reviewsUrl: row.reviews_url || undefined,
 		mapEmbedUrl: row.map_embed_url || undefined,
-		clinicPhotoId: row.clinic_photo || undefined,
+		clinicPhotoId: row.clinic_photo?.id || undefined,
+		clinicPhotoAlt: row.clinic_photo?.description || undefined,
 		directusId: row.id,
 		translationId: t?.id
 	};
@@ -150,14 +167,19 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 					translations: [
 						'id',
 						'languages_code',
-						{ blocks: ['id', 'title', 'description', { media: ['id', 'type'] }], advantages: ['*'] }
+						{
+							blocks: ['id', 'title', 'description', { media: ['id', 'type', 'description'] }],
+							advantages: ['*'],
+							links: ['id', 'label', 'href']
+						}
 					]
 				}
 			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
 				'translations.blocks': { _sort: ['sort'] },
-				'translations.advantages': { _sort: ['sort'] }
+				'translations.advantages': { _sort: ['sort'] },
+				'translations.links': { _sort: ['sort'] }
 			}
 		})
 	);
@@ -170,13 +192,22 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 			description: block.description || undefined,
 			link: undefined,
 			background: block.media
-				? { id: block.media.id, kind: block.media.type?.startsWith('video/') ? ('video' as const) : ('image' as const) }
+				? {
+						id: block.media.id,
+						kind: block.media.type?.startsWith('video/') ? ('video' as const) : ('image' as const),
+						alt: block.media.description || undefined
+					}
 				: undefined
 		})),
 		advantages: (t?.advantages ?? []).map((advantage) => ({
 			id: advantage.id,
 			text: advantage.text,
 			iconId: advantage.icon || undefined
+		})),
+		links: (t?.links ?? []).map((link) => ({
+			id: link.id,
+			label: link.label,
+			href: link.href
 		})),
 		directusId: row.id,
 		translationId: t?.id
@@ -186,7 +217,16 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 export async function getSectionServices(locale: string): Promise<SectionServices> {
 	const row = await client.request(
 		readSingleton('section_services', {
-			fields: ['id', { translations: ['id', 'languages_code', { items: ['*'] }] }],
+			fields: [
+				'id',
+				{
+					translations: [
+						'id',
+						'languages_code',
+						{ items: ['*', { illustration: ['id', 'description'] }] }
+					]
+				}
+			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
 				'translations.items': { _sort: ['sort'] }
@@ -200,7 +240,8 @@ export async function getSectionServices(locale: string): Promise<SectionService
 			id: service.id,
 			label: service.label,
 			description: service.description || undefined,
-			illustrationId: service.illustration || undefined,
+			illustrationId: service.illustration?.id || undefined,
+			illustrationAlt: service.illustration?.description || undefined,
 			ctaLabel: service.cta_label
 		})),
 		directusId: row.id,
@@ -236,7 +277,17 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 	const row = await client.request(
 		readSingleton('section_we_help', {
-			fields: ['id', { translations: ['id', 'languages_code', 'title', { items: ['*'] }] }],
+			fields: [
+				'id',
+				{
+					translations: [
+						'id',
+						'languages_code',
+						'title',
+						{ items: ['*', { photo: ['id', 'description'] }] }
+					]
+				}
+			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
 				'translations.items': { _sort: ['sort'] }
@@ -251,7 +302,8 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 			id: weHelpItem.id,
 			title: weHelpItem.title,
 			description: weHelpItem.description || undefined,
-			photoId: weHelpItem.photo || undefined,
+			photoId: weHelpItem.photo?.id || undefined,
+			photoAlt: weHelpItem.photo?.description || undefined,
 			link: weHelpItem.link || undefined
 		})),
 		directusId: row.id,

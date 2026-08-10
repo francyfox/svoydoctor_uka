@@ -4,6 +4,7 @@
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages.js';
 	import { ApplyButton } from '$components/ui/apply-button/index.js';
+	import { UButton } from '$components/ui/button/index.js';
 	import { Icon } from '$components/ui/icon/index.js';
 	import * as Sheet from '$components/ui/sheet/index.js';
 	import { navItems } from './header.data';
@@ -24,14 +25,13 @@
 <Sheet.Root bind:open>
 	<Sheet.Trigger>
 		{#snippet child({ props })}
-			<button
+			<UButton
 				{...props}
-				type="button"
 				aria-label={m.nav_menu_open()}
 				class="bg-foreground flex size-11 shrink-0 items-center justify-center text-white lg:size-16"
 			>
 				<Icon name="menu" class="size-6 lg:size-8" />
-			</button>
+			</UButton>
 		{/snippet}
 	</Sheet.Trigger>
 	<Sheet.Content class="flex flex-col gap-6 p-6">
@@ -40,7 +40,7 @@
 			{#each navItems as item (item.path)}
 				<a
 					href={resolve(localizeHref(item.path) as Pathname)}
-					class="text-lg font-medium"
+					class="hover-zoom text-lg font-medium"
 					onclick={() => (open = false)}
 				>
 					{item.label()}

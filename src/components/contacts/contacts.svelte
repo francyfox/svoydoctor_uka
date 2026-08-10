@@ -17,6 +17,7 @@
 		reviewsUrl,
 		mapEmbedUrl,
 		clinicPhotoId,
+		clinicPhotoAlt,
 		directusAttr,
 		class: className
 	}: {
@@ -29,6 +30,7 @@
 		reviewsUrl?: string;
 		mapEmbedUrl?: string;
 		clinicPhotoId?: string;
+		clinicPhotoAlt?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
@@ -101,7 +103,7 @@
 			<div
 				class="tile-frame relative h-40 overflow-hidden bg-[color:var(--color-photo-placeholder)] lg:h-full"
 			>
-				<Image id={clinicPhotoId} alt="" width={400} height={256} />
+				<Image id={clinicPhotoId} alt={clinicPhotoAlt ?? ''} width={400} height={256} />
 			</div>
 
 			{#if ratingValue}
@@ -116,7 +118,7 @@
 							href={reviewsUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-sm underline"
+							class="hover-zoom text-sm underline"
 						>
 							{m.contacts_reviews_link()}
 						</a>

@@ -35,7 +35,7 @@
 			<div
 					class="relative !h-[256px] w-full shrink-0 overflow-hidden bg-[color:var(--color-photo-placeholder)] sm:h-full sm:w-48"
 			>
-				<Image id={item.illustrationId} alt="" width={192} height={256} />
+				<Image id={item.illustrationId} alt={item.illustrationAlt ?? ''} width={192} height={256} />
 			</div>
 		{/if}
 

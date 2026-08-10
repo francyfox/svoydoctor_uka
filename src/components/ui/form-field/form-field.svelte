@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Label from '$components/ui/label/label.svelte';
-	import Input from '$components/ui/input/input.svelte';
+	import ULabel from '$components/ui/label/label.svelte';
+	import UInput from '$components/ui/input/input.svelte';
 	import { cn } from '$lib/utils.js';
 
 	let {
@@ -21,6 +21,6 @@
 </script>
 
 <div data-slot="form-field" class={cn('flex flex-col gap-2', className)}>
-	<Label for={id} class="text-[15px] font-normal text-foreground">{label}</Label>
-	<Input {id} bind:value {type} {placeholder} />
+	<ULabel for={id} class="text-[15px] font-normal text-foreground">{label}</ULabel>
+	<UInput {id} bind:value {type} {placeholder} />
 </div>

@@ -44,7 +44,7 @@
 							<div
 								class="relative h-40 w-full overflow-hidden bg-[color:var(--color-photo-placeholder)]"
 							>
-								<Image id={item.photoId} alt="" width={288} height={160} />
+								<Image id={item.photoId} alt={item.photoAlt ?? ''} width={288} height={160} />
 							</div>
 							<CardContent class="flex flex-col gap-1">
 								<CardTitle>{item.title}</CardTitle>

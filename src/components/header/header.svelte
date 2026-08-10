@@ -17,12 +17,14 @@
 		siteName,
 		phone,
 		logoId,
+		logoAlt,
 		directusAttr,
 		class: className
 	}: {
 		siteName: string;
 		phone: string;
 		logoId?: string;
+		logoAlt?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
@@ -43,7 +45,7 @@
 	<div class="bg-background/80 absolute inset-0 backdrop-blur-sm"></div>
 
 	<div class="container relative flex items-center justify-between gap-4">
-		<Logo {siteName} {logoId} />
+		<Logo {siteName} {logoId} {logoAlt} />
 
 		<div class="hidden items-center gap-7 lg:flex">
 			<PhoneLink {phone} class="text-2xl lg:text-[length:var(--font-tile-h3)]" />

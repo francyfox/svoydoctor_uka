@@ -8,16 +8,18 @@
 		title,
 		link,
 		backgroundId,
+		backgroundAlt,
 		class: className
 	}: {
 		title: string;
 		link?: string;
 		backgroundId?: string;
+		backgroundAlt?: string;
 		class?: string;
 	} = $props();
 
 	const background = $derived<HeroBackgroundMedia | undefined>(
-		backgroundId ? { id: backgroundId, kind: 'image' } : undefined
+		backgroundId ? { id: backgroundId, kind: 'image', alt: backgroundAlt } : undefined
 	);
 </script>
 

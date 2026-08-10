@@ -22,7 +22,7 @@
 			aria-current={currentLocale === locale ? 'page' : undefined}
 			title={m.nav_language()}
 			class={cn(
-				'text-center font-normal uppercase',
+				'hover-zoom text-center font-normal uppercase',
 				variant === 'pill'
 					? 'flex h-16 w-[92px] items-center justify-center text-[36px]'
 					: 'flex-1 px-2.5 py-2 text-xs font-semibold',

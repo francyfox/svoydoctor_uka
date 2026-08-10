@@ -9,7 +9,7 @@ export {
 	Root,
 	type ButtonProps as Props,
 	//
-	Root as Button,
+	Root as UButton,
 	buttonVariants,
 	type ButtonProps,
 	type ButtonSize,

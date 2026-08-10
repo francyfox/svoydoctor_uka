@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Label from '$components/ui/label/label.svelte';
-	import Input from '$components/ui/input/input.svelte';
+	import ULabel from '$components/ui/label/label.svelte';
+	import UInput from '$components/ui/input/input.svelte';
 	import Cat from '@lucide/svelte/icons/cat';
 	import Dog from '@lucide/svelte/icons/dog';
 	import { cn } from '$lib/utils.js';
@@ -13,7 +13,7 @@
 
 	const chipClass = (active: boolean) =>
 		cn(
-			'inline-flex h-12 items-center gap-2 px-4 text-[15px] transition-colors',
+			'hover-zoom inline-flex h-12 items-center gap-2 px-4 text-[15px] transition-colors',
 			active
 				? 'bg-primary text-primary-foreground'
 				: 'bg-secondary text-secondary-foreground hover:bg-secondary/70'
@@ -21,7 +21,7 @@
 </script>
 
 <div data-slot="pet-type-field" class={cn('flex flex-col gap-2', className)}>
-	<Label class="text-[15px] font-normal text-foreground">Вид животного</Label>
+	<ULabel class="text-[15px] font-normal text-foreground">Вид животного</ULabel>
 	<div class="flex flex-wrap gap-2">
 		<button type="button" class={chipClass(value === 'cat')} onclick={() => (value = 'cat')}>
 			<Cat class="size-4" />
@@ -36,6 +36,6 @@
 		</button>
 	</div>
 	{#if value === 'other'}
-		<Input bind:value={otherValue} placeholder="Укажите вид животного…" />
+		<UInput bind:value={otherValue} placeholder="Укажите вид животного…" />
 	{/if}
 </div>

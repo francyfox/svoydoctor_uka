@@ -19,7 +19,7 @@
 	{href}
 	{onclick}
 	class={cn(
-		'font-heading inline-flex items-center justify-center bg-primary text-white transition-colors hover:bg-primary/90',
+		'hover-zoom font-heading inline-flex items-center justify-center bg-primary text-white hover:bg-primary/90',
 		className
 	)}
 >

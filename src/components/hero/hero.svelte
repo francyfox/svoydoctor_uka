@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn, whatsappHref } from '$lib/utils.js';
-	import type { HeroBlock, HeroAdvantage } from '$lib/types/content';
+	import type { HeroBlock, HeroAdvantage, HeroLink } from '$lib/types/content';
 	import { IconLink } from '$components/ui/icon-link/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
@@ -15,12 +15,14 @@
 	let {
 		blocks,
 		advantages,
+		links,
 		phone,
 		directusAttr,
 		class: className
 	}: {
 		blocks: HeroBlock[];
 		advantages: HeroAdvantage[];
+		links: HeroLink[];
 		phone: string;
 		directusAttr?: string;
 		class?: string;
@@ -68,6 +70,7 @@
 							title={promo.title}
 							link={promo.link}
 							backgroundId={promo.background?.id}
+							backgroundAlt={promo.background?.alt}
 							class="h-full"
 					/>
 				</Reveal>
@@ -108,6 +111,6 @@
 			</Reveal>
 		</div>
 
-		<HeroActionBar applyHref={title?.link} />
+		<HeroActionBar applyHref={title?.link} {links} />
 	</div>
 </section>

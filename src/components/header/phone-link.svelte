@@ -12,7 +12,7 @@
 
 <a
 	href={`tel:${phone.replace(/[^+\d]/g, '')}`}
-	class={cn('font-heading text-foreground whitespace-nowrap', className)}
+	class={cn('hover-zoom font-heading text-foreground whitespace-nowrap', className)}
 >
 	{phone}
 </a>

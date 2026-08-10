@@ -23,7 +23,7 @@
 	target="_blank"
 	rel="noopener noreferrer"
 	aria-label={label}
-	class={cn('flex items-center justify-center text-white', className)}
+	class={cn('hover-zoom flex items-center justify-center text-white', className)}
 >
 	<Icon name={icon} class={iconClass} />
 </a>

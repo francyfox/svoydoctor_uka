@@ -2,6 +2,7 @@ export type Settings = {
 	siteName: string;
 	phone: string;
 	logoId: string | undefined;
+	logoAlt: string | undefined;
 	address: string | undefined;
 	hoursWeekday: string | undefined;
 	hoursSaturday: string | undefined;
@@ -11,6 +12,7 @@ export type Settings = {
 	reviewsUrl: string | undefined;
 	mapEmbedUrl: string | undefined;
 	clinicPhotoId: string | undefined;
+	clinicPhotoAlt: string | undefined;
 	directusId: number | undefined;
 	translationId: number | undefined;
 };
@@ -18,6 +20,7 @@ export type Settings = {
 export type HeroBackgroundMedia = {
 	id: string;
 	kind: 'image' | 'video';
+	alt: string | undefined;
 };
 
 export type HeroBlock = {
@@ -34,9 +37,16 @@ export type HeroAdvantage = {
 	iconId: string | undefined;
 };
 
+export type HeroLink = {
+	id: number;
+	label: string;
+	href: string;
+};
+
 export type SectionHero = {
 	blocks: HeroBlock[];
 	advantages: HeroAdvantage[];
+	links: HeroLink[];
 	directusId: number | undefined;
 	translationId: number | undefined;
 };
@@ -46,6 +56,7 @@ export type ServiceItem = {
 	label: string;
 	description: string | undefined;
 	illustrationId: string | undefined;
+	illustrationAlt: string | undefined;
 	ctaLabel: string;
 };
 
@@ -76,6 +87,7 @@ export type WeHelpItem = {
 	title: string;
 	description: string | undefined;
 	photoId: string | undefined;
+	photoAlt: string | undefined;
 	link: string | undefined;
 };
 

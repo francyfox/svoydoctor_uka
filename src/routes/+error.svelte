@@ -3,7 +3,7 @@
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
 	import { localizeHref } from '$lib/paraglide/runtime';
-	import { Button } from '$components/ui/button/index.js';
+	import { UButton } from '$components/ui/button/index.js';
 	import * as m from '$lib/paraglide/messages.js';
 
 	const isNotFound = $derived(page.status === 404);
@@ -20,8 +20,8 @@
 			<h1 class="font-heading text-3xl lg:text-[length:var(--font-tile-h2)]">{title}</h1>
 			<p class="text-muted-foreground text-lg">{message}</p>
 		</div>
-		<Button href={resolve(localizeHref('/') as Pathname)} size="lg">
+		<UButton href={resolve(localizeHref('/') as Pathname)} size="lg">
 			{m.error_back_home()}
-		</Button>
+		</UButton>
 	</div>
 </section>

@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { TileLink } from '$components/ui/tile-link/index.js';
 	import { Image } from '$components/ui/image/index.js';
-	import { Video } from '$components/ui/video/index.js';
+	import { UVideo } from '$components/ui/video/index.js';
 	import { cn } from '$lib/utils.js';
 	import type { HeroBackgroundMedia } from '$lib/types/content';
 
@@ -29,11 +29,11 @@
 
 <TileLink {href} class={cn('relative overflow-hidden', className)}>
 	{#if background?.kind === 'video'}
-		<Video id={background.id} />
+		<UVideo id={background.id} />
 	{:else if background || showPlaceholder}
 		<Image
 			id={background?.kind === 'image' ? background.id : undefined}
-			alt=""
+			alt={background?.alt ?? ''}
 			width={backgroundWidth}
 			height={backgroundHeight}
 			priority

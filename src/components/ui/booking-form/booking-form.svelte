@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Button from '$components/ui/button/button.svelte';
-	import Label from '$components/ui/label/label.svelte';
+	import UButton from '$components/ui/button/button.svelte';
+	import ULabel from '$components/ui/label/label.svelte';
 	import FormField from '$components/ui/form-field/form-field.svelte';
 	import SexField from '$components/ui/sex-field/sex-field.svelte';
 	import PetTypeField from '$components/ui/pet-type-field/pet-type-field.svelte';
-	import Textarea from '$components/ui/textarea/textarea.svelte';
+	import UTextarea from '$components/ui/textarea/textarea.svelte';
 	import * as Alert from '$components/ui/alert/index.js';
 	import * as Select from '$components/ui/select/index.js';
 	import X from '@lucide/svelte/icons/x';
@@ -57,7 +57,7 @@
 				type="button"
 				aria-label="Закрыть"
 				onclick={onclose}
-				class="flex size-10 items-center justify-center bg-[#F2EEF0] text-foreground"
+				class="hover-zoom flex size-10 items-center justify-center bg-[#F2EEF0] text-foreground"
 			>
 				<X class="size-4" />
 			</button>
@@ -65,7 +65,7 @@
 	</div>
 
 	<div class="flex flex-col gap-2">
-		<Label class="text-[15px] font-normal text-foreground">Услуга</Label>
+		<ULabel class="text-[15px] font-normal text-foreground">Услуга</ULabel>
 		<Select.Root type="single" bind:value={service}>
 			<Select.Trigger class="h-[52px] w-full bg-background px-4 text-[15px]">
 				{selectedLabel ?? 'Выберите услугу'}
@@ -98,7 +98,7 @@
 	<PetTypeField bind:value={petType} bind:otherValue={petTypeOther} />
 
 	<div class="flex flex-col gap-2">
-		<Label class="text-[15px] font-normal text-foreground">Когда вам удобно?</Label>
+		<ULabel class="text-[15px] font-normal text-foreground">Когда вам удобно?</ULabel>
 		<div class="flex h-[52px] items-center gap-2.5 border border-input bg-background px-4">
 			<Calendar class="size-4 shrink-0 text-muted-foreground" />
 			<input
@@ -110,8 +110,8 @@
 	</div>
 
 	<div class="flex flex-col gap-2">
-		<Label class="text-[15px] font-normal text-foreground">Повод обращения</Label>
-		<Textarea bind:value={reason} placeholder="Что беспокоит питомца?" />
+		<ULabel class="text-[15px] font-normal text-foreground">Повод обращения</ULabel>
+		<UTextarea bind:value={reason} placeholder="Что беспокоит питомца?" />
 	</div>
 
 	{#if prepAlert}
@@ -121,5 +121,5 @@
 		</Alert.Root>
 	{/if}
 
-	<Button type="submit" size="lg" class="w-full">Записаться</Button>
+	<UButton type="submit" size="lg" class="w-full">Записаться</UButton>
 </form>

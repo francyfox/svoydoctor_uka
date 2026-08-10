@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
+	import { UButton } from '$components/ui/button/index.js';
 
 	type Option = { value: string; label: string };
 
@@ -13,19 +14,19 @@
 
 <div data-slot="tab-group" role="tablist" class={cn('inline-flex justify-center gap-1.5', className)} {...restProps}>
 	{#each options as option (option.value)}
-		<button
-			type="button"
+		<UButton
+			variant="ghost"
 			role="tab"
 			aria-selected={value === option.value}
 			onclick={() => (value = option.value)}
 			class={cn(
-				'h-12 px-4 text-sm transition-colors',
+				'h-12 px-4 text-sm',
 				value === option.value
 					? 'bg-primary text-primary-foreground'
 					: 'bg-secondary text-secondary-foreground hover:bg-secondary/70'
 			)}
 		>
 			{option.label}
-		</button>
+		</UButton>
 	{/each}
 </div>

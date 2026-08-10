@@ -2,7 +2,7 @@
 	import { QueryClientProvider, HydrationBoundary, createQuery } from '@tanstack/svelte-query';
 	import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools'
 	import { page } from '$app/state';
-	import { Header } from '$components/header/index.js';
+	import { UHeader } from '$components/header/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { getLocaleForUrl } from '$lib/paraglide/runtime';
 	import { initializeVisualEditor, cleanupVisualEditor, setAttr } from '$lib/visual-editor';
@@ -32,10 +32,11 @@
 		options={undefined}
 	>
 		{#if settingsQuery.data}
-			<Header
+			<UHeader
 				siteName={settingsQuery.data.siteName}
 				phone={settingsQuery.data.phone}
 				logoId={settingsQuery.data.logoId}
+				logoAlt={settingsQuery.data.logoAlt}
 				directusAttr={settingsQuery.data.directusId
 					? setAttr({
 							collection: 'settings',

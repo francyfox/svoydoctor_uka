@@ -1,3 +1,3 @@
 import Video from './video.svelte';
 
-export { Video };
+export { Video as UVideo };

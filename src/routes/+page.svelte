@@ -6,7 +6,7 @@
 	import { Symptoms } from '$components/symptoms/index.js';
 	import { WeHelp } from '$components/we-help/index.js';
 	import { Contacts } from '$components/contacts/index.js';
-	import { Footer } from '$components/footer/index.js';
+	import { UFooter } from '$components/footer/index.js';
 	import { heroQueryOptions } from '$lib/queries/hero';
 	import { servicesQueryOptions } from '$lib/queries/services';
 	import { symptomsQueryOptions } from '$lib/queries/symptoms';
@@ -47,10 +47,12 @@
 	<Hero
 		blocks={heroQuery.data.blocks}
 		advantages={heroQuery.data.advantages}
+		links={heroQuery.data.links}
 		phone={settingsQuery.data.phone}
 		directusAttr={editAttr('section_hero_translations', heroQuery.data.translationId, [
 			'blocks',
-			'advantages'
+			'advantages',
+			'links'
 		])}
 	/>
 {/if}
@@ -99,6 +101,7 @@
 		reviewsUrl={settingsQuery.data.reviewsUrl}
 		mapEmbedUrl={settingsQuery.data.mapEmbedUrl}
 		clinicPhotoId={settingsQuery.data.clinicPhotoId}
+		clinicPhotoAlt={settingsQuery.data.clinicPhotoAlt}
 		directusAttr={editAttr('settings_translations', settingsQuery.data.translationId, [
 			'address',
 			'hours_weekday',
@@ -107,5 +110,9 @@
 		])}
 	/>
 
-	<Footer siteName={settingsQuery.data.siteName} logoId={settingsQuery.data.logoId} />
+	<UFooter
+		siteName={settingsQuery.data.siteName}
+		logoId={settingsQuery.data.logoId}
+		logoAlt={settingsQuery.data.logoAlt}
+	/>
 {/if}

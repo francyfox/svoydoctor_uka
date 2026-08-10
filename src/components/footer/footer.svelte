@@ -9,10 +9,12 @@
 	let {
 		siteName,
 		logoId,
+		logoAlt,
 		class: className
 	}: {
 		siteName: string;
 		logoId?: string;
+		logoAlt?: string;
 		class?: string;
 	} = $props();
 
@@ -26,10 +28,10 @@
 	<div class="container flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
 		<a
 			href={resolve(localizeHref('/') as Pathname)}
-			class="flex shrink-0 items-center gap-3"
+			class="hover-zoom flex shrink-0 items-center gap-3"
 		>
 			<span class="bg-primary relative size-11 shrink-0 overflow-hidden rounded-full">
-				<Image id={logoId} alt="" width={44} height={44} />
+				<Image id={logoId} alt={logoAlt ?? ''} width={44} height={44} />
 			</span>
 			<span class="font-heading text-xl whitespace-nowrap">{siteName}</span>
 		</a>
