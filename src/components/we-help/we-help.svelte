@@ -1,25 +1,31 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-	import type { WeHelpItem } from '$lib/types/content';
+	import type { SliderOptions, WeHelpItem } from '$lib/types/content';
 	import { Slider } from '$components/ui/slider/index.js';
 	import { Card, CardContent, CardTitle, CardDescription } from '$components/ui/card/index.js';
 	import { TileLink } from '$components/ui/tile-link/index.js';
 	import { Image } from '$components/ui/image/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
-	import mosaicShader from '$lib/webgl/shaders/mosaic.frag.glsl?raw';
+	import { resolveShaderScene } from '$lib/webgl/shaders/index.js';
 
 	let {
 		title,
 		items,
+		slider,
+		shader,
 		directusAttr,
 		class: className
 	}: {
 		title: string;
 		items: WeHelpItem[];
+		slider: SliderOptions;
+		shader?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
+
+	const fragment = $derived(resolveShaderScene(shader, 'mosaic'));
 </script>
 
 {#if items.length > 0}
@@ -32,12 +38,17 @@
 		)}
 		data-directus={directusAttr}
 	>
-		<ShaderBackground class="absolute inset-0" fragment={mosaicShader} />
+		<ShaderBackground class="absolute inset-0" {fragment} />
 
 		<Reveal class="container relative flex flex-col gap-6">
 			<h2 class="font-heading text-3xl text-secondary lg:text-[length:var(--font-tile-h2)]">{title}</h2>
 
-			<Slider {items}>
+			<Slider
+				{items}
+				autoplay={slider.autoplay}
+				speed={slider.speed}
+				interval={slider.interval}
+			>
 				{#snippet card(item: WeHelpItem)}
 					<TileLink href={item.link} class="block w-64 sm:w-72">
 						<Card class="h-full overflow-hidden">

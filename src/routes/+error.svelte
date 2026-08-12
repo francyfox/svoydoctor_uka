@@ -13,7 +13,7 @@
 	);
 </script>
 
-<section class="flex min-h-[60vh] items-center justify-center py-16">
+<section class="flex min-h-[calc(100vh-148px)] items-center justify-center py-16">
 	<div class="container flex flex-col items-center gap-6 text-center">
 		<span class="font-heading text-primary text-7xl lg:text-8xl">{page.status}</span>
 		<div class="flex flex-col gap-2">

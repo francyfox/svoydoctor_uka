@@ -9,19 +9,25 @@
 	import { Image } from '$components/ui/image/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
-	import flowShader from '$lib/webgl/shaders/flow.frag.glsl?raw';
+	import { resolveShaderScene } from '$lib/webgl/shaders/index.js';
 
 	type StripItem = Omit<ServiceItem, 'id'> & { id: string };
 
 	let {
+		title,
 		items,
+		shader,
 		directusAttr,
 		class: className
 	}: {
+		title: string;
 		items: ServiceItem[];
+		shader?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
+
+	const fragment = $derived(resolveShaderScene(shader, 'flow'));
 
 	const stripItems = $derived(items.map((item): StripItem => ({ ...item, id: String(item.id) })));
 	const splitIndex = $derived(Math.ceil(stripItems.length / 2));
@@ -60,17 +66,15 @@
 		class={cn('bg-violet-950 relative flex min-h-dvh flex-col justify-center overflow-hidden py-2', className)}
 		data-directus={directusAttr}
 	>
-		<ShaderBackground class="absolute inset-0" fragment={flowShader} />
+		<ShaderBackground class="absolute inset-0" {fragment} />
 
-		<Reveal class="container relative">
-			<!-- <640px: не влезает даже 2-3 таба по 60px + контент — обычный вертикальный аккордеон,
-			     раскрытие вниз вместо вбок (CSS grid-template-rows trick, без JS-измерения высоты). -->
+		<Reveal class="container relative flex flex-col gap-6">
+			<h2 class="font-heading text-3xl text-white lg:text-[length:var(--font-tile-h2)]">{title}</h2>
+
 			<div class="sm:hidden">
 				<AccordionStrip items={stripItems} {content} mode="vertical" />
 			</div>
 
-			<!-- 640–1024px: два горизонтальных аккордеона по половине услуг — одному не хватает
-			     ширины на все табы + открытую панель одновременно. -->
 			<div class="hidden flex-col gap-4 sm:flex lg:hidden">
 				<AccordionStrip items={firstHalf} {content} />
 				{#if secondHalf.length > 0}
@@ -78,7 +82,6 @@
 				{/if}
 			</div>
 
-			<!-- 1024px+: один горизонтальный аккордеон на все услуги, ширины хватает. -->
 			<div class="hidden lg:flex">
 				<AccordionStrip items={stripItems} {content} />
 			</div>

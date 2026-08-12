@@ -4,7 +4,7 @@
 	import { IconLink } from '$components/ui/icon-link/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
-	import auraShader from '$lib/webgl/shaders/aura.frag.glsl?raw';
+	import { resolveShaderScene } from '$lib/webgl/shaders/index.js';
 	import HeroTileTitle from './hero-tile-title.svelte';
 	import HeroTileMedia from './hero-tile-media.svelte';
 	import HeroTilePromo from './hero-tile-promo.svelte';
@@ -17,6 +17,7 @@
 		advantages,
 		links,
 		phone,
+		shader,
 		directusAttr,
 		class: className
 	}: {
@@ -24,11 +25,13 @@
 		advantages: HeroAdvantage[];
 		links: HeroLink[];
 		phone: string;
+		shader?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
 
 	const [title, photo, promo, , media] = $derived(blocks);
+	const fragment = $derived(resolveShaderScene(shader, 'aura'));
 </script>
 
 <section
@@ -36,7 +39,7 @@
 	class={cn('relative flex min-h-[calc(100dvh-86px)] flex-col overflow-hidden py-5', className)}
 	data-directus={directusAttr}
 >
-	<ShaderBackground class="absolute inset-0" fragment={auraShader} />
+	<ShaderBackground class="absolute inset-0" {fragment} />
 
 	<div class="container relative flex flex-1 flex-col">
 		<div

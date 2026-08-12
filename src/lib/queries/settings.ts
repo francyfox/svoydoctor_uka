@@ -13,6 +13,11 @@ export function settingsQueryOptions(locale: string, fetchFn: typeof fetch = fet
 			const response = await fetchFn(localizeHref('/api/settings', { locale: locale as Locale }));
 			return response.json();
 		},
-		placeholderData: keepPreviousData
+		placeholderData: keepPreviousData,
+		// Короче глобального дефолта (10 мин, query-client.ts): settings несёт срочные
+		// операционные флаги (режим техобслуживания, баннер горячей линии), которые должны
+		// подхватываться на живом сайте без долгого ожидания — /api/settings НЕ пререндерится
+		// специально ради этого (см. +server.ts).
+		staleTime: 60 * 1000
 	};
 }

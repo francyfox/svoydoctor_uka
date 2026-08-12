@@ -1,3 +1,11 @@
+export type MapboxSettings = {
+	token: string;
+	styleUrl: string;
+	lng: number;
+	lat: number;
+	zoom: number;
+};
+
 export type Settings = {
 	siteName: string;
 	phone: string;
@@ -10,9 +18,12 @@ export type Settings = {
 	ratingValue: string | undefined;
 	ratingLabel: string | undefined;
 	reviewsUrl: string | undefined;
-	mapEmbedUrl: string | undefined;
 	clinicPhotoId: string | undefined;
 	clinicPhotoAlt: string | undefined;
+	hotlineBannerEnabled: boolean;
+	hotlineBannerText: string | undefined;
+	maintenanceModeEnabled: boolean;
+	mapbox: MapboxSettings | undefined;
 	directusId: number | undefined;
 	translationId: number | undefined;
 };
@@ -61,9 +72,22 @@ export type ServiceItem = {
 };
 
 export type SectionServices = {
+	title: string;
 	items: ServiceItem[];
 	directusId: number | undefined;
 	translationId: number | undefined;
+};
+
+export type PageSection = {
+	key: string;
+	visible: boolean;
+	shader: string;
+};
+
+export type SliderOptions = {
+	autoplay: boolean;
+	speed: number;
+	interval: number;
 };
 
 export type SymptomSpecies = 'cat' | 'dog' | 'both';
@@ -78,6 +102,7 @@ export type SectionSymptoms = {
 	title: string;
 	subtitle: string | undefined;
 	symptoms: SymptomItem[];
+	slider: SliderOptions;
 	directusId: number | undefined;
 	translationId: number | undefined;
 };
@@ -94,6 +119,7 @@ export type WeHelpItem = {
 export type SectionWeHelp = {
 	title: string;
 	items: WeHelpItem[];
+	slider: SliderOptions;
 	directusId: number | undefined;
 	translationId: number | undefined;
 };

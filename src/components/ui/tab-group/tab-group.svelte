@@ -20,7 +20,7 @@
 			aria-selected={value === option.value}
 			onclick={() => (value = option.value)}
 			class={cn(
-				'h-12 px-4 text-sm',
+				'h-12 px-4 text-3xl',
 				value === option.value
 					? 'bg-primary text-primary-foreground'
 					: 'bg-secondary text-secondary-foreground hover:bg-secondary/70'

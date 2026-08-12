@@ -212,6 +212,37 @@
 			}
 		}
 	}
+
+	/*
+	 * Бегущая строка — src/components/ui/marquee/marquee.svelte решает, помещается ли текст
+	 * на одну строку (scrollWidth vs clientWidth); если нет, оборачивает его в .marquee-track
+	 * с двумя одинаковыми копиями текста подряд и анимирует translateX(-50%) — на бесшовном
+	 * зацикливании это выглядит непрерывным (каждая копия занимает ровно половину трека).
+	 */
+	.marquee-track {
+		display: inline-flex;
+		width: max-content;
+		animation: marquee 18s linear infinite;
+	}
+
+	.marquee-item {
+		padding-inline-end: 3rem;
+	}
+
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-track {
+			animation: none;
+		}
+	}
 }
 
 /*

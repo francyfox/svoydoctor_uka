@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
+	import type { MapboxSettings } from '$lib/types/content';
 	import * as m from '$lib/paraglide/messages.js';
 	import { DaySquare, type DaySquareVariant } from '$components/ui/day-square/index.js';
 	import { Image } from '$components/ui/image/index.js';
+	import { MapboxMap } from '$components/ui/mapbox-map/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
 	import { ShaderBackground } from '$components/ui/shader-background/index.js';
-	import spectrumShader from '$lib/webgl/shaders/spectrum.frag.glsl?raw';
+	import { resolveShaderScene } from '$lib/webgl/shaders/index.js';
 
 	let {
 		address,
@@ -15,9 +17,10 @@
 		ratingValue,
 		ratingLabel,
 		reviewsUrl,
-		mapEmbedUrl,
+		mapbox,
 		clinicPhotoId,
 		clinicPhotoAlt,
+		shader,
 		directusAttr,
 		class: className
 	}: {
@@ -28,12 +31,15 @@
 		ratingValue?: string;
 		ratingLabel?: string;
 		reviewsUrl?: string;
-		mapEmbedUrl?: string;
+		mapbox?: MapboxSettings;
 		clinicPhotoId?: string;
 		clinicPhotoAlt?: string;
+		shader?: string;
 		directusAttr?: string;
 		class?: string;
 	} = $props();
+
+	const fragment = $derived(resolveShaderScene(shader, 'spectrum'));
 
 	const days = [
 		{ dayIndex: 1, label: m.contacts_day_mon() },
@@ -63,7 +69,7 @@
 	)}
 	data-directus={directusAttr}
 >
-	<ShaderBackground class="absolute inset-0" fragment={spectrumShader} />
+	<ShaderBackground class="absolute inset-0" {fragment} />
 
 	<Reveal class="container relative">
 		<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
@@ -85,13 +91,20 @@
 				{/if}
 			</div>
 
-			{#if mapEmbedUrl}
-				<iframe
-					src={mapEmbedUrl}
-					title={m.contacts_map_title()}
-					loading="lazy"
-					class="tile-frame h-64 w-full border-0 lg:col-span-2 lg:row-span-2 lg:h-full"
-				></iframe>
+			{#if mapbox}
+				<div
+					class="tile-frame h-64 w-full overflow-hidden lg:col-span-2 lg:row-span-2 lg:h-full"
+					role="img"
+					aria-label={m.contacts_map_title()}
+				>
+					<MapboxMap
+						token={mapbox.token}
+						styleUrl={mapbox.styleUrl}
+						lng={mapbox.lng}
+						lat={mapbox.lat}
+						zoom={mapbox.zoom}
+					/>
+				</div>
 			{:else}
 				<div
 					class="tile-frame bg-muted text-muted-foreground flex h-64 items-center justify-center p-6 text-center lg:col-span-2 lg:row-span-2 lg:h-full"

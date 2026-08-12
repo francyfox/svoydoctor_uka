@@ -1,4 +1,4 @@
-import { createDirectus, staticToken, rest, readSingleton } from '@directus/sdk';
+import { createDirectus, staticToken, rest, readSingleton, readItems } from '@directus/sdk';
 import { env } from '$lib/server/env';
 import type {
 	Settings,
@@ -11,7 +11,8 @@ import type {
 	SymptomItem,
 	SectionSymptoms,
 	WeHelpItem,
-	SectionWeHelp
+	SectionWeHelp,
+	PageSection
 } from '$lib/types/content';
 
 export type {
@@ -25,7 +26,8 @@ export type {
 	SymptomItem,
 	SectionSymptoms,
 	WeHelpItem,
-	SectionWeHelp
+	SectionWeHelp,
+	PageSection
 };
 
 type DirectusFileRow = { id: string; type: string | null; description: string | null };
@@ -60,6 +62,7 @@ type SettingsTranslationRow = {
 	hours_weekday?: string;
 	hours_saturday?: string;
 	rating_label?: string;
+	hotline_banner_text?: string | null;
 };
 type SettingsRow = {
 	id: number;
@@ -69,8 +72,13 @@ type SettingsRow = {
 	off_days: string;
 	rating_value: string;
 	reviews_url: string;
-	map_embed_url: string;
 	clinic_photo: DirectusFileRow | null;
+	hotline_banner_enabled: boolean;
+	maintenance_mode_enabled: boolean;
+	mapbox_token: string | null;
+	mapbox_style_url: string | null;
+	mapbox_zoom: number | null;
+	map: { type: 'Point'; coordinates: [number, number] } | null;
 	translations: SettingsTranslationRow[];
 };
 
@@ -83,7 +91,12 @@ type SectionHeroTranslationRow = {
 };
 type SectionHeroRow = { id: number; translations: SectionHeroTranslationRow[] };
 
-type SectionServicesTranslationRow = { id: number; languages_code: string; items: ServiceItemRow[] };
+type SectionServicesTranslationRow = {
+	id: number;
+	languages_code: string;
+	title?: string;
+	items: ServiceItemRow[];
+};
 type SectionServicesRow = { id: number; translations: SectionServicesTranslationRow[] };
 
 type SectionSymptomsTranslationRow = {
@@ -93,13 +106,34 @@ type SectionSymptomsTranslationRow = {
 	subtitle?: string;
 	symptoms: SymptomItemRow[];
 };
-type SectionSymptomsRow = { id: number; translations: SectionSymptomsTranslationRow[] };
+type SectionSymptomsRow = {
+	id: number;
+	slider_autoplay: boolean;
+	slider_speed: number;
+	slider_interval: number;
+	translations: SectionSymptomsTranslationRow[];
+};
 
 type SectionWeHelpTranslationRow = { id: number; languages_code: string; title?: string; items: WeHelpItemRow[] };
-type SectionWeHelpRow = { id: number; translations: SectionWeHelpTranslationRow[] };
+type SectionWeHelpRow = {
+	id: number;
+	slider_autoplay: boolean;
+	slider_speed: number;
+	slider_interval: number;
+	translations: SectionWeHelpTranslationRow[];
+};
+
+type PageSectionRow = {
+	id: number;
+	sort: number;
+	section_key: string;
+	visible: boolean;
+	shader: string;
+};
 
 type Schema = {
 	directus_files: DirectusFileRow;
+	page_sections: PageSectionRow[];
 	settings: SettingsRow;
 	settings_translations: SettingsTranslationRow[];
 	section_hero: SectionHeroRow;
@@ -150,9 +184,21 @@ export async function getSettings(locale: string): Promise<Settings> {
 		ratingValue: row.rating_value || undefined,
 		ratingLabel: t?.rating_label || undefined,
 		reviewsUrl: row.reviews_url || undefined,
-		mapEmbedUrl: row.map_embed_url || undefined,
 		clinicPhotoId: row.clinic_photo?.id || undefined,
 		clinicPhotoAlt: row.clinic_photo?.description || undefined,
+		hotlineBannerEnabled: row.hotline_banner_enabled ?? false,
+		hotlineBannerText: t?.hotline_banner_text || undefined,
+		maintenanceModeEnabled: row.maintenance_mode_enabled ?? false,
+		mapbox:
+			row.mapbox_token && row.map
+				? {
+						token: row.mapbox_token,
+						styleUrl: row.mapbox_style_url || 'mapbox://styles/mapbox/streets-v12',
+						lng: row.map.coordinates[0],
+						lat: row.map.coordinates[1],
+						zoom: row.mapbox_zoom ?? 15
+					}
+				: undefined,
 		directusId: row.id,
 		translationId: t?.id
 	};
@@ -223,6 +269,7 @@ export async function getSectionServices(locale: string): Promise<SectionService
 					translations: [
 						'id',
 						'languages_code',
+						'title',
 						{ items: ['*', { illustration: ['id', 'description'] }] }
 					]
 				}
@@ -236,6 +283,7 @@ export async function getSectionServices(locale: string): Promise<SectionService
 	const t = row.translations?.[0];
 
 	return {
+		title: t?.title ?? '',
 		items: (t?.items ?? []).map((service) => ({
 			id: service.id,
 			label: service.label,
@@ -252,7 +300,13 @@ export async function getSectionServices(locale: string): Promise<SectionService
 export async function getSectionSymptoms(locale: string): Promise<SectionSymptoms> {
 	const row = await client.request(
 		readSingleton('section_symptoms', {
-			fields: ['id', { translations: ['id', 'languages_code', 'title', 'subtitle', { symptoms: ['*'] }] }],
+			fields: [
+				'id',
+				'slider_autoplay',
+				'slider_speed',
+				'slider_interval',
+				{ translations: ['id', 'languages_code', 'title', 'subtitle', { symptoms: ['*'] }] }
+			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
 				'translations.symptoms': { _sort: ['sort'] }
@@ -269,6 +323,11 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 			text: symptom.text,
 			species: symptom.species ?? 'both'
 		})),
+		slider: {
+			autoplay: row.slider_autoplay ?? true,
+			speed: row.slider_speed ?? 600,
+			interval: row.slider_interval ?? 3500
+		},
 		directusId: row.id,
 		translationId: t?.id
 	};
@@ -279,6 +338,9 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 		readSingleton('section_we_help', {
 			fields: [
 				'id',
+				'slider_autoplay',
+				'slider_speed',
+				'slider_interval',
 				{
 					translations: [
 						'id',
@@ -306,7 +368,23 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 			photoAlt: weHelpItem.photo?.description || undefined,
 			link: weHelpItem.link || undefined
 		})),
+		slider: {
+			autoplay: row.slider_autoplay ?? true,
+			speed: row.slider_speed ?? 600,
+			interval: row.slider_interval ?? 3500
+		},
 		directusId: row.id,
 		translationId: t?.id
 	};
+}
+
+export async function getPageSections(): Promise<PageSection[]> {
+	const rows = await client.request(
+		readItems('page_sections', {
+			fields: ['section_key', 'visible', 'shader'],
+			sort: ['sort']
+		})
+	);
+
+	return rows.map((row) => ({ key: row.section_key, visible: row.visible, shader: row.shader }));
 }
