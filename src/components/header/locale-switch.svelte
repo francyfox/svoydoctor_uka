@@ -2,7 +2,8 @@
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import type { Pathname } from '$app/types';
-	import { locales, localizeHref, getLocaleForUrl } from '$lib/paraglide/runtime';
+	import { locales, localizeHref } from '$lib/paraglide/runtime';
+	import { localeFromPathname } from '$lib/locale';
 	import * as m from '$lib/paraglide/messages.js';
 	import { cn } from '$lib/utils.js';
 
@@ -12,7 +13,7 @@
 		variant?: 'pill' | 'tab';
 	} = $props();
 
-	const currentLocale = $derived(getLocaleForUrl(page.url));
+	const currentLocale = $derived(localeFromPathname(page.url.pathname));
 </script>
 
 <div class={cn('flex', variant === 'tab' && 'border-border border')}>

@@ -7,13 +7,16 @@
 	import { WeHelp } from '$components/we-help/index.js';
 	import { Contacts } from '$components/contacts/index.js';
 	import { UFooter } from '$components/footer/index.js';
+	import { Seo } from '$components/seo/index.js';
 	import { heroQueryOptions } from '$lib/queries/hero';
 	import { servicesQueryOptions } from '$lib/queries/services';
 	import { symptomsQueryOptions } from '$lib/queries/symptoms';
 	import { weHelpQueryOptions } from '$lib/queries/we-help';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { pageSectionsQueryOptions } from '$lib/queries/page-sections';
-	import { getLocaleForUrl } from '$lib/paraglide/runtime';
+	import { pageMetaQueryOptions } from '$lib/queries/page-meta';
+	import { localeFromPathname } from '$lib/locale';
+	import { buildAssetUrl } from '$lib/directus/assets';
 	import { setAttr } from '$lib/visual-editor';
 
 	let { data } = $props();
@@ -23,32 +26,49 @@
 	}
 
 	const heroQuery = createQuery(
-		() => heroQueryOptions(getLocaleForUrl(page.url)),
+		() => heroQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 	const servicesQuery = createQuery(
-		() => servicesQueryOptions(getLocaleForUrl(page.url)),
+		() => servicesQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 	const symptomsQuery = createQuery(
-		() => symptomsQueryOptions(getLocaleForUrl(page.url)),
+		() => symptomsQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 	const weHelpQuery = createQuery(
-		() => weHelpQueryOptions(getLocaleForUrl(page.url)),
+		() => weHelpQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 	const settingsQuery = createQuery(
-		() => settingsQueryOptions(getLocaleForUrl(page.url)),
+		() => settingsQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 	const pageSectionsQuery = createQuery(
 		() => pageSectionsQueryOptions(),
 		() => data.queryClient
 	);
+	const pageMetaQuery = createQuery(
+		() => pageMetaQueryOptions('home', localeFromPathname(page.url.pathname)),
+		() => data.queryClient
+	);
 
 	const visibleSections = $derived((pageSectionsQuery.data ?? []).filter((section) => section.visible));
 </script>
+
+{#if pageMetaQuery.data && settingsQuery.data}
+	<Seo
+		title={pageMetaQuery.data.title}
+		description={pageMetaQuery.data.description}
+		siteName={settingsQuery.data.siteName}
+		path="/"
+		noindex={pageMetaQuery.data.noindex}
+		ogImageUrl={pageMetaQuery.data.ogImageId
+			? buildAssetUrl(pageMetaQuery.data.ogImageId, { width: 1200, height: 630, fit: 'cover' })
+			: undefined}
+	/>
+{/if}
 
 {#each visibleSections as section (section.key)}
 	{#if section.key === 'hero'}

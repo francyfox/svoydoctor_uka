@@ -11,6 +11,7 @@ export type Settings = {
 	phone: string;
 	logoId: string | undefined;
 	logoAlt: string | undefined;
+	faviconId: string | undefined;
 	address: string | undefined;
 	hoursWeekday: string | undefined;
 	hoursSaturday: string | undefined;
@@ -88,6 +89,15 @@ export type SliderOptions = {
 	autoplay: boolean;
 	speed: number;
 	interval: number;
+};
+
+export type PageMetaKey = 'home' | 'services' | 'apply' | 'about' | 'we_help' | 'contacts' | 'privacy';
+
+export type PageMeta = {
+	title: string;
+	description: string | undefined;
+	ogImageId: string | undefined;
+	noindex: boolean;
 };
 
 export type SymptomSpecies = 'cat' | 'dog' | 'both';

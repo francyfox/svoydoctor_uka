@@ -3,19 +3,20 @@
 	import { QueryClientProvider, HydrationBoundary, createQuery } from '@tanstack/svelte-query';
 	import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools'
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 	import { UHeader } from '$components/header/index.js';
 	import { HotlineBanner } from '$components/hotline-banner/index.js';
 	import { Maintenance } from '$components/maintenance/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
-	import { getLocaleForUrl } from '$lib/paraglide/runtime';
+	import { localeFromPathname } from '$lib/locale';
 	import { initializeVisualEditor, cleanupVisualEditor, setAttr } from '$lib/visual-editor';
+	import { buildAssetUrl } from '$lib/directus/assets';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 
 	let { data, children } = $props();
 
 	const settingsQuery = createQuery(
-		() => settingsQueryOptions(getLocaleForUrl(page.url)),
+		() => settingsQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 
@@ -23,10 +24,23 @@
 		initializeVisualEditor(data.queryClient);
 		return () => cleanupVisualEditor();
 	});
+
+	$effect(() => {
+		if (browser && 'serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js', {
+				type: import.meta.env.DEV ? 'module' : 'classic'
+			});
+		}
+	});
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	{#if settingsQuery.data?.faviconId}
+		<link rel="icon" href={buildAssetUrl(settingsQuery.data.faviconId)} type="image/svg+xml" />
+	{/if}
+	<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+	<link rel="manifest" href="/manifest.webmanifest" />
+	<meta name="theme-color" content="#6e2c8c" />
 </svelte:head>
 <QueryClientProvider client={data.queryClient}>
 	<HydrationBoundary

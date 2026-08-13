@@ -12,7 +12,9 @@ import type {
 	SectionSymptoms,
 	WeHelpItem,
 	SectionWeHelp,
-	PageSection
+	PageSection,
+	PageMeta,
+	PageMetaKey
 } from '$lib/types/content';
 
 export type {
@@ -27,7 +29,9 @@ export type {
 	SectionSymptoms,
 	WeHelpItem,
 	SectionWeHelp,
-	PageSection
+	PageSection,
+	PageMeta,
+	PageMetaKey
 };
 
 type DirectusFileRow = { id: string; type: string | null; description: string | null };
@@ -69,6 +73,7 @@ type SettingsRow = {
 	site_name: string;
 	phone: string;
 	logo: DirectusFileRow | null;
+	favicon: DirectusFileRow | null;
 	off_days: string;
 	rating_value: string;
 	reviews_url: string;
@@ -131,9 +136,25 @@ type PageSectionRow = {
 	shader: string;
 };
 
+type PageMetaTranslationRow = {
+	id: number;
+	languages_code: string;
+	meta_title?: string;
+	meta_description?: string | null;
+};
+type PageMetaRow = {
+	id: number;
+	route: string;
+	noindex: boolean;
+	og_image: DirectusFileRow | null;
+	translations: PageMetaTranslationRow[];
+};
+
 type Schema = {
 	directus_files: DirectusFileRow;
 	page_sections: PageSectionRow[];
+	page_meta: PageMetaRow[];
+	page_meta_translations: PageMetaTranslationRow[];
 	settings: SettingsRow;
 	settings_translations: SettingsTranslationRow[];
 	section_hero: SectionHeroRow;
@@ -159,7 +180,11 @@ export async function getSettings(locale: string): Promise<Settings> {
 		readSingleton('settings', {
 			fields: [
 				'*',
-				{ logo: ['id', 'description'], clinic_photo: ['id', 'description'] },
+				{
+					logo: ['id', 'description'],
+					clinic_photo: ['id', 'description'],
+					favicon: ['id', 'description']
+				},
 				{ translations: ['*'] }
 			],
 			deep: { translations: { _filter: { languages_code: { _eq: locale } } } }
@@ -172,6 +197,7 @@ export async function getSettings(locale: string): Promise<Settings> {
 		phone: row.phone,
 		logoId: row.logo?.id || undefined,
 		logoAlt: row.logo?.description || undefined,
+		faviconId: row.favicon?.id || undefined,
 		address: t?.address || undefined,
 		hoursWeekday: t?.hours_weekday || undefined,
 		hoursSaturday: t?.hours_saturday || undefined,
@@ -387,4 +413,28 @@ export async function getPageSections(): Promise<PageSection[]> {
 	);
 
 	return rows.map((row) => ({ key: row.section_key, visible: row.visible, shader: row.shader }));
+}
+
+export async function getPageMeta(key: PageMetaKey, locale: string): Promise<PageMeta> {
+	const rows = await client.request(
+		readItems('page_meta', {
+			fields: [
+				'noindex',
+				{ og_image: ['id'] },
+				{ translations: ['meta_title', 'meta_description'] }
+			],
+			filter: { route: { _eq: key } },
+			deep: { translations: { _filter: { languages_code: { _eq: locale } } } },
+			limit: 1
+		})
+	);
+	const row = rows[0];
+	const t = row?.translations?.[0];
+
+	return {
+		title: t?.meta_title ?? '',
+		description: t?.meta_description || undefined,
+		ogImageId: row?.og_image?.id || undefined,
+		noindex: row?.noindex ?? false
+	};
 }
