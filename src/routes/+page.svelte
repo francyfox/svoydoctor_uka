@@ -105,11 +105,17 @@
 				subtitle={symptomsQuery.data.subtitle}
 				symptoms={symptomsQuery.data.symptoms}
 				slider={symptomsQuery.data.slider}
+				catLabel={symptomsQuery.data.catLabel}
+				dogLabel={symptomsQuery.data.dogLabel}
+				catIconName={symptomsQuery.data.catIconName}
+				dogIconName={symptomsQuery.data.dogIconName}
 				shader={section.shader}
 				directusAttr={editAttr('section_symptoms_translations', symptomsQuery.data.translationId, [
 					'title',
 					'subtitle',
-					'symptoms'
+					'symptoms',
+					'cat_label',
+					'dog_label'
 				])}
 			/>
 		{/if}

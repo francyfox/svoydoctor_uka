@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 	import type { SliderOptions, SymptomItem } from '$lib/types/content';
-	import * as m from '$lib/paraglide/messages.js';
 	import { TabGroup } from '$components/ui/tab-group/index.js';
 	import { Slider } from '$components/ui/slider/index.js';
 	import { Reveal } from '$components/ui/reveal/index.js';
@@ -13,6 +12,10 @@
 		subtitle,
 		symptoms,
 		slider,
+		catLabel,
+		dogLabel,
+		catIconName,
+		dogIconName,
 		shader,
 		directusAttr,
 		class: className
@@ -21,6 +24,10 @@
 		subtitle?: string;
 		symptoms: SymptomItem[];
 		slider: SliderOptions;
+		catLabel: string;
+		dogLabel: string;
+		catIconName?: string;
+		dogIconName?: string;
 		shader?: string;
 		directusAttr?: string;
 		class?: string;
@@ -31,8 +38,8 @@
 	let species = $state('cat');
 
 	const tabOptions = $derived([
-		{ value: 'cat', label: m.symptoms_tab_cat() },
-		{ value: 'dog', label: m.symptoms_tab_dog() }
+		{ value: 'cat', label: catLabel, iconName: catIconName },
+		{ value: 'dog', label: dogLabel, iconName: dogIconName }
 	]);
 
 	const filtered = $derived(

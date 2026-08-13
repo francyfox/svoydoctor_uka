@@ -1,17 +1,9 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
 	import * as m from '$lib/paraglide/messages.js';
 	import type { HeroLink } from '$lib/types/content';
 	import { ApplyButton } from '$components/ui/apply-button/index.js';
 
-	let {
-		applyHref,
-		links
-	}: {
-		applyHref?: string;
-		links: HeroLink[];
-	} = $props();
+	let { links }: { links: HeroLink[] } = $props();
 </script>
 
 <div
@@ -24,12 +16,7 @@
 			</a>
 		{/each}
 	</nav>
-	{#if applyHref}
-		<ApplyButton
-			href={resolve(applyHref as Pathname)}
-			class="px-8 py-4 text-center text-lg sm:text-xl"
-		>
-			{m.cta_apply()}
-		</ApplyButton>
-	{/if}
+	<ApplyButton href="#apply" class="px-8 py-4 text-center text-lg sm:text-xl">
+		{m.cta_apply()}
+	</ApplyButton>
 </div>

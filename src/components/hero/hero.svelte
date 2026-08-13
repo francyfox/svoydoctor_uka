@@ -114,6 +114,6 @@
 			</Reveal>
 		</div>
 
-		<HeroActionBar applyHref={title?.link} {links} />
+		<HeroActionBar {links} />
 	</div>
 </section>

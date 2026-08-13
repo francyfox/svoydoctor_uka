@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import { localizeHref } from '$lib/paraglide/runtime';
 	import { cn, whatsappHref } from '$lib/utils.js';
 	import { ScrollState } from 'runed';
 	import { IconLink } from '$components/ui/icon-link/index.js';
@@ -29,7 +26,7 @@
 		class?: string;
 	} = $props();
 
-	const applyHref = $derived(resolve(localizeHref('/apply') as Pathname));
+	const applyHref = '#apply';
 
 	const scroll = new ScrollState({ element: () => (browser ? window : undefined) });
 	const scrolled = $derived(!scroll.arrived.top);

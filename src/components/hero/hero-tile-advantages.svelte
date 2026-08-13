@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { HeroAdvantage } from '$lib/types/content';
 	import { cn } from '$lib/utils.js';
-	import { Icon } from '$components/ui/directus-icon/index.js';
+	import Icon from '@iconify/svelte';
 	import HeroTile from './hero-tile.svelte';
 
 	let {
@@ -21,8 +21,8 @@
 >
 	{#each advantages as advantage (advantage.id)}
 		<div class="relative flex items-center gap-2">
-			{#if advantage.iconId}
-				<Icon id={advantage.iconId} alt="" size={20} />
+			{#if advantage.iconName}
+				<Icon icon={advantage.iconName} width="20" height="20" class="text-white" />
 			{/if}
 			<p
 				class="text-[length:var(--font-tile-small)] text-white"

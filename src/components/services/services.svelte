@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import type { Pathname } from '$app/types';
-	import { localizeHref } from '$lib/paraglide/runtime';
 	import { cn } from '$lib/utils.js';
 	import type { ServiceItem } from '$lib/types/content';
 	import { AccordionStrip } from '$components/ui/accordion-strip/index.js';
@@ -50,7 +47,7 @@
 				<p class="text-lg lg:text-[length:var(--font-tile-h3)]">{item.description}</p>
 			{/if}
 			<ApplyButton
-					href={resolve(localizeHref('/apply') as Pathname)}
+					href="#apply"
 					class="self-start px-6 py-3 text-lg uppercase"
 			>
 				{item.ctaLabel}

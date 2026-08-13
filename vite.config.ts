@@ -25,7 +25,11 @@ export default defineConfig({
 			prerender: {
 				// /apply and /about are content-driven link targets that don't have routes yet;
 				// don't fail the static build over them.
-				handleHttpError: 'warn'
+				handleHttpError: 'warn',
+				// #apply / #apply-sterilization aren't scroll-to anchors — BookingSheet reads
+				// them as client-side routing triggers (open the booking drawer), so no
+				// element with that id is ever expected to exist on the page.
+				handleMissingId: 'ignore'
 			}
 		}),
 

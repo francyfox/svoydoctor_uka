@@ -7,7 +7,10 @@
 	import { UHeader } from '$components/header/index.js';
 	import { HotlineBanner } from '$components/hotline-banner/index.js';
 	import { Maintenance } from '$components/maintenance/index.js';
+	import { SocialWidget } from '$components/social-widget/index.js';
+	import { BookingSheet } from '$components/booking-sheet/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
+	import { socialLinksQueryOptions } from '$lib/queries/social-links';
 	import { localeFromPathname } from '$lib/locale';
 	import { initializeVisualEditor, cleanupVisualEditor, setAttr } from '$lib/visual-editor';
 	import { buildAssetUrl } from '$lib/directus/assets';
@@ -17,6 +20,10 @@
 
 	const settingsQuery = createQuery(
 		() => settingsQueryOptions(localeFromPathname(page.url.pathname)),
+		() => data.queryClient
+	);
+	const socialLinksQuery = createQuery(
+		() => socialLinksQueryOptions(),
 		() => data.queryClient
 	);
 
@@ -90,6 +97,11 @@
 					/>
 				{/if}
 			</div>
+
+			<SocialWidget links={socialLinksQuery.data ?? []} />
+			{#if settingsQuery.data}
+				<BookingSheet phone={settingsQuery.data.phone} queryClient={data.queryClient} />
+			{/if}
 		{/if}
 	</HydrationBoundary>
 

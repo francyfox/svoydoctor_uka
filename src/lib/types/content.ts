@@ -46,7 +46,7 @@ export type HeroBlock = {
 export type HeroAdvantage = {
 	id: number;
 	text: string;
-	iconId: string | undefined;
+	iconName: string | undefined;
 };
 
 export type HeroLink = {
@@ -100,6 +100,15 @@ export type PageMeta = {
 	noindex: boolean;
 };
 
+export type SocialLink = {
+	id: number;
+	label: string;
+	url: string;
+	iconName: string | undefined;
+	imageId: string | undefined;
+	color: string | undefined;
+};
+
 export type SymptomSpecies = 'cat' | 'dog' | 'both';
 
 export type SymptomItem = {
@@ -113,8 +122,30 @@ export type SectionSymptoms = {
 	subtitle: string | undefined;
 	symptoms: SymptomItem[];
 	slider: SliderOptions;
+	catLabel: string;
+	dogLabel: string;
+	catIconName: string | undefined;
+	dogIconName: string | undefined;
 	directusId: number | undefined;
 	translationId: number | undefined;
+};
+
+export type FormCollection = 'booking_requests' | 'sterilization_requests';
+
+export type FormChoice = {
+	text: string;
+	value: string;
+	icon: string | undefined;
+};
+
+export type FormFieldSchema = {
+	field: string;
+	type: string;
+	interface: string;
+	label: string;
+	placeholder: string | undefined;
+	required: boolean;
+	choices: FormChoice[] | undefined;
 };
 
 export type WeHelpItem = {
@@ -124,6 +155,7 @@ export type WeHelpItem = {
 	photoId: string | undefined;
 	photoAlt: string | undefined;
 	link: string | undefined;
+	featured: boolean;
 };
 
 export type SectionWeHelp = {

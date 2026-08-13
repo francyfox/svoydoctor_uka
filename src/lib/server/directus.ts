@@ -1,4 +1,4 @@
-import { createDirectus, staticToken, rest, readSingleton, readItems } from '@directus/sdk';
+import { createDirectus, staticToken, rest, readSingleton, readItems, readFieldsByCollection, createItem } from '@directus/sdk';
 import { env } from '$lib/server/env';
 import type {
 	Settings,
@@ -14,7 +14,10 @@ import type {
 	SectionWeHelp,
 	PageSection,
 	PageMeta,
-	PageMetaKey
+	PageMetaKey,
+	SocialLink,
+	FormCollection,
+	FormFieldSchema
 } from '$lib/types/content';
 
 export type {
@@ -31,7 +34,10 @@ export type {
 	SectionWeHelp,
 	PageSection,
 	PageMeta,
-	PageMetaKey
+	PageMetaKey,
+	SocialLink,
+	FormCollection,
+	FormFieldSchema
 };
 
 type DirectusFileRow = { id: string; type: string | null; description: string | null };
@@ -39,6 +45,7 @@ type HeroBlockRow = {
 	id: number;
 	title: string;
 	description: string | null;
+	link: string | null;
 	media: DirectusFileRow | null;
 };
 type HeroAdvantageRow = { id: number; text: string; icon: string | null };
@@ -57,6 +64,7 @@ type WeHelpItemRow = {
 	description: string | null;
 	photo: DirectusFileRow | null;
 	link: string | null;
+	featured: boolean;
 };
 
 type SettingsTranslationRow = {
@@ -109,6 +117,8 @@ type SectionSymptomsTranslationRow = {
 	languages_code: string;
 	title?: string;
 	subtitle?: string;
+	cat_label?: string;
+	dog_label?: string;
 	symptoms: SymptomItemRow[];
 };
 type SectionSymptomsRow = {
@@ -116,6 +126,8 @@ type SectionSymptomsRow = {
 	slider_autoplay: boolean;
 	slider_speed: number;
 	slider_interval: number;
+	cat_icon: string | null;
+	dog_icon: string | null;
 	translations: SectionSymptomsTranslationRow[];
 };
 
@@ -150,11 +162,23 @@ type PageMetaRow = {
 	translations: PageMetaTranslationRow[];
 };
 
+type SocialLinkRow = {
+	id: number;
+	sort: number | null;
+	label: string;
+	url: string;
+	icon: string | null;
+	image: DirectusFileRow | null;
+	color: string | null;
+	enabled: boolean;
+};
+
 type Schema = {
 	directus_files: DirectusFileRow;
 	page_sections: PageSectionRow[];
 	page_meta: PageMetaRow[];
 	page_meta_translations: PageMetaTranslationRow[];
+	social_links: SocialLinkRow[];
 	settings: SettingsRow;
 	settings_translations: SettingsTranslationRow[];
 	section_hero: SectionHeroRow;
@@ -171,6 +195,31 @@ type Schema = {
 	section_we_help: SectionWeHelpRow;
 	section_we_help_translations: SectionWeHelpTranslationRow[];
 	section_we_help_item: WeHelpItemRow[];
+	booking_requests: BookingRequestRow[];
+	sterilization_requests: SterilizationRequestRow[];
+};
+
+type FormChoiceRaw = { text: string; value: string; icon?: string };
+
+type BookingRequestRow = {
+	id: number;
+	service: string;
+	pet_type: string;
+	pet_type_other: string | null;
+	name: string;
+	phone: string;
+	preferred_date: string | null;
+	reason: string | null;
+};
+
+type SterilizationRequestRow = {
+	id: number;
+	pet_type: string;
+	pet_sex: string;
+	name: string;
+	phone: string;
+	preferred_date: string | null;
+	reason: string | null;
 };
 
 const client = createDirectus<Schema>(env.DIRECTUS_URL).with(staticToken(env.DIRECTUS_TOKEN)).with(rest());
@@ -240,7 +289,7 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 						'id',
 						'languages_code',
 						{
-							blocks: ['id', 'title', 'description', { media: ['id', 'type', 'description'] }],
+							blocks: ['id', 'title', 'description', 'link', { media: ['id', 'type', 'description'] }],
 							advantages: ['*'],
 							links: ['id', 'label', 'href']
 						}
@@ -262,7 +311,7 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 			id: block.id,
 			title: block.title,
 			description: block.description || undefined,
-			link: undefined,
+			link: block.link || undefined,
 			background: block.media
 				? {
 						id: block.media.id,
@@ -274,7 +323,7 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 		advantages: (t?.advantages ?? []).map((advantage) => ({
 			id: advantage.id,
 			text: advantage.text,
-			iconId: advantage.icon || undefined
+			iconName: advantage.icon || undefined
 		})),
 		links: (t?.links ?? []).map((link) => ({
 			id: link.id,
@@ -331,7 +380,19 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 				'slider_autoplay',
 				'slider_speed',
 				'slider_interval',
-				{ translations: ['id', 'languages_code', 'title', 'subtitle', { symptoms: ['*'] }] }
+				'cat_icon',
+				'dog_icon',
+				{
+					translations: [
+						'id',
+						'languages_code',
+						'title',
+						'subtitle',
+						'cat_label',
+						'dog_label',
+						{ symptoms: ['*'] }
+					]
+				}
 			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
@@ -349,6 +410,10 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 			text: symptom.text,
 			species: symptom.species ?? 'both'
 		})),
+		catLabel: t?.cat_label ?? '',
+		dogLabel: t?.dog_label ?? '',
+		catIconName: row.cat_icon || undefined,
+		dogIconName: row.dog_icon || undefined,
 		slider: {
 			autoplay: row.slider_autoplay ?? true,
 			speed: row.slider_speed ?? 600,
@@ -392,7 +457,8 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 			description: weHelpItem.description || undefined,
 			photoId: weHelpItem.photo?.id || undefined,
 			photoAlt: weHelpItem.photo?.description || undefined,
-			link: weHelpItem.link || undefined
+			link: weHelpItem.link || undefined,
+			featured: weHelpItem.featured ?? false
 		})),
 		slider: {
 			autoplay: row.slider_autoplay ?? true,
@@ -437,4 +503,57 @@ export async function getPageMeta(key: PageMetaKey, locale: string): Promise<Pag
 		ogImageId: row?.og_image?.id || undefined,
 		noindex: row?.noindex ?? false
 	};
+}
+
+export async function getSocialLinks(): Promise<SocialLink[]> {
+	const rows = await client.request(
+		readItems('social_links', {
+			fields: ['id', 'label', 'url', 'icon', 'color', { image: ['id'] }],
+			filter: { enabled: { _eq: true } },
+			sort: ['sort']
+		})
+	);
+
+	return rows.map((row) => ({
+		id: row.id,
+		label: row.label,
+		url: row.url,
+		iconName: row.icon || undefined,
+		imageId: row.image?.id || undefined,
+		color: row.color || undefined
+	}));
+}
+
+export async function getFormSchema(collection: FormCollection): Promise<FormFieldSchema[]> {
+	const fields = await client.request(readFieldsByCollection(collection));
+
+	return fields
+		.filter((field) => !field.meta?.hidden)
+		.sort((a, b) => (a.meta?.sort ?? 0) - (b.meta?.sort ?? 0))
+		.map((field) => {
+			const options = field.meta?.options as
+				| { choices?: FormChoiceRaw[]; placeholder?: string }
+				| null;
+
+			return {
+				field: field.field,
+				type: field.type,
+				interface: field.meta?.interface ?? 'input',
+				label: field.meta?.note ?? field.field,
+				placeholder: options?.placeholder || undefined,
+				required: field.meta?.required ?? false,
+				choices: options?.choices?.map((choice) => ({
+					text: choice.text,
+					value: choice.value,
+					icon: choice.icon || undefined
+				}))
+			};
+		});
+}
+
+export async function createFormSubmission(
+	collection: FormCollection,
+	data: Record<string, string>
+): Promise<void> {
+	await client.request(createItem(collection, data));
 }
