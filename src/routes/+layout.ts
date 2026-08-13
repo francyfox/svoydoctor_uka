@@ -1,16 +1,16 @@
 import { dehydrate } from '@tanstack/svelte-query';
 import { getQueryClient } from '$lib/query-client';
-import { settingsQueryOptions } from '$lib/queries/settings';
+import { settingsQueryKey } from '$lib/queries/settings';
 import { getLocale } from '$lib/paraglide/runtime';
 import type { LayoutLoad } from './$types';
 
 export const prerender = true;
 
-export const load: LayoutLoad = async ({ fetch }) => {
+export const load: LayoutLoad = async ({ data }) => {
 	const queryClient = getQueryClient();
 	const locale = getLocale();
 
-	await queryClient.prefetchQuery(settingsQueryOptions(locale, fetch));
+	queryClient.setQueryData(settingsQueryKey(locale), data.settings);
 
 	return { queryClient, dehydratedState: dehydrate(queryClient) };
 };
