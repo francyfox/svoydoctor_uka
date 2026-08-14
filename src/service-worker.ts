@@ -27,7 +27,7 @@ self.addEventListener('activate', (event) => {
 
 // Cache-first for the app shell/static assets, network-first (falling back to cache) for
 // everything else — but /api/* is always network-only: it carries live operational data
-// (maintenance mode, hotline banner, page-meta) that must never be served stale from cache.
+// (maintenance mode, hotline banner, page SEO) that must never be served stale from cache.
 self.addEventListener('fetch', (event) => {
 	const { request } = event;
 	if (request.method !== 'GET') return;

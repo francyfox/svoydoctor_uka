@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import { createQuery, type QueryClient } from '@tanstack/svelte-query';
 	import XIcon from '@lucide/svelte/icons/x';
 	import InfoIcon from '@lucide/svelte/icons/info';
@@ -82,7 +83,7 @@
 
 <div data-slot="dynamic-form" class={className}>
 	<div class="flex items-center justify-between">
-		<h2 class="font-heading text-[26px] text-foreground">{title}</h2>
+		<h2 class="font-heading text-[26px] text-white">{title}</h2>
 		{#if onClose}
 			<button
 				type="button"
@@ -97,17 +98,21 @@
 
 	{#if submitted}
 		<div class="flex flex-col gap-4 py-6">
-			<p class="text-foreground">Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
+			<p class="text-white">Заявка отправлена — мы свяжемся с вами в ближайшее время.</p>
 			<UButton href={whatsappHref(phone)} target="_blank" rel="noopener noreferrer" size="lg" class="w-full">
 				Написать в WhatsApp
 			</UButton>
 		</div>
 	{:else if schemaQuery.data}
-		<form class="flex flex-col gap-6" onsubmit={handleSubmit}>
-			{#each schemaQuery.data as field (field.field)}
-				{@const FieldComponent = fieldRegistry[field.interface] ?? defaultField}
-				<FieldComponent schema={field} bind:value={formData[field.field]} />
-			{/each}
+		<form class="flex flex-col gap-6" onsubmit={handleSubmit} in:fade={{ duration: 150 }}>
+			<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+				{#each schemaQuery.data as field (field.field)}
+					{@const FieldComponent = fieldRegistry[field.interface] ?? defaultField}
+					<div class={field.width === 'full' ? 'sm:col-span-2' : ''}>
+						<FieldComponent schema={field} bind:value={formData[field.field]} />
+					</div>
+				{/each}
+			</div>
 
 			{#if note}
 				<Alert.Root variant="warning">

@@ -15,9 +15,9 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<ULabel class="text-[15px] font-normal text-foreground">{schema.label}</ULabel>
+	<ULabel class="text-[15px] font-normal text-white">{schema.label}</ULabel>
 	<Select.Root type="single" bind:value>
-		<Select.Trigger class="h-[52px] w-full bg-background px-4 text-[15px]">
+		<Select.Trigger class="h-[52px] w-full bg-background px-4 text-[15px] text-foreground">
 			{selectedLabel ?? schema.placeholder ?? 'Выберите...'}
 		</Select.Trigger>
 		<Select.Content>

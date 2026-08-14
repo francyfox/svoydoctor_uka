@@ -1,0 +1,35 @@
+{
+  "_note": "Section: contacts. Thin marker only (key/title/description base contract) — real content comes entirely from settings (confirmed zero coupling in contacts.svelte). Exists purely so contacts participates in page_sections ordering/visibility like every other section.",
+  "collections": [
+    {
+      "collection": "section_contacts",
+      "meta": {"icon": "location_on", "hidden": true, "note": "Section: contacts (thin marker, content from settings)"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input"}, "schema": {"is_unique": true}}
+      ]
+    },
+    {
+      "collection": "section_contacts_translations",
+      "meta": {"hidden": true},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "section_contacts_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "languages_code", "type": "string", "meta": {"hidden": true}, "schema": {}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "description", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "section_contacts_translations", "field": "section_contacts_id", "related_collection": "section_contacts",
+     "meta": {"one_field": "translations", "one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_contacts_translations", "field": "languages_code", "related_collection": "languages",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}}
+  ],
+  "alias_fields": [
+    {"collection": "section_contacts", "field": "translations", "type": "alias", "meta": {"special": ["translations"], "interface": "translations"}, "schema": null}
+  ]
+}

@@ -47,7 +47,7 @@
 				</a>
 			{/each}
 		</nav>
-		<PhoneLink {phone} class="text-xl lg:hidden" />
+		<PhoneLink {phone} class="text-xl text-white lg:hidden" />
 		<div class="lg:hidden">
 			<LocaleSwitch variant="tab" />
 		</div>

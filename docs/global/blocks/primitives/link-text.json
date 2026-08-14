@@ -1,0 +1,7 @@
+{
+  "description": "Atomic primitive: a labeled link. Base for nav items, CTAs, icon-list entries, anything that's just {label, href}.",
+  "fields": [
+    {"field": "label", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+    {"field": "href", "type": "string", "meta": {"interface": "input"}, "schema": {"is_nullable": true}}
+  ]
+}

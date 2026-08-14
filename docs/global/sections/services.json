@@ -1,0 +1,53 @@
+{
+  "_note": "Section: services. One slot (items), M2A restricted to block_media_card, junction row carries cta_label (a slot-level extension, not on the shared block).",
+  "collections": [
+    {
+      "collection": "section_services",
+      "meta": {"icon": "medical_services", "hidden": true, "note": "Section: services"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input"}, "schema": {"is_unique": true}}
+      ]
+    },
+    {
+      "collection": "section_services_translations",
+      "meta": {"hidden": true},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "section_services_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "languages_code", "type": "string", "meta": {"hidden": true}, "schema": {}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "description", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}}
+      ]
+    },
+    {
+      "collection": "section_services_item",
+      "meta": {"hidden": true, "note": "junction: M2A slot restricted to block_media_card, + cta_label extension"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "ref_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "collection", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "item", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "cta_label", "type": "string", "meta": {"interface": "input", "note": "slot-level extension"}, "schema": {"is_nullable": true}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "section_services_translations", "field": "section_services_id", "related_collection": "section_services",
+     "meta": {"one_field": "translations", "one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_services_translations", "field": "languages_code", "related_collection": "languages",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_services_item", "field": "ref_id", "related_collection": "section_services_translations",
+     "meta": {"sort_field": "sort", "one_field": "items", "junction_field": "item"}, "schema": {"on_delete": "SET NULL"}},
+    {"collection": "section_services_item", "field": "item", "related_collection": null,
+     "meta": {"one_allowed_collections": ["block_media_card"], "one_collection_field": "collection", "junction_field": "ref_id"}}
+  ],
+  "alias_fields": [
+    {"collection": "section_services", "field": "translations", "type": "alias", "meta": {"special": ["translations"], "interface": "translations"}, "schema": null},
+    {"collection": "section_services_translations", "field": "items", "type": "alias", "meta": {"special": ["m2a"], "interface": "list-m2a", "options": {"enableSelect": true}}, "schema": null}
+  ]
+}

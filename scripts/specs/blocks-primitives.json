@@ -1,0 +1,61 @@
+{
+  "_note": "The 4 atomic block primitives. display_template shows real content (title/label), not the technical key, for readable M2A pickers.",
+  "collections": [
+    {
+      "collection": "block_media_card",
+      "meta": {"icon": "photo_library", "note": "Block: media card (title+description+media+href)", "display_template": "{{title}}"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input", "note": "Editor slug"}, "schema": {"is_unique": true}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "description", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}},
+        {"field": "media", "type": "uuid", "meta": {"interface": "file-image", "special": ["file"]}, "schema": {"is_nullable": true}},
+        {"field": "href", "type": "string", "meta": {"interface": "input"}, "schema": {"is_nullable": true}}
+      ]
+    },
+    {
+      "collection": "block_icon_label",
+      "meta": {"icon": "label", "note": "Block: icon + label", "display_template": "{{label}}"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input", "note": "Editor slug"}, "schema": {"is_unique": true}},
+        {"field": "icon", "type": "string", "meta": {"interface": "iconify-dropdown"}, "schema": {"is_nullable": true}},
+        {"field": "label", "type": "string", "meta": {"interface": "input"}, "schema": {}}
+      ]
+    },
+    {
+      "collection": "block_link",
+      "meta": {"icon": "link", "note": "Block: labeled link", "display_template": "{{label}}"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input", "note": "Editor slug"}, "schema": {"is_unique": true}},
+        {"field": "label", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "href", "type": "string", "meta": {"interface": "input"}, "schema": {"is_nullable": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input", "note": "used only when child of block_list"}, "schema": {"is_nullable": true}},
+        {"field": "ref_id", "type": "integer", "meta": {"hidden": true, "note": "FK to block_list when used as its child; null when picked standalone via M2A"}, "schema": {"is_nullable": true}}
+      ]
+    },
+    {
+      "collection": "block_list",
+      "meta": {"icon": "list", "note": "Block: list of links (reserved for future use, no real content yet)", "display_template": "{{title}}"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input", "note": "Editor slug"}, "schema": {"is_unique": true}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {"is_nullable": true}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "block_media_card", "field": "media", "related_collection": "directus_files",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "SET NULL"}},
+    {"collection": "block_link", "field": "ref_id", "related_collection": "block_list",
+     "meta": {"one_field": "items", "sort_field": "sort", "one_deselect_action": "nullify"}, "schema": {"on_delete": "SET NULL"}}
+  ],
+  "alias_fields": [
+    {"collection": "block_list", "field": "items", "type": "alias", "meta": {"special": ["o2m"], "interface": "list-o2m", "options": {"template": "{{label}}"}}, "schema": null}
+  ]
+}

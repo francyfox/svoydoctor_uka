@@ -31,7 +31,7 @@
 					? 'bg-primary text-primary-foreground'
 					: variant === 'pill'
 						? 'bg-secondary text-foreground'
-						: 'text-foreground'
+						: 'text-white'
 			)}
 		>
 			{locale}

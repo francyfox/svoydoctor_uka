@@ -30,7 +30,10 @@
 		class?: string;
 	} = $props();
 
-	const [title, photo, promo, , media] = $derived(blocks);
+	const title = $derived(blocks.find((block) => block.role === 'title'));
+	const photo = $derived(blocks.find((block) => block.role === 'photo'));
+	const promo = $derived(blocks.find((block) => block.role === 'promo'));
+	const media = $derived(blocks.find((block) => block.role === 'media'));
 	const fragment = $derived(resolveShaderScene(shader, 'aura'));
 </script>
 

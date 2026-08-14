@@ -28,3 +28,4 @@ vite.config.ts.timestamp-*
 
 # Local Squidex (self-hosted, dev only)
 docker/squidex/data/
+backups/

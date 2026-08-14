@@ -1,0 +1,26 @@
+{
+  "_note": "One-time cleanup: delete old section_* model + this session's two prior page-builder attempts, in child-first dependency order. pages.blocks alias field deleted separately (it's a field, not a collection).",
+  "delete_collections": [
+    "page_blocks",
+
+    "block_hero_block", "block_hero_advantage", "block_hero_link",
+    "block_hero_translations", "block_hero",
+
+    "block_services_item", "block_services_translations", "block_services",
+
+    "block_symptom", "block_symptoms_translations", "block_symptoms",
+
+    "block_we_help_item", "block_we_help_translations", "block_we_help",
+
+    "page_sections",
+
+    "section_hero_block", "section_hero_advantage", "section_hero_link",
+    "section_hero_translations", "section_hero",
+
+    "section_services_item", "section_services_translations", "section_services",
+
+    "section_symptom", "section_symptoms_translations", "section_symptoms",
+
+    "section_we_help_item", "section_we_help_translations", "section_we_help"
+  ]
+}

@@ -1,107 +1,67 @@
 ---
 name: directus
-description: "Load whenever creating/editing Directus collections, fields, relations, or content-model layout (tabs/groups/accordions) in this project's Directus instance — via `mcp__directus__*` tools or direct REST. Triggers: 'добавь поле в Directus', 'сгруппируй поля', 'создай коллекцию', field/relation creation, singleton-collection edits, anything mentioning Directus schema work. Covers which `mcp__directus__*` methods are known-buggy on this instance and the verified recipe for field-grouping UI (tabs/raw-group/detail-group)."
+description: "Load whenever creating/editing Directus collections, fields, relations, or content-model layout in this project's Directus instance — via mcp__directus__* tools or direct REST. Triggers: 'добавь поле в Directus', 'сгруппируй поля', 'создай коллекцию', 'переделай секцию под page builder', field/relation creation, singleton-collection edits, block-schema migration work. Covers the page-builder schema-migration algorithm (raw schema first, template-reuse via docs/global/blocks/, snapshot-backed), known mcp__directus__* bugs on this instance, and pointers to references/ for field-grouping UI detail."
 disable-model-invocation: false
 ---
 
 # Directus schema work on this project
 
-Instance: `https://directus-11-17-4.onrender.com` (Render + Neon Postgres + R2). **Single instance, no staging** — every schema/content change below goes straight to prod. `.env` has `DIRECTUS_URL`/`DIRECTUS_TOKEN` for raw REST calls (`curl -H "Authorization: Bearer $DIRECTUS_TOKEN"`).
+You are creating beautiful and simple design for admin panel.
+Instance: `https://directus-11-17-4.onrender.com` (Render + Neon Postgres + R2). **Single instance, no staging** — every change below goes straight to prod. `.env` has `DIRECTUS_URL`/`DIRECTUS_TOKEN` for raw REST (`curl -H "Authorization: Bearer $DIRECTUS_TOKEN"`).
 
-PostGIS is enabled on the Neon DB (added 2026-08-12) — native `geometry`-type fields (e.g. `interface: "map"`, stores GeoJSON `{type:"Point",coordinates:[lng,lat]}`) now work. Before that, `type: "geometry"` field creation failed with `type "geometry" does not exist`.
+PostGIS is enabled on the Neon DB — native `geometry`-type fields (`interface: "map"`) work.
 
-## 1. Known-buggy `mcp__directus__*` methods — verified on this instance
+## 1. Page-builder schema migration algorithm (read this before migrating any section)
 
-| Tool | Bug | Workaround |
+Old model → page-builder model is a **3-tier** rebuild, not 2: `pages` → `section_*` (composes a page, via `page_sections` M2A) → `block_*` (atomic content primitive inside a section's slot, via a same-shaped M2A one level deeper — see `docs/global/architecture.md`). Section and block are not synonyms — getting this flat (treating `section_hero`'s old content as if it *were* the block layer) is the single most common mistake here, made once on `svoydoctor_uka` 2026-08-14 and fully redone. Fixed sequence — don't skip straight to hand-crafted field-by-field curl calls:
+
+1. **Reuse-check, at BOTH levels**: does `docs/global/blocks/primitives/<name>.json` already have an atomic primitive for this content shape (title/media/href, icon/label, label/href, ...)? Compose from primitives before inventing a new block type — two block types built the same day (`block_services_item`, `block_we_help_item`) turned out to be the same `block_media_card` shape duplicated instead of extended. Only after that, check `docs/global/sections/<name>.json` for the section-level composition. Only design new if genuinely novel (see `.claude/skills/site-blueprint/SKILL.md` — same reuse discipline).
+2. **Write ONE declarative JSON spec per section** — collections (with fields inline), relations, alias fields — see `docs/global/sections/*.json` for the shape. Don't build it as a sequence of exploratory individual calls.
+3. **Apply it with `scripts/directus-schema-apply.py <spec.json>`** — applies `delete_collections` → collections → relations → alias fields → `groups` (admin sidebar nesting), verifies `meta.special` persisted on every alias field automatically. One command instead of ~15 manual curls.
+4. **Any `uuid` field with `special: ["file"]` needs its own relation to `directus_files` in the same spec's `relations` list** — the field alone does NOT create it (see §2, this is the single most common thing to forget and it fails silently).
+5. **A slot restricted to 2+ allowed collections needs `item:collection.field` qualifiers when querying it** — Directus resolves plain `item.field` only when the slot has exactly one allowed type (most slots today). The SDK can't type this qualifier syntax; cast the request `as unknown as never` and the awaited result back to the real row type, scoped to just that one call — don't weaken types for the whole function. See `getSectionHero` in `src/lib/server/directus.ts` for the working pattern.
+6. **Do this for every section's raw schema (no content) before touching the frontend at all.** Schema work and frontend work are separate passes.
+7. **Stop and get explicit user approval that the whole site's schema is ready** before filling any real content.
+8. Only after approval, fill content — take a fresh full backup first (`scripts/directus-backup.py`) if the change is destructive (deleting/replacing an old model), and migrate from that backup, not by re-querying Directus live mid-migration.
+9. **After any schema change, refresh the snapshot**: `curl "$DIRECTUS_URL/schema/snapshot" -H "Authorization: Bearer $DIRECTUS_TOKEN" | python3 -m json.tool > docs/directus-schema-snapshot.json`. Read structure from this file (`grep`/`jq` it) instead of re-querying Directus via MCP/curl each time you need to check what a collection looks like — it's the same data, zero round-trips.
+10. **Verify with a real browser check (claude-in-chrome), not just API-level curl** — an API response can look correct while the actual rendered page is broken. Screenshot the real page and read console messages before considering the work done.
+
+## 2. Known bugs — verified on this instance
+
+| Issue | Detail | Workaround |
 |---|---|---|
-| `create-field` / `update-field` | Silently drops `meta.special` from the request — the field gets created/updated, but `special` comes back `null` even though you sent an array. Reproduced repeatedly (booleans, group-alias fields). | After every `create-field`/`update-field` call that sets `special`, **re-fetch the field** (`read-fields` or `GET /fields/:collection/:field`) to confirm it persisted. If not, `curl -X PATCH $DIRECTUS_URL/fields/:collection/:field -d '{"meta":{"special":[...]}}'` directly — raw REST PATCH persists it correctly every time. |
-| `create-item` | Parameter is named `item`, not `data` (despite `data` being the intuitive/common name used by `update-item`'s partial-payload param). Passing `data` fails with `Invalid input: expected record, received undefined`. | Always pass `item: {...}`. |
-| `update-item` | Doesn't work on **singleton** collections (e.g. `settings`) — it always builds `PATCH /:collection/:id`, but singletons only expose `PATCH /items/:collection` (no id in the URL, no `/items/` skipped). Fails with `Route /settings/1 doesn't exist`. | For singleton collections, always use raw REST: `curl -X PATCH $DIRECTUS_URL/items/:collection -d '{...}'`. `update-item` is fine for regular (non-singleton) collections. |
-| *(all)* | None of the `mcp__directus__*` tools support creating/deleting **collections** or **relations** — only fields on an existing collection. | Use raw REST: `POST /collections` (can include `fields: [...]` inline in the same call), `POST /relations`, `DELETE /fields/:collection/:field`. |
+| `mcp__directus__create-field` / `update-field` drop `meta.special` | Field gets created/updated, but `special` comes back `null` even though you sent an array. Reproduced repeatedly. | Always verify with a re-`GET` after writing `special` (the schema-apply script does this automatically). If missing, raw REST `PATCH` persists it correctly every time. |
+| `uuid` + `special: ["file"]` field silently has no working relation | The field *looks* like a file picker in the admin, and validates, but the API can't resolve nested `field.id`/`field.description` selects — they're silently dropped from the response, not even a null. Found live on `section_we_help_item.photo` and `section_services_item.illustration` (2026-08-14) — both had been broken since creation, meaning we-help/services photos were never actually rendering. Same root cause as the earlier `settings.clinic_photo` bug. | Every `uuid`+`special:["file"]` field needs an explicit `POST /relations` to `directus_files` (`on_delete: SET NULL`) in the same pass it's created — never assume the interface implies the relation. Audit any suspect field with: `curl "$DIRECTUS_URL/fields/:collection/:field"` and check `schema.foreign_key_table === "directus_files"`. |
+| `mcp__directus__create-item` param is `item`, not `data` | Passing `data` fails with `Invalid input: expected record, received undefined`. | Always pass `item: {...}`. |
+| `mcp__directus__update-item` doesn't work on **singleton** collections | Always builds `PATCH /:collection/:id`, but singletons only expose `PATCH /items/:collection`. | Raw REST for singletons: `curl -X PATCH $DIRECTUS_URL/items/:collection -d '{...}'`. |
+| No MCP tool creates/deletes **collections** or **relations** | Only fields on an existing collection. | Raw REST: `POST /collections` (fields inline in the same call), `POST /relations`, `DELETE /fields/:collection/:field`. |
+| `one_field` in a relation's `meta` does NOT auto-create the alias field | Setting `meta.one_field: "blocks"` on an M2O/O2M relation creates the DB-level FK but not the `list-o2m`/`list-m2a`/`translations` interface field on the "one" side. | Explicitly `POST /fields/:collection` with `type: "alias"` and the right `special` (`["o2m"]`, `["m2a"]`, or `["translations"]`) after the relation. The schema-apply script's `alias_fields` step does this. |
+| `curl` with bracketed query params (`filter[ref_id][_eq]=1`) fails `exit 3` | `curl` does its own URL-globbing on `[`/`]` regardless of shell quoting. | Add `-g`/`--globoff`: `curl -sg "...filter[x][_eq]=1..."`. |
+| `POST /files` multipart with an empty `folder=` field | `insert into directus_files ... invalid input syntax for type uuid: ""` | Omit the `-F "folder=..."` part entirely when there's no folder, don't send it blank. |
+| Admin Studio shows "Интерфейс «list-m2a» не найден" / "Interface not found" on a genuinely-correct M2A/M2M field | Confirmed 2026-08-14: field config matched the official version-pinned reference (`references/fields-prompt-v11.17.4.md`) byte-for-byte — `type/special/interface/display/display_options` all correct, relations correct, API resolves the data fine. This is a **Directus Studio bug**, not a config mistake — matches a known upstream class of bug (`list-m2m`/`list-m2a` "interface not found" on re-opening a field's config after save, [directus/directus#25462](https://github.com/directus/directus/issues/25462), closed as fixed in 11.9.x but plausibly regressed/recurring). No API-level fix exists for a client-side Studio rendering bug — don't keep re-patching field meta once it already matches the reference exactly. | Verify the field/relation config against `references/fields-prompt-v11.17.4.md` first (or the exact matching tag for whatever version `GET /server/health`'s `releaseId` reports) — if it already matches, stop editing the field and treat it as a Studio bug: hard-refresh, try a different browser/session, or accept that the data layer is correct even if the Studio widget can't render the picker (content can still be managed via direct API/`mcp__directus__*` in the meantime). |
 
-General rule: **never trust an MCP write silently** — re-`read-fields`/`read-items` after any schema-affecting call before considering it done. This project got bitten twice by `special` not persisting (a boolean field once, a group field twice).
+General rule: **never trust a schema-affecting write silently** — re-`GET` after any create/update before considering it done.
 
-## 2. Field-grouping UI (tabs / raw groups / accordions) — verified recipe
+## 3. Repeatable-child pattern (O2M, `sort` + `ref_id`)
 
-Directus has no literal "edit this subset of fields in a modal" for plain scalar fields (that pattern only exists for O2M/M2O relations, where a drawer opens the *related item*, not a subset of the current record's own fields). The available field-organizing primitives are all **group fields** — alias-type fields with no backing DB column that other fields point to via `meta.group`:
+Every repeatable item inside a section/block (`section_hero_block`, `block_services_item`, ...) uses: a hidden `sort` (integer, drag-n-drop order) + a hidden `ref_id` (integer FK → parent `*_translations.id`, `on_delete: SET NULL`) on the child, and a `list-o2m` alias field on the parent with `relation.meta.sort_field: "sort"`. This is baked into every `docs/global/blocks/*.json` template already — don't hand-design it again per type.
 
-| Interface | Renders as | `options` |
-|---|---|---|
-| `group-raw` | No visual boundary — just a logical cluster in the field-tree order | — |
-| `group-detail` | Collapsible accordion box | `{"start": "closed"}` to default-collapsed |
-| `group-tabs` | Tab strip — each **direct child that is itself a group** becomes one tab; a direct child that's a plain field becomes a tab too (single-field tab) | — |
+`list-o2m` fields default to showing the raw `id` per row — always set a display template: `{"meta": {"options": {"template": "{{text}} ({{species}})"}}}` (Mustache-style, references the child collection's own fields). This key isn't affected by the `special`-dropping bug, `update-field` persists it fine.
 
-**You can nest a `group-raw` (or `group-detail`) inside a `group-tabs`** to put multiple fields in one tab — this is the actual working pattern confirmed in this project's `settings` collection (`tabs-fg95w8` → contains `mapboxSettings`, a `group-raw` holding `mapbox_style_url` + `map`, plus `mapbox_token` sitting directly in the tab as its own single-field tab).
+## 4. Field-grouping UI (tabs / accordions / raw groups)
 
-### The critical bug this project hit: wrong `special` makes the group vanish
+Load `references/field-grouping-ui.md` — only needed when the task is specifically about organizing scalar fields visually (settings-style tab layouts), not general schema/content-model work.
 
-A group field created with **`meta.special: ["group"]` alone is structurally valid and individually fetchable** (`GET /fields/:collection/:field` returns it fine) **but is silently excluded from both `GET /fields/:collection` and `GET /fields` (collection-wide and global listings)** — which means it never renders in the Directus admin's "Data Model" / field-layout screen at all, even after a hard browser refresh and a server-side `POST /utils/cache/clear`. Reproduced and fixed twice in this project.
+## 5. Verifying field/relation config against the *real* Directus version — not context7's `main`
 
-**Fix — the `special` array must be exactly:**
+`references/fields-prompt-v11.17.4.md` is Directus's own official AI-agent reference for writing field JSON (`api/src/ai/tools/fields/prompt.md` in their repo), fetched **pinned to the exact tag matching this instance's running version** (`GET /server/health` → `releaseId`, confirmed `11.17.4` on 2026-08-14) — not from context7 or a generic web search, both of which default to the `main` branch and can silently describe syntax from a newer, unreleased version that doesn't exist yet in what's actually deployed. Re-fetch and re-save this file (`curl https://raw.githubusercontent.com/directus/directus/v<version>/api/src/ai/tools/fields/prompt.md`) if `releaseId` ever changes — don't keep trusting a stale copy or an unpinned context7/search result for version-sensitive syntax questions (interface names, required meta shape, etc.).
 
-```json
-"special": ["alias", "no-data", "group"]
-```
+## 6. Real root cause of the "list-m2a"/"Tree or One-to-Many" symptom (2026-08-14, CONFIRMED FIXED live) — supersedes §2's Studio-bug entry
 
-Not just `["group"]`. All three flags. Verified by direct A/B test on this instance: `["group"]` → field invisible in listings; `["alias", "no-data", "group"]` → field appears immediately.
+**Confirmed by the user on the live instance**: adding `junction_field` to the missing side made the Studio M2A picker/interface appear correctly — this is the actual, verified root cause, not speculation. Worth a Directus upstream bug report (Studio should either infer the pairing without requiring both sides, or surface a clear validation error instead of silently degrading to a wrong interface) — not filed yet, ask the user before filing publicly (posting to a public tracker needs explicit sign-off, not assumed).
 
-### Minimal working payload for a new group field
+**Not a Studio bug in the "broken software" sense — a strict/undocumented requirement.** The actual cause: an M2A pair needs `junction_field` set on **both** relations, cross-referencing each other's field name — not just on the polymorphic `item` relation. Missing it on the "one"/parent-side relation (e.g. `page_sections.page → pages`) makes Directus's Studio fail to recognize the pair as M2A at all — it silently falls back to treating it as a plain recursive/O2M relationship (Studio then only offers "Tree View"/"One to Many" as interface choices, and the "Отношения" tab shows a flat single-collection O2M config instead of the M2A allowed-collections picker). The API still resolves the data correctly either way (M2A deep-select via `item:collection.field` works regardless), which is exactly why this was mistaken for a client-side-only Studio bug — data access isn't broken, only Studio's own relationship-type detection is.
 
-```bash
-curl -X POST "$DIRECTUS_URL/fields/settings" \
-  -H "Authorization: Bearer $DIRECTUS_TOKEN" -H "Content-Type: application/json" \
-  -d '{
-    "field": "my_group",
-    "type": "alias",
-    "meta": {
-      "special": ["alias", "no-data", "group"],
-      "interface": "group-detail",
-      "options": {"start": "closed"},
-      "sort": 20
-    },
-    "schema": null
-  }'
-```
+**Fix**: on the M2A's "one" relation (`page`/`ref_id`/whatever the parent-pointing field is called), set `meta.junction_field` to the *other* relation's field name (the polymorphic `item` field) — mirroring what's already required on the `item` relation (`junction_field` pointing back at the parent field). See `references/relations-prompt-v11.17.4.md`'s `<m2a_workflow>` for the authoritative paired example — note its "Page relation" includes `"junction_field": "item"`, which `docs/global/sections/*.json`'s relation specs were missing until this fix (§8 of `scripts/directus-schema-apply.py`'s pattern should be updated to always include this on `one_field` relations paired with an M2A `item` relation).
 
-Because `create-field`/`update-field` (the MCP tools) drop `special`, creating group fields through them requires the same two-step dance as §1: create via MCP (or raw REST directly, skipping the dance entirely — simplest), then verify `special` actually landed.
-
-### Attaching child fields to a group
-
-```bash
-curl -X PATCH "$DIRECTUS_URL/fields/settings/some_field" \
-  -H "Authorization: Bearer $DIRECTUS_TOKEN" -H "Content-Type: application/json" \
-  -d '{"meta": {"group": "my_group"}}'
-```
-
-`meta.group` takes the **group field's `field` name as a string** (e.g. `"my_group"`), not its numeric `id` — this is the real-world working behavior on this instance, confirmed by a live example. (Directus's own `oas.yaml` OpenAPI reference types `group` as `integer` with a self-contradictory `oneOf: [Fields]` — that stub looks like an auto-generation artifact, not authoritative; don't trust it over an actual working example.)
-
-To nest a group inside a tab, set the nested group's own `meta.group` to the tabs field's name — same mechanism, one level deeper.
-
-### Naming convention for group/tab container fields
-
-Group fields are alias/no-data fields — their `field` name never appears as data anywhere (not in the API response, not in app code), so it's purely an internal label. Still, pick names deliberately so a future schema read is self-explanatory and nothing collides with a real content field added later:
-
-- **Top-level tabs container**: `<collection>_tabs` — e.g. `settings_tabs` on the `settings` collection. One per collection, at most.
-- **Each tab** (a `group-raw`/`group-detail` nested inside the tabs container): `tab_<purpose>`, short English snake_case describing what's inside — e.g. `tab_general`, `tab_map`, `tab_notices` (used on `settings`: general site info / Mapbox config / operational toggles). The user-visible tab label is separate — set via `meta.translations: [{"language": "ru-RU", "translation": "Карта"}]` on the tab field, not via its `field` name.
-- **Standalone accordion group** (a `group-detail` NOT nested inside tabs): `group_<purpose>` — keeps it visually distinct from `tab_*` names when scanning a field list, since a bare `group-detail` renders differently (collapsible box, not a tab strip) from a `tab_*` nested one.
-- Never reuse a purpose-word that's also a real scalar field name on the same collection (e.g. don't name a group `map` when a real `map` geometry field exists) — avoid ambiguity when skimming `read-fields` output.
-
-### Reliability caveat: tabs may hang on save
-
-The user observed the Directus admin **hang when saving** after using a `group-tabs` layout on this instance. Not confirmed to be a Directus bug specifically — this instance runs on Render.com free/low tier, which cold-starts and can stall on any request, tab-groups or not. If tabs prove flaky, prefer `group-detail` (accordion) or plain `group-raw` (no interaction, just visual clustering) — both are simpler and weren't observed to hang.
-
-## 3. `list-o2m` fields show raw `id` by default — set a display template
-
-Every O2M child-collection field (the repeatable-item pattern in §3 below — `blocks`, `advantages`, `links`, `items`, `symptoms`, etc.) uses `interface: "list-o2m"`. Left at `options: null`, Directus shows each collapsed row as its bare numeric `id` — useless for reordering/scanning a list of 20+ items. Fix by setting a Mustache-style template referencing the child collection's own text field:
-
-```bash
-curl -X PATCH "$DIRECTUS_URL/fields/section_symptoms_translations/symptoms" \
-  -H "Authorization: Bearer $DIRECTUS_TOKEN" -H "Content-Type: application/json" \
-  -d '{"meta": {"options": {"template": "{{text}} ({{species}})"}}}'
-```
-
-`options.template` persisted correctly via `mcp__directus__update-field` in testing (unlike `special`, §1 — this key isn't affected by that bug). Set this on every new `list-o2m` field as part of creating it, not as an afterthought — it's easy to forget since the field works fine without it, just displays poorly.
-
-## 4. Content-model conventions already established in this project
-
-See `CLAUDE.md` → "Directus — модель контента" for the O2M child-collection pattern (`sort` + `ref_id` FK, `on_delete: SET NULL`) used for repeatable items (`section_hero_block`, `section_services_item`, etc.) — group fields (this skill) are for **visually organizing scalar fields on one record**, a completely different concern from that O2M pattern for **repeatable child items**. Don't conflate the two.
+**Found via**: fetching Directus's own official AI-agent tool references (`api/src/ai/tools/relations/prompt.md`), pinned to the exact deployed version tag (`v11.17.4`) — not context7/web search (both default to `main`, i.e. potentially unreleased syntax) — and diffing the working example against the actual relation configs on this instance field-by-field. General lesson: when a Directus Studio behavior looks wrong but the REST API is provably correct, suspect a missing/incomplete **relation metadata** field (not the target field's own `meta`) before assuming a Studio bug — Studio derives a lot of behavior (which interface options to offer, how to render the "Отношения" tab) from relation pairing, not just from the field's own `special`/`interface`.

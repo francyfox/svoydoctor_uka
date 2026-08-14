@@ -12,12 +12,17 @@ import type {
 	SectionSymptoms,
 	WeHelpItem,
 	SectionWeHelp,
-	PageSection,
-	PageMeta,
-	PageMetaKey,
+	Page,
+	PageSectionEntry,
+	BlockEntry,
+	SectionBlocks,
+	SectionServicesPricelist,
+	ServicesPromo,
 	SocialLink,
 	FormCollection,
-	FormFieldSchema
+	FormFieldSchema,
+	ServicePriceItem,
+	ServicePriceCategory
 } from '$lib/types/content';
 
 export type {
@@ -32,40 +37,47 @@ export type {
 	SectionSymptoms,
 	WeHelpItem,
 	SectionWeHelp,
-	PageSection,
-	PageMeta,
-	PageMetaKey,
+	Page,
+	PageSectionEntry,
+	BlockEntry,
+	SectionBlocks,
+	SectionServicesPricelist,
+	ServicesPromo,
 	SocialLink,
 	FormCollection,
-	FormFieldSchema
+	FormFieldSchema,
+	ServicePriceItem,
+	ServicePriceCategory
 };
 
 type DirectusFileRow = { id: string; type: string | null; description: string | null };
-type HeroBlockRow = {
+
+// Block primitives (docs/global/blocks/) — the atomic, polymorphic content pieces
+// referenced through M2A "item" pointers from section-level slot junction rows.
+type BlockMediaCardRow = {
 	id: number;
 	title: string;
 	description: string | null;
-	link: string | null;
 	media: DirectusFileRow | null;
+	href: string | null;
 };
-type HeroAdvantageRow = { id: number; text: string; icon: string | null };
-type HeroLinkRow = { id: number; label: string; href: string };
-type ServiceItemRow = {
-	id: number;
-	label: string;
-	description: string | null;
-	illustration: DirectusFileRow | null;
-	cta_label: string;
-};
+type BlockIconLabelRow = { id: number; icon: string | null; label: string };
+type BlockLinkRow = { id: number; label: string; href: string | null };
+
+// Section-level slot junction rows (docs/global/sections/) — same shape as page_sections,
+// one level deeper: id/sort/ref_id(hidden)/collection/item, plus any slot-specific extension
+// field (role, cta_label, featured). `item` is typed as the single block shape each slot is
+// currently restricted to (one_allowed_collections), not a true polymorphic union.
+type SectionHeroTileRow = { id: number; role: HeroTileRoleRow; item: BlockMediaCardRow };
+type SectionHeroAdvantageRow = { id: number; item: BlockIconLabelRow };
+type SectionHeroLinkRow = { id: number; item: BlockLinkRow };
+type HeroTileRoleRow = 'title' | 'photo' | 'promo' | 'spare' | 'media';
+
+type SectionServicesItemRow = { id: number; cta_label: string | null; item: BlockMediaCardRow };
+
 type SymptomItemRow = { id: number; text: string; species: 'cat' | 'dog' | 'both' | null };
-type WeHelpItemRow = {
-	id: number;
-	title: string;
-	description: string | null;
-	photo: DirectusFileRow | null;
-	link: string | null;
-	featured: boolean;
-};
+
+type SectionWeHelpItemRow = { id: number; featured: boolean; item: BlockMediaCardRow };
 
 type SettingsTranslationRow = {
 	id: number;
@@ -98,19 +110,19 @@ type SettingsRow = {
 type SectionHeroTranslationRow = {
 	id: number;
 	languages_code: string;
-	blocks: HeroBlockRow[];
-	advantages: HeroAdvantageRow[];
-	links: HeroLinkRow[];
+	tiles: SectionHeroTileRow[];
+	advantages: SectionHeroAdvantageRow[];
+	links: SectionHeroLinkRow[];
 };
-type SectionHeroRow = { id: number; translations: SectionHeroTranslationRow[] };
+type SectionHeroRow = { id: number; key: string; translations: SectionHeroTranslationRow[] };
 
 type SectionServicesTranslationRow = {
 	id: number;
 	languages_code: string;
 	title?: string;
-	items: ServiceItemRow[];
+	items: SectionServicesItemRow[];
 };
-type SectionServicesRow = { id: number; translations: SectionServicesTranslationRow[] };
+type SectionServicesRow = { id: number; key: string; translations: SectionServicesTranslationRow[] };
 
 type SectionSymptomsTranslationRow = {
 	id: number;
@@ -123,6 +135,7 @@ type SectionSymptomsTranslationRow = {
 };
 type SectionSymptomsRow = {
 	id: number;
+	key: string;
 	slider_autoplay: boolean;
 	slider_speed: number;
 	slider_interval: number;
@@ -131,36 +144,84 @@ type SectionSymptomsRow = {
 	translations: SectionSymptomsTranslationRow[];
 };
 
-type SectionWeHelpTranslationRow = { id: number; languages_code: string; title?: string; items: WeHelpItemRow[] };
+type SectionWeHelpTranslationRow = {
+	id: number;
+	languages_code: string;
+	title?: string;
+	items: SectionWeHelpItemRow[];
+};
 type SectionWeHelpRow = {
 	id: number;
+	key: string;
 	slider_autoplay: boolean;
 	slider_speed: number;
 	slider_interval: number;
 	translations: SectionWeHelpTranslationRow[];
 };
 
+type PageTranslationRow = {
+	id: number;
+	languages_code: string;
+	title: string;
+	description: string | null;
+	og_image: DirectusFileRow | null;
+};
+type PageRow = {
+	id: number;
+	key: string;
+	noindex: boolean;
+	status: string;
+	show_in_menu: boolean;
+	translations: PageTranslationRow[];
+};
+
+type BlockListItemRow = { id: number; label: string; href: string | null };
+type BlockListRow = { id: number; title: string | null; items: BlockListItemRow[] };
+type SectionBlocksItemRawRow = {
+	id: number;
+	collection: string;
+	item: BlockMediaCardRow | BlockIconLabelRow | BlockLinkRow | BlockListRow;
+};
+type SectionBlocksTranslationRow = {
+	id: number;
+	languages_code: string;
+	title: string | null;
+	description: string | null;
+	items: SectionBlocksItemRawRow[];
+};
+type SectionBlocksRow = { id: number; key: string; translations: SectionBlocksTranslationRow[] };
+
+type SectionServicesPromoTranslationRow = { id: number; languages_code: string; title: string | null; description: string | null };
+type SectionServicesPromoRow = {
+	id: number;
+	key: string;
+	enabled: boolean;
+	price: number | null;
+	original_price: number | null;
+	valid_until: string | null;
+	translations: SectionServicesPromoTranslationRow[];
+};
+
+type SectionServicesPricelistTranslationRow = {
+	id: number;
+	languages_code: string;
+	title: string | null;
+	note: string | null;
+	categories: ServicePriceCategoryRow[];
+};
+type SectionServicesPricelistRow = { id: number; key: string; translations: SectionServicesPricelistTranslationRow[] };
+
 type PageSectionRow = {
 	id: number;
 	sort: number;
-	section_key: string;
+	collection: string;
+	item: string;
 	visible: boolean;
 	shader: string;
 };
 
-type PageMetaTranslationRow = {
-	id: number;
-	languages_code: string;
-	meta_title?: string;
-	meta_description?: string | null;
-};
-type PageMetaRow = {
-	id: number;
-	route: string;
-	noindex: boolean;
-	og_image: DirectusFileRow | null;
-	translations: PageMetaTranslationRow[];
-};
+type ServicePriceItemRow = { id: number; label: string; price: number };
+type ServicePriceCategoryRow = { id: number; title: string; items: ServicePriceItemRow[] };
 
 type SocialLinkRow = {
 	id: number;
@@ -175,26 +236,40 @@ type SocialLinkRow = {
 
 type Schema = {
 	directus_files: DirectusFileRow;
+	pages: PageRow[];
+	pages_translations: PageTranslationRow[];
 	page_sections: PageSectionRow[];
-	page_meta: PageMetaRow[];
-	page_meta_translations: PageMetaTranslationRow[];
 	social_links: SocialLinkRow[];
 	settings: SettingsRow;
 	settings_translations: SettingsTranslationRow[];
-	section_hero: SectionHeroRow;
+	block_media_card: BlockMediaCardRow[];
+	block_icon_label: BlockIconLabelRow[];
+	block_link: BlockLinkRow[];
+	block_list: BlockListRow[];
+	section_hero: SectionHeroRow[];
 	section_hero_translations: SectionHeroTranslationRow[];
-	section_hero_block: HeroBlockRow[];
-	section_hero_advantage: HeroAdvantageRow[];
-	section_hero_link: HeroLinkRow[];
-	section_services: SectionServicesRow;
+	section_hero_tile: SectionHeroTileRow[];
+	section_hero_advantage: SectionHeroAdvantageRow[];
+	section_hero_link: SectionHeroLinkRow[];
+	section_services: SectionServicesRow[];
 	section_services_translations: SectionServicesTranslationRow[];
-	section_services_item: ServiceItemRow[];
-	section_symptoms: SectionSymptomsRow;
+	section_services_item: SectionServicesItemRow[];
+	section_symptoms: SectionSymptomsRow[];
 	section_symptoms_translations: SectionSymptomsTranslationRow[];
 	section_symptom: SymptomItemRow[];
-	section_we_help: SectionWeHelpRow;
+	section_we_help: SectionWeHelpRow[];
 	section_we_help_translations: SectionWeHelpTranslationRow[];
-	section_we_help_item: WeHelpItemRow[];
+	section_we_help_item: SectionWeHelpItemRow[];
+	section_contacts: { id: number; key: string }[];
+	section_blocks: SectionBlocksRow[];
+	section_blocks_translations: SectionBlocksTranslationRow[];
+	section_blocks_item: SectionBlocksItemRawRow[];
+	section_services_promo: SectionServicesPromoRow[];
+	section_services_promo_translations: SectionServicesPromoTranslationRow[];
+	section_services_pricelist: SectionServicesPricelistRow[];
+	section_services_pricelist_translations: SectionServicesPricelistTranslationRow[];
+	service_price_category: ServicePriceCategoryRow[];
+	service_price_item: ServicePriceItemRow[];
 	booking_requests: BookingRequestRow[];
 	sterilization_requests: SterilizationRequestRow[];
 };
@@ -279,9 +354,19 @@ export async function getSettings(locale: string): Promise<Settings> {
 	};
 }
 
-export async function getSectionHero(locale: string): Promise<SectionHero> {
-	const row = await client.request(
-		readSingleton('section_hero', {
+async function getSectionHero(id: number, locale: string): Promise<SectionHero> {
+	// `tiles` is genuinely polymorphic (block_media_card + block_list allowed) — Directus can't
+	// infer which collection's fields to resolve without the `item:collection.field` qualifier
+	// here, unlike the single-allowed-collection slots below (advantages/links), where it
+	// resolves `item.field` unqualified since there's only one possible type. The SDK's field-path
+	// typing can't express this qualifier syntax, hence the `as any` on the request — the response
+	// is cast straight back to the real row shape below, so nothing downstream loses type safety.
+	// Only block_media_card has real content today; block_list stays unconsumed until a tile of
+	// that type actually exists (see docs/global/blocks/primitives).
+	const row = (await client.request(
+		readItems('section_hero', {
+			filter: { id: { _eq: id } },
+			limit: 1,
 			fields: [
 				'id',
 				{
@@ -289,55 +374,68 @@ export async function getSectionHero(locale: string): Promise<SectionHero> {
 						'id',
 						'languages_code',
 						{
-							blocks: ['id', 'title', 'description', 'link', { media: ['id', 'type', 'description'] }],
-							advantages: ['*'],
-							links: ['id', 'label', 'href']
+							tiles: [
+								'id',
+								'role',
+								'item:block_media_card.id',
+								'item:block_media_card.title',
+								'item:block_media_card.description',
+								'item:block_media_card.href',
+								'item:block_media_card.media.id',
+								'item:block_media_card.media.type',
+								'item:block_media_card.media.description'
+							],
+							advantages: ['id', { item: ['id', 'icon', 'label'] }],
+							links: ['id', { item: ['id', 'label', 'href'] }]
 						}
 					]
 				}
 			],
 			deep: {
 				translations: { _filter: { languages_code: { _eq: locale } } },
-				'translations.blocks': { _sort: ['sort'] },
+				'translations.tiles': { _sort: ['sort'] },
 				'translations.advantages': { _sort: ['sort'] },
 				'translations.links': { _sort: ['sort'] }
 			}
-		})
-	);
-	const t = row.translations?.[0];
+		} as unknown as never)
+	)) as SectionHeroRow[];
+	const t = row[0]?.translations?.[0];
 
 	return {
-		blocks: (t?.blocks ?? []).map((block) => ({
-			id: block.id,
-			title: block.title,
-			description: block.description || undefined,
-			link: block.link || undefined,
-			background: block.media
+		blocks: (t?.tiles ?? []).map((tile) => ({
+			id: tile.item.id,
+			role: tile.role,
+			title: tile.item.title,
+			description: tile.item.description || undefined,
+			link: tile.item.href || undefined,
+			background: tile.item.media
 				? {
-						id: block.media.id,
-						kind: block.media.type?.startsWith('video/') ? ('video' as const) : ('image' as const),
-						alt: block.media.description || undefined
+						id: tile.item.media.id,
+						kind: tile.item.media.type?.startsWith('video/') ? ('video' as const) : ('image' as const),
+						alt: tile.item.media.description || undefined
 					}
 				: undefined
 		})),
 		advantages: (t?.advantages ?? []).map((advantage) => ({
-			id: advantage.id,
-			text: advantage.text,
-			iconName: advantage.icon || undefined
+			id: advantage.item.id,
+			text: advantage.item.label,
+			iconName: advantage.item.icon || undefined
 		})),
 		links: (t?.links ?? []).map((link) => ({
-			id: link.id,
-			label: link.label,
-			href: link.href
+			id: link.item.id,
+			label: link.item.label,
+			href: link.item.href ?? ''
 		})),
-		directusId: row.id,
+		directusId: row[0]?.id,
 		translationId: t?.id
 	};
 }
 
-export async function getSectionServices(locale: string): Promise<SectionServices> {
+async function getSectionServices(id: number, locale: string): Promise<SectionServices> {
 	const row = await client.request(
-		readSingleton('section_services', {
+		readItems('section_services', {
+			filter: { id: { _eq: id } },
+			limit: 1,
 			fields: [
 				'id',
 				{
@@ -345,7 +443,13 @@ export async function getSectionServices(locale: string): Promise<SectionService
 						'id',
 						'languages_code',
 						'title',
-						{ items: ['*', { illustration: ['id', 'description'] }] }
+						{
+							items: [
+								'id',
+								'cta_label',
+								{ item: ['id', 'title', 'description', { media: ['id', 'description'] }] }
+							]
+						}
 					]
 				}
 			],
@@ -355,26 +459,40 @@ export async function getSectionServices(locale: string): Promise<SectionService
 			}
 		})
 	);
-	const t = row.translations?.[0];
+	const t = row[0]?.translations?.[0];
 
 	return {
 		title: t?.title ?? '',
 		items: (t?.items ?? []).map((service) => ({
-			id: service.id,
-			label: service.label,
-			description: service.description || undefined,
-			illustrationId: service.illustration?.id || undefined,
-			illustrationAlt: service.illustration?.description || undefined,
-			ctaLabel: service.cta_label
+			id: service.item.id,
+			label: service.item.title,
+			description: service.item.description || undefined,
+			illustrationId: service.item.media?.id || undefined,
+			illustrationAlt: service.item.media?.description || undefined,
+			ctaLabel: service.cta_label ?? ''
 		})),
-		directusId: row.id,
+		directusId: row[0]?.id,
 		translationId: t?.id
 	};
 }
 
-export async function getSectionSymptoms(locale: string): Promise<SectionSymptoms> {
+// The dedicated /services route reuses the same section_services content as the homepage
+// preview (see CLAUDE.md), independent of whichever page(s) currently link it in via
+// page_sections — so it looks the instance up by its stable `key`, not through a page.
+export async function getServicesSection(locale: string): Promise<SectionServices> {
+	const rows = await client.request(
+		readItems('section_services', { filter: { key: { _eq: 'services-main' } }, limit: 1, fields: ['id'] })
+	);
+	const id = rows[0]?.id;
+	if (id === undefined) return { title: '', items: [], directusId: undefined, translationId: undefined };
+	return getSectionServices(id, locale);
+}
+
+async function getSectionSymptoms(id: number, locale: string): Promise<SectionSymptoms> {
 	const row = await client.request(
-		readSingleton('section_symptoms', {
+		readItems('section_symptoms', {
+			filter: { id: { _eq: id } },
+			limit: 1,
 			fields: [
 				'id',
 				'slider_autoplay',
@@ -400,7 +518,8 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 			}
 		})
 	);
-	const t = row.translations?.[0];
+	const row0 = row[0];
+	const t = row0?.translations?.[0];
 
 	return {
 		title: t?.title ?? '',
@@ -412,21 +531,23 @@ export async function getSectionSymptoms(locale: string): Promise<SectionSymptom
 		})),
 		catLabel: t?.cat_label ?? '',
 		dogLabel: t?.dog_label ?? '',
-		catIconName: row.cat_icon || undefined,
-		dogIconName: row.dog_icon || undefined,
+		catIconName: row0?.cat_icon || undefined,
+		dogIconName: row0?.dog_icon || undefined,
 		slider: {
-			autoplay: row.slider_autoplay ?? true,
-			speed: row.slider_speed ?? 600,
-			interval: row.slider_interval ?? 3500
+			autoplay: row0?.slider_autoplay ?? true,
+			speed: row0?.slider_speed ?? 600,
+			interval: row0?.slider_interval ?? 3500
 		},
-		directusId: row.id,
+		directusId: row0?.id,
 		translationId: t?.id
 	};
 }
 
-export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
+async function getSectionWeHelp(id: number, locale: string): Promise<SectionWeHelp> {
 	const row = await client.request(
-		readSingleton('section_we_help', {
+		readItems('section_we_help', {
+			filter: { id: { _eq: id } },
+			limit: 1,
 			fields: [
 				'id',
 				'slider_autoplay',
@@ -437,7 +558,13 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 						'id',
 						'languages_code',
 						'title',
-						{ items: ['*', { photo: ['id', 'description'] }] }
+						{
+							items: [
+								'id',
+								'featured',
+								{ item: ['id', 'title', 'description', 'href', { media: ['id', 'description'] }] }
+							]
+						}
 					]
 				}
 			],
@@ -447,61 +574,260 @@ export async function getSectionWeHelp(locale: string): Promise<SectionWeHelp> {
 			}
 		})
 	);
-	const t = row.translations?.[0];
+	const row0 = row[0];
+	const t = row0?.translations?.[0];
 
 	return {
 		title: t?.title ?? '',
 		items: (t?.items ?? []).map((weHelpItem) => ({
-			id: weHelpItem.id,
-			title: weHelpItem.title,
-			description: weHelpItem.description || undefined,
-			photoId: weHelpItem.photo?.id || undefined,
-			photoAlt: weHelpItem.photo?.description || undefined,
-			link: weHelpItem.link || undefined,
+			id: weHelpItem.item.id,
+			title: weHelpItem.item.title,
+			description: weHelpItem.item.description || undefined,
+			photoId: weHelpItem.item.media?.id || undefined,
+			photoAlt: weHelpItem.item.media?.description || undefined,
+			link: weHelpItem.item.href || undefined,
 			featured: weHelpItem.featured ?? false
 		})),
 		slider: {
-			autoplay: row.slider_autoplay ?? true,
-			speed: row.slider_speed ?? 600,
-			interval: row.slider_interval ?? 3500
+			autoplay: row0?.slider_autoplay ?? true,
+			speed: row0?.slider_speed ?? 600,
+			interval: row0?.slider_interval ?? 3500
 		},
-		directusId: row.id,
+		directusId: row0?.id,
 		translationId: t?.id
 	};
 }
 
-export async function getPageSections(): Promise<PageSection[]> {
-	const rows = await client.request(
+async function getSectionBlocks(id: number, locale: string): Promise<SectionBlocks> {
+	// `items` is genuinely polymorphic across all 4 block primitives — same qualifier
+	// requirement as section_hero's `tiles` slot (see §6 of the directus skill).
+	const row = (await client.request(
+		readItems('section_blocks', {
+			filter: { id: { _eq: id } },
+			limit: 1,
+			fields: [
+				'id',
+				{
+					translations: [
+						'id',
+						'languages_code',
+						'title',
+						'description',
+						{
+							items: [
+								'id',
+								'collection',
+								'item:block_media_card.id',
+								'item:block_media_card.title',
+								'item:block_media_card.description',
+								'item:block_media_card.href',
+								'item:block_media_card.media.id',
+								'item:block_media_card.media.type',
+								'item:block_media_card.media.description',
+								'item:block_icon_label.id',
+								'item:block_icon_label.icon',
+								'item:block_icon_label.label',
+								'item:block_link.id',
+								'item:block_link.label',
+								'item:block_link.href',
+								'item:block_list.id',
+								'item:block_list.title',
+								'item:block_list.items.id',
+								'item:block_list.items.label',
+								'item:block_list.items.href'
+							]
+						}
+					]
+				}
+			],
+			deep: {
+				translations: { _filter: { languages_code: { _eq: locale } } },
+				'translations.items': { _sort: ['sort'] }
+			}
+		} as unknown as never)
+	)) as SectionBlocksRow[];
+	const t = row[0]?.translations?.[0];
+
+	const items: BlockEntry[] = (t?.items ?? []).flatMap((raw): BlockEntry[] => {
+		switch (raw.collection) {
+			case 'block_media_card': {
+				const b = raw.item as BlockMediaCardRow;
+				return [
+					{
+						collection: 'block_media_card',
+						data: {
+							id: b.id,
+							title: b.title,
+							description: b.description || undefined,
+							href: b.href || undefined,
+							background: b.media
+								? {
+										id: b.media.id,
+										kind: b.media.type?.startsWith('video/') ? ('video' as const) : ('image' as const),
+										alt: b.media.description || undefined
+									}
+								: undefined
+						}
+					}
+				];
+			}
+			case 'block_icon_label': {
+				const b = raw.item as BlockIconLabelRow;
+				return [{ collection: 'block_icon_label', data: { id: b.id, icon: b.icon || undefined, label: b.label } }];
+			}
+			case 'block_link': {
+				const b = raw.item as BlockLinkRow;
+				return [{ collection: 'block_link', data: { id: b.id, label: b.label, href: b.href || undefined } }];
+			}
+			case 'block_list': {
+				const b = raw.item as BlockListRow;
+				return [
+					{
+						collection: 'block_list',
+						data: {
+							id: b.id,
+							title: b.title || undefined,
+							items: (b.items ?? []).map((l) => ({ id: l.id, label: l.label, href: l.href || undefined }))
+						}
+					}
+				];
+			}
+			default:
+				return [];
+		}
+	});
+
+	return {
+		title: t?.title || undefined,
+		description: t?.description || undefined,
+		items,
+		directusId: row[0]?.id,
+		translationId: t?.id
+	};
+}
+
+async function getSectionServicesPromo(id: number, locale: string): Promise<ServicesPromo | undefined> {
+	const row = await client.request(
+		readItems('section_services_promo', {
+			filter: { id: { _eq: id } },
+			limit: 1,
+			fields: [
+				'enabled',
+				'price',
+				'original_price',
+				'valid_until',
+				{ translations: ['id', 'languages_code', 'title', 'description'] }
+			],
+			deep: { translations: { _filter: { languages_code: { _eq: locale } } } }
+		})
+	);
+	const row0 = row[0];
+	if (!row0?.enabled) return undefined;
+	const t = row0.translations?.[0];
+	if (!t?.title) return undefined;
+
+	return {
+		title: t.title,
+		description: t.description || undefined,
+		price: row0.price ?? 0,
+		originalPrice: row0.original_price || undefined,
+		validUntil: row0.valid_until || undefined
+	};
+}
+
+async function getSectionServicesPricelist(id: number, locale: string): Promise<SectionServicesPricelist> {
+	const row = await client.request(
+		readItems('section_services_pricelist', {
+			filter: { id: { _eq: id } },
+			limit: 1,
+			fields: [
+				'id',
+				{
+					translations: [
+						'id',
+						'languages_code',
+						'title',
+						'note',
+						{ categories: ['id', 'title', { items: ['id', 'label', 'price'] }] }
+					]
+				}
+			],
+			deep: {
+				translations: { _filter: { languages_code: { _eq: locale } } },
+				'translations.categories': { _sort: ['sort'] },
+				'translations.categories.items': { _sort: ['sort'] }
+			}
+		})
+	);
+	const t = row[0]?.translations?.[0];
+
+	return {
+		title: t?.title ?? '',
+		note: t?.note || undefined,
+		categories: (t?.categories ?? []).map((category) => ({
+			id: category.id,
+			title: category.title,
+			items: (category.items ?? []).map((item) => ({ id: item.id, label: item.label, price: item.price }))
+		})),
+		directusId: row[0]?.id,
+		translationId: t?.id
+	};
+}
+
+export async function getPage(pageKey: string, locale: string): Promise<Page | undefined> {
+	const pages = await client.request(
+		readItems('pages', {
+			filter: { key: { _eq: pageKey }, status: { _eq: 'published' } },
+			limit: 1,
+			fields: ['id', 'noindex', { translations: ['title', 'description', { og_image: ['id'] }] }],
+			deep: { translations: { _filter: { languages_code: { _eq: locale } } } }
+		})
+	);
+	const page = pages[0];
+	if (page === undefined) return undefined;
+	const pageT = page.translations?.[0];
+	const pageId = page.id;
+
+	const junctionRows = await client.request(
 		readItems('page_sections', {
-			fields: ['section_key', 'visible', 'shader'],
+			filter: { page: { _eq: pageId }, visible: { _eq: true } },
+			fields: ['collection', 'item', 'shader'],
 			sort: ['sort']
 		})
 	);
 
-	return rows.map((row) => ({ key: row.section_key, visible: row.visible, shader: row.shader }));
-}
-
-export async function getPageMeta(key: PageMetaKey, locale: string): Promise<PageMeta> {
-	const rows = await client.request(
-		readItems('page_meta', {
-			fields: [
-				'noindex',
-				{ og_image: ['id'] },
-				{ translations: ['meta_title', 'meta_description'] }
-			],
-			filter: { route: { _eq: key } },
-			deep: { translations: { _filter: { languages_code: { _eq: locale } } } },
-			limit: 1
+	const sections = await Promise.all(
+		junctionRows.map(async (row): Promise<PageSectionEntry | undefined> => {
+			const id = Number(row.item);
+			switch (row.collection) {
+				case 'section_hero':
+					return { key: 'hero', shader: row.shader, data: await getSectionHero(id, locale) };
+				case 'section_services':
+					return { key: 'services', shader: row.shader, data: await getSectionServices(id, locale) };
+				case 'section_symptoms':
+					return { key: 'symptoms', shader: row.shader, data: await getSectionSymptoms(id, locale) };
+				case 'section_we_help':
+					return { key: 'we_help', shader: row.shader, data: await getSectionWeHelp(id, locale) };
+				case 'section_contacts':
+					return { key: 'contacts', shader: row.shader };
+				case 'section_blocks':
+					return { key: 'blocks', shader: row.shader, data: await getSectionBlocks(id, locale) };
+				case 'section_services_promo':
+					return { key: 'services_promo', shader: row.shader, data: await getSectionServicesPromo(id, locale) };
+				case 'section_services_pricelist':
+					return { key: 'services_pricelist', shader: row.shader, data: await getSectionServicesPricelist(id, locale) };
+				default:
+					return undefined;
+			}
 		})
 	);
-	const row = rows[0];
-	const t = row?.translations?.[0];
 
 	return {
-		title: t?.meta_title ?? '',
-		description: t?.meta_description || undefined,
-		ogImageId: row?.og_image?.id || undefined,
-		noindex: row?.noindex ?? false
+		title: pageT?.title ?? '',
+		description: pageT?.description || undefined,
+		ogImageId: pageT?.og_image?.id || undefined,
+		noindex: page.noindex ?? false,
+		sections: sections.filter((s): s is PageSectionEntry => s !== undefined)
 	};
 }
 
@@ -546,7 +872,11 @@ export async function getFormSchema(collection: FormCollection): Promise<FormFie
 					text: choice.text,
 					value: choice.value,
 					icon: choice.icon || undefined
-				}))
+				})),
+				// Directus's own admin-form width metadata ('full' | 'half' | 'half-space' | 'fill') —
+				// reused here so the two-column layout comes from the same place editors already
+				// use to lay out the Directus edit form, instead of a second width concept in code.
+				width: field.meta?.width === 'full' ? 'full' : 'half'
 			};
 		});
 }

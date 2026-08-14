@@ -1,0 +1,27 @@
+{
+  "_note": "Core junction: pages <-M2A-> sections. Same pattern as every slot inside a section, one level up.",
+  "collections": [
+    {
+      "collection": "page_sections",
+      "meta": {"icon": "view_agenda", "hidden": true, "note": "M2A junction: page -> section_* items"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "page", "type": "integer", "meta": {"hidden": true, "interface": "select-dropdown-m2o"}, "schema": {}},
+        {"field": "collection", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "item", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "page_sections", "field": "page", "related_collection": "pages",
+     "meta": {"sort_field": "sort", "one_field": "sections", "junction_field": "item"}, "schema": {"on_delete": "CASCADE"}},
+    {"collection": "page_sections", "field": "item", "related_collection": null,
+     "meta": {"one_allowed_collections": ["section_hero", "section_services", "section_symptoms", "section_we_help", "section_contacts"],
+              "one_collection_field": "collection", "junction_field": "page"}}
+  ],
+  "alias_fields": [
+    {"collection": "pages", "field": "sections", "type": "alias", "meta": {"special": ["m2a"], "interface": "list-m2a", "options": {"enableSelect": true}, "sort": 10}, "schema": null}
+  ]
+}

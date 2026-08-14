@@ -35,8 +35,11 @@ export type HeroBackgroundMedia = {
 	alt: string | undefined;
 };
 
+export type HeroTileRole = 'title' | 'photo' | 'promo' | 'spare' | 'media';
+
 export type HeroBlock = {
 	id: number;
+	role: HeroTileRole;
 	title: string;
 	description: string | undefined;
 	link: string | undefined;
@@ -79,25 +82,76 @@ export type SectionServices = {
 	translationId: number | undefined;
 };
 
-export type PageSection = {
-	key: string;
-	visible: boolean;
-	shader: string;
+export type MediaCardBlockData = {
+	id: number;
+	title: string;
+	description: string | undefined;
+	background: HeroBackgroundMedia | undefined;
+	href: string | undefined;
+};
+
+export type IconLabelBlockData = {
+	id: number;
+	icon: string | undefined;
+	label: string;
+};
+
+export type LinkBlockData = {
+	id: number;
+	label: string;
+	href: string | undefined;
+};
+
+export type ListBlockData = {
+	id: number;
+	title: string | undefined;
+	items: LinkBlockData[];
+};
+
+export type BlockEntry =
+	| { collection: 'block_media_card'; data: MediaCardBlockData }
+	| { collection: 'block_icon_label'; data: IconLabelBlockData }
+	| { collection: 'block_link'; data: LinkBlockData }
+	| { collection: 'block_list'; data: ListBlockData };
+
+export type SectionBlocks = {
+	title: string | undefined;
+	description: string | undefined;
+	items: BlockEntry[];
+	directusId: number | undefined;
+	translationId: number | undefined;
+};
+
+export type SectionServicesPricelist = {
+	title: string;
+	note: string | undefined;
+	categories: ServicePriceCategory[];
+	directusId: number | undefined;
+	translationId: number | undefined;
+};
+
+export type PageSectionEntry =
+	| { key: 'hero'; shader: string; data: SectionHero }
+	| { key: 'services'; shader: string; data: SectionServices }
+	| { key: 'symptoms'; shader: string; data: SectionSymptoms }
+	| { key: 'we_help'; shader: string; data: SectionWeHelp }
+	| { key: 'contacts'; shader: string }
+	| { key: 'blocks'; shader: string; data: SectionBlocks }
+	| { key: 'services_promo'; shader: string; data: ServicesPromo | undefined }
+	| { key: 'services_pricelist'; shader: string; data: SectionServicesPricelist };
+
+export type Page = {
+	title: string;
+	description: string | undefined;
+	ogImageId: string | undefined;
+	noindex: boolean;
+	sections: PageSectionEntry[];
 };
 
 export type SliderOptions = {
 	autoplay: boolean;
 	speed: number;
 	interval: number;
-};
-
-export type PageMetaKey = 'home' | 'services' | 'apply' | 'about' | 'we_help' | 'contacts' | 'privacy';
-
-export type PageMeta = {
-	title: string;
-	description: string | undefined;
-	ogImageId: string | undefined;
-	noindex: boolean;
 };
 
 export type SocialLink = {
@@ -146,6 +200,27 @@ export type FormFieldSchema = {
 	placeholder: string | undefined;
 	required: boolean;
 	choices: FormChoice[] | undefined;
+	width: 'full' | 'half';
+};
+
+export type ServicePriceItem = {
+	id: number;
+	label: string;
+	price: number;
+};
+
+export type ServicePriceCategory = {
+	id: number;
+	title: string;
+	items: ServicePriceItem[];
+};
+
+export type ServicesPromo = {
+	title: string;
+	description: string | undefined;
+	price: number;
+	originalPrice: number | undefined;
+	validUntil: string | undefined;
 };
 
 export type WeHelpItem = {

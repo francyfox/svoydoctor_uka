@@ -1,0 +1,11 @@
+{
+  "description": "Atomic primitive: a single media reference (image/video via a real Directus file relation). Base for anything with a photo/illustration — card lists, hero tiles, galleries. IMPORTANT: the field alone is not enough — the relation is mandatory or it silently fails to resolve (see .claude/skills/directus/SKILL.md §2, hit twice on this project already).",
+  "fields": [
+    {"field": "media", "type": "uuid", "meta": {"interface": "file-image", "special": ["file"]}, "schema": {"is_nullable": true}}
+  ],
+  "relation": {
+    "related_collection": "directus_files",
+    "meta": {"one_deselect_action": "nullify"},
+    "schema": {"on_delete": "SET NULL"}
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "_note": "One-off, project-specific admin sidebar reorg for svoydoctor_uka — not a reusable docs/global/blocks/ template. Root ends up as: Pages, Forms, Languages, Settings (+ Directus system collections). `forms` is a pure folder (schema: null, no real table) purely for nav grouping.",
+  "collections": [
+    {
+      "collection": "forms",
+      "meta": {"icon": "assignment", "note": "Nav folder for booking_requests/sterilization_requests — no real table"},
+      "schema": null
+    }
+  ],
+  "groups": [
+    {"collection": "booking_requests", "group": "forms"},
+    {"collection": "sterilization_requests", "group": "forms"},
+
+    {"collection": "page_blocks", "group": "pages"},
+
+    {"collection": "block_hero", "group": "pages"},
+    {"collection": "block_hero_translations", "group": "pages"},
+    {"collection": "block_hero_block", "group": "pages"},
+    {"collection": "block_hero_advantage", "group": "pages"},
+    {"collection": "block_hero_link", "group": "pages"},
+
+    {"collection": "block_services", "group": "pages"},
+    {"collection": "block_services_translations", "group": "pages"},
+    {"collection": "block_services_item", "group": "pages"},
+
+    {"collection": "block_symptoms", "group": "pages"},
+    {"collection": "block_symptoms_translations", "group": "pages"},
+    {"collection": "block_symptom", "group": "pages"},
+
+    {"collection": "block_we_help", "group": "pages"},
+    {"collection": "block_we_help_translations", "group": "pages"},
+    {"collection": "block_we_help_item", "group": "pages"}
+  ]
+}

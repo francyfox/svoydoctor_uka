@@ -1,0 +1,93 @@
+{
+  "_note": "Section: hero. 3 slots, each a real M2A on *_translations (list-m2a), junction rows carry an extra visible field where needed (role on tiles). Replaces the positional block-index hack from the old model.",
+  "collections": [
+    {
+      "collection": "section_hero",
+      "meta": {"icon": "auto_awesome", "hidden": true, "note": "Section: hero"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input"}, "schema": {"is_unique": true}}
+      ]
+    },
+    {
+      "collection": "section_hero_translations",
+      "meta": {"hidden": true},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "section_hero_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "languages_code", "type": "string", "meta": {"hidden": true}, "schema": {}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "description", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}}
+      ]
+    },
+    {
+      "collection": "section_hero_tile",
+      "meta": {"hidden": true, "note": "junction: role-tagged M2A slot, allows block_media_card or block_list"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "role", "type": "string", "meta": {"interface": "select-dropdown", "options": {"choices": [
+          {"text": "Заголовок", "value": "title"}, {"text": "Фото", "value": "photo"},
+          {"text": "Промо", "value": "promo"}, {"text": "Резерв", "value": "spare"}, {"text": "Медиа", "value": "media"}
+        ]}}, "schema": {}},
+        {"field": "ref_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "collection", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "item", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}}
+      ]
+    },
+    {
+      "collection": "section_hero_advantage",
+      "meta": {"hidden": true, "note": "junction: M2A slot restricted to block_icon_label"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "ref_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "collection", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "item", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}}
+      ]
+    },
+    {
+      "collection": "section_hero_link",
+      "meta": {"hidden": true, "note": "junction: M2A slot restricted to block_link"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "sort", "type": "integer", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "ref_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "collection", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}},
+        {"field": "item", "type": "string", "meta": {"hidden": true, "interface": "input"}, "schema": {}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "section_hero_translations", "field": "section_hero_id", "related_collection": "section_hero",
+     "meta": {"one_field": "translations", "one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_hero_translations", "field": "languages_code", "related_collection": "languages",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+
+    {"collection": "section_hero_tile", "field": "ref_id", "related_collection": "section_hero_translations",
+     "meta": {"sort_field": "sort", "one_field": "tiles", "junction_field": "item"}, "schema": {"on_delete": "SET NULL"}},
+    {"collection": "section_hero_tile", "field": "item", "related_collection": null,
+     "meta": {"one_allowed_collections": ["block_media_card", "block_list"], "one_collection_field": "collection", "junction_field": "ref_id"}},
+
+    {"collection": "section_hero_advantage", "field": "ref_id", "related_collection": "section_hero_translations",
+     "meta": {"sort_field": "sort", "one_field": "advantages", "junction_field": "item"}, "schema": {"on_delete": "SET NULL"}},
+    {"collection": "section_hero_advantage", "field": "item", "related_collection": null,
+     "meta": {"one_allowed_collections": ["block_icon_label"], "one_collection_field": "collection", "junction_field": "ref_id"}},
+
+    {"collection": "section_hero_link", "field": "ref_id", "related_collection": "section_hero_translations",
+     "meta": {"sort_field": "sort", "one_field": "links", "junction_field": "item"}, "schema": {"on_delete": "SET NULL"}},
+    {"collection": "section_hero_link", "field": "item", "related_collection": null,
+     "meta": {"one_allowed_collections": ["block_link"], "one_collection_field": "collection", "junction_field": "ref_id"}}
+  ],
+  "alias_fields": [
+    {"collection": "section_hero", "field": "translations", "type": "alias", "meta": {"special": ["translations"], "interface": "translations"}, "schema": null},
+    {"collection": "section_hero_translations", "field": "tiles", "type": "alias", "meta": {"special": ["m2a"], "interface": "list-m2a", "options": {"enableSelect": true}}, "schema": null},
+    {"collection": "section_hero_translations", "field": "advantages", "type": "alias", "meta": {"special": ["m2a"], "interface": "list-m2a", "options": {"enableSelect": true}}, "schema": null},
+    {"collection": "section_hero_translations", "field": "links", "type": "alias", "meta": {"special": ["m2a"], "interface": "list-m2a", "options": {"enableSelect": true}}, "schema": null}
+  ]
+}

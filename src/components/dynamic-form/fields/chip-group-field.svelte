@@ -23,7 +23,7 @@
 </script>
 
 <div data-slot="chip-group-field" class="flex flex-col gap-2">
-	<ULabel class="text-[15px] font-normal text-foreground">{schema.label}</ULabel>
+	<ULabel class="text-[15px] font-normal text-white">{schema.label}</ULabel>
 	<div class="flex flex-wrap gap-2">
 		{#each schema.choices ?? [] as choice (choice.value)}
 			<button

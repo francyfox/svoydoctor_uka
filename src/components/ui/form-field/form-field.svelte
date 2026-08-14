@@ -21,6 +21,6 @@
 </script>
 
 <div data-slot="form-field" class={cn('flex flex-col gap-2', className)}>
-	<ULabel for={id} class="text-[15px] font-normal text-foreground">{label}</ULabel>
+	<ULabel for={id} class="text-[15px] font-normal text-white">{label}</ULabel>
 	<UInput {id} bind:value {type} {placeholder} />
 </div>

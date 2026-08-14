@@ -1,0 +1,36 @@
+{
+  "_note": "Section: services price list. Re-parents the existing service_price_category/item collections (were attached to page_services_translations) instead of recreating them.",
+  "collections": [
+    {
+      "collection": "section_services_pricelist",
+      "meta": {"icon": "price_check", "hidden": true, "note": "Section: services price list"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input"}, "schema": {"is_unique": true}}
+      ]
+    },
+    {
+      "collection": "section_services_pricelist_translations",
+      "meta": {"hidden": true},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "section_services_pricelist_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "languages_code", "type": "string", "meta": {"hidden": true}, "schema": {}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "note", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "section_services_pricelist_translations", "field": "section_services_pricelist_id", "related_collection": "section_services_pricelist",
+     "meta": {"one_field": "translations", "one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_services_pricelist_translations", "field": "languages_code", "related_collection": "languages",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}}
+  ],
+  "alias_fields": [
+    {"collection": "section_services_pricelist", "field": "translations", "type": "alias", "meta": {"special": ["translations"], "interface": "translations"}, "schema": null},
+    {"collection": "section_services_pricelist_translations", "field": "categories", "type": "alias", "meta": {"special": ["o2m"], "interface": "list-o2m", "options": {"template": "{{title}}"}}, "schema": null}
+  ]
+}

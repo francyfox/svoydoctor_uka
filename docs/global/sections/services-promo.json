@@ -1,0 +1,39 @@
+{
+  "_note": "Section: services promo banner. Direct reframing of the old page_services promo_* fields as a section.",
+  "collections": [
+    {
+      "collection": "section_services_promo",
+      "meta": {"icon": "local_offer", "hidden": true, "note": "Section: services promo banner"},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "key", "type": "string", "meta": {"interface": "input"}, "schema": {"is_unique": true}},
+        {"field": "enabled", "type": "boolean", "meta": {"interface": "boolean"}, "schema": {"default_value": false}},
+        {"field": "price", "type": "integer", "meta": {"interface": "input"}, "schema": {"is_nullable": true}},
+        {"field": "original_price", "type": "integer", "meta": {"interface": "input"}, "schema": {"is_nullable": true}},
+        {"field": "valid_until", "type": "date", "meta": {"interface": "datetime"}, "schema": {"is_nullable": true}}
+      ]
+    },
+    {
+      "collection": "section_services_promo_translations",
+      "meta": {"hidden": true},
+      "schema": {},
+      "fields": [
+        {"field": "id", "type": "integer", "meta": {"hidden": true, "interface": "input", "readonly": true}, "schema": {"is_primary_key": true, "has_auto_increment": true}},
+        {"field": "section_services_promo_id", "type": "integer", "meta": {"hidden": true}, "schema": {}},
+        {"field": "languages_code", "type": "string", "meta": {"hidden": true}, "schema": {}},
+        {"field": "title", "type": "string", "meta": {"interface": "input"}, "schema": {}},
+        {"field": "description", "type": "text", "meta": {"interface": "input-multiline"}, "schema": {"is_nullable": true}}
+      ]
+    }
+  ],
+  "relations": [
+    {"collection": "section_services_promo_translations", "field": "section_services_promo_id", "related_collection": "section_services_promo",
+     "meta": {"one_field": "translations", "one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}},
+    {"collection": "section_services_promo_translations", "field": "languages_code", "related_collection": "languages",
+     "meta": {"one_deselect_action": "nullify"}, "schema": {"on_delete": "NO ACTION"}}
+  ],
+  "alias_fields": [
+    {"collection": "section_services_promo", "field": "translations", "type": "alias", "meta": {"special": ["translations"], "interface": "translations"}, "schema": null}
+  ]
+}

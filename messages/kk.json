@@ -31,5 +31,10 @@
 	"error_404_message": "Мұндай бет жоқ сияқты — сілтеме ескірген немесе қате басылған болуы мүмкін.",
 	"error_generic_title": "Бірдеңе дұрыс болмады",
 	"error_generic_message": "Бетті жаңартып көріңіз немесе басты бетке оралыңыз.",
-	"error_back_home": "Басты бетке"
+	"error_back_home": "Басты бетке",
+	"services_promo_valid_until": "Акция {date} дейін жарамды",
+	"services_promo_fallback_title": "Стерилизациялау және кастрациялау",
+	"services_promo_fallback_description": "Ағымдағы бағаны және акция мерзімін телефон немесе WhatsApp арқылы нақтылаңыз.",
+	"services_price_table_service": "Қызмет",
+	"services_price_table_price": "Бағасы"
 }

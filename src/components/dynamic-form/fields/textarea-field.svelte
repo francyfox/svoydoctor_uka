@@ -13,6 +13,6 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<ULabel for={`field-${schema.field}`} class="text-[15px] font-normal text-foreground">{schema.label}</ULabel>
+	<ULabel for={`field-${schema.field}`} class="text-[15px] font-normal text-white">{schema.label}</ULabel>
 	<UTextarea id={`field-${schema.field}`} bind:value placeholder={schema.placeholder} />
 </div>

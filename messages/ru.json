@@ -31,5 +31,10 @@
 	"error_404_message": "Похоже, такой страницы не существует — возможно, ссылка устарела или содержит опечатку.",
 	"error_generic_title": "Что-то пошло не так",
 	"error_generic_message": "Попробуйте обновить страницу или вернуться на главную.",
-	"error_back_home": "На главную"
+	"error_back_home": "На главную",
+	"services_promo_valid_until": "Акция действует до {date}",
+	"services_promo_fallback_title": "Стерилизация и кастрация",
+	"services_promo_fallback_description": "Актуальную цену и даты акции уточняйте по телефону или WhatsApp.",
+	"services_price_table_service": "Услуга",
+	"services_price_table_price": "Цена"
 }

@@ -1,0 +1,6 @@
+{
+  "description": "Atomic primitive: a single icon field (iconify picker). Base for anything that shows an icon — icon-list entries, feature badges, nav items.",
+  "fields": [
+    {"field": "icon", "type": "string", "meta": {"interface": "iconify-dropdown"}, "schema": {"is_nullable": true}}
+  ]
+}

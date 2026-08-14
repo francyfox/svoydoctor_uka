@@ -1,0 +1,39 @@
+{
+  "_note": "Group all page-builder construction collections (page_sections + section_* + block_*) under a dedicated 'blocks' folder, sibling to pages/forms/settings/languages at root — cleaner than dumping them under pages itself.",
+  "collections": [
+    {
+      "collection": "blocks",
+      "meta": {"icon": "widgets", "note": "Nav folder for the section/block construction collections — no real table"},
+      "schema": null
+    }
+  ],
+  "groups": [
+    {"collection": "page_sections", "group": "blocks"},
+
+    {"collection": "section_contacts", "group": "blocks"},
+    {"collection": "section_contacts_translations", "group": "blocks"},
+
+    {"collection": "section_hero", "group": "blocks"},
+    {"collection": "section_hero_translations", "group": "blocks"},
+    {"collection": "section_hero_tile", "group": "blocks"},
+    {"collection": "section_hero_advantage", "group": "blocks"},
+    {"collection": "section_hero_link", "group": "blocks"},
+
+    {"collection": "section_services", "group": "blocks"},
+    {"collection": "section_services_translations", "group": "blocks"},
+    {"collection": "section_services_item", "group": "blocks"},
+
+    {"collection": "section_symptoms", "group": "blocks"},
+    {"collection": "section_symptoms_translations", "group": "blocks"},
+    {"collection": "section_symptom", "group": "blocks"},
+
+    {"collection": "section_we_help", "group": "blocks"},
+    {"collection": "section_we_help_translations", "group": "blocks"},
+    {"collection": "section_we_help_item", "group": "blocks"},
+
+    {"collection": "block_media_card", "group": "blocks"},
+    {"collection": "block_icon_label", "group": "blocks"},
+    {"collection": "block_link", "group": "blocks"},
+    {"collection": "block_list", "group": "blocks"}
+  ]
+}
