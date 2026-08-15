@@ -17,7 +17,6 @@ Thumbs.db
 .env.*
 !.env.example
 !.env.test
-squidex.config.json
 
 # Vite
 vite.config.js.timestamp-*
@@ -26,6 +25,4 @@ vite.config.ts.timestamp-*
 # MCP local config (contains local tokens)
 .mcp.json
 
-# Local Squidex (self-hosted, dev only)
-docker/squidex/data/
 backups/

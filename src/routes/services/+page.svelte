@@ -34,7 +34,12 @@
 		path="/services"
 		noindex={pageQuery.data.noindex}
 		ogImageUrl={pageQuery.data.ogImageId
-			? buildAssetUrl(pageQuery.data.ogImageId, { width: 1200, height: 630, fit: 'cover' })
+			? buildAssetUrl(pageQuery.data.ogImageId, {
+					width: 1200,
+					height: 630,
+					fit: 'cover',
+					absolute: true
+				})
 			: undefined}
 	/>
 {/if}

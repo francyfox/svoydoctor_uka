@@ -11,6 +11,7 @@ export type Settings = {
 	phone: string;
 	logoId: string | undefined;
 	logoAlt: string | undefined;
+	logoIsSvg: boolean;
 	faviconId: string | undefined;
 	address: string | undefined;
 	hoursWeekday: string | undefined;

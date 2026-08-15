@@ -19,12 +19,19 @@
                     "hidden": false,
                     "icon": "label",
                     "item_duplication_fields": null,
-                    "note": "Block: icon + label",
+                    "note": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0438 \u043a\u043e\u0440\u043e\u0442\u043a\u0430\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u044c \u2014 \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u043e \u043a\u043b\u0438\u043d\u0438\u043a\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0441 \u043f\u043e\u0434\u043f\u0438\u0441\u044c\u044e",
+                            "singular": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0441 \u043f\u043e\u0434\u043f\u0438\u0441\u044c\u044e",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0441 \u043f\u043e\u0434\u043f\u0438\u0441\u044c\u044e"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -47,12 +54,19 @@
                     "hidden": false,
                     "icon": "link",
                     "item_duplication_fields": null,
-                    "note": "Block: labeled link",
+                    "note": "\u0422\u0435\u043a\u0441\u0442-\u0441\u0441\u044b\u043b\u043a\u0430 (\u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u043a\u043d\u043e\u043f\u043a\u0430 \u043d\u0430 \u0434\u0440\u0443\u0433\u0443\u044e \u0441\u0435\u043a\u0446\u0438\u044e)",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u0441\u044b\u043b\u043a\u0430",
+                            "singular": "\u0421\u0441\u044b\u043b\u043a\u0430",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -75,12 +89,19 @@
                     "hidden": false,
                     "icon": "list",
                     "item_duplication_fields": null,
-                    "note": "Block: list of links (reserved for future use, no real content yet)",
+                    "note": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u0438 \u0441\u043f\u0438\u0441\u043e\u043a \u0441\u0441\u044b\u043b\u043e\u043a",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0441\u044b\u043b\u043e\u043a",
+                            "singular": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0441\u044b\u043b\u043e\u043a",
+                            "translation": "\u0421\u043f\u0438\u0441\u043e\u043a \u0441\u0441\u044b\u043b\u043e\u043a"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -103,12 +124,19 @@
                     "hidden": false,
                     "icon": "photo_library",
                     "item_duplication_fields": null,
-                    "note": "Block: media card (title+description+media+href)",
+                    "note": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a, \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435, \u0444\u043e\u0442\u043e \u0438\u043b\u0438 \u0432\u0438\u0434\u0435\u043e \u0438 \u0441\u0441\u044b\u043b\u043a\u0430",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u0441 \u0444\u043e\u0442\u043e",
+                            "singular": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u0441 \u0444\u043e\u0442\u043e",
+                            "translation": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u0441 \u0444\u043e\u0442\u043e"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -131,12 +159,19 @@
                     "hidden": false,
                     "icon": "widgets",
                     "item_duplication_fields": null,
-                    "note": "Nav folder for the section/block construction collections \u2014 no real table",
+                    "note": "\u0421\u0435\u043a\u0446\u0438\u0438 \u0438 \u0431\u043b\u043e\u043a\u0438 \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0440\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0411\u043b\u043e\u043a\u0438",
+                            "singular": "\u0411\u043b\u043e\u043a\u0438",
+                            "translation": "\u0411\u043b\u043e\u043a\u0438"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 }
@@ -156,12 +191,19 @@
                     "hidden": false,
                     "icon": "event_available",
                     "item_duplication_fields": null,
-                    "note": "\u0417\u0430\u044f\u0432\u043a\u0438 \u0441 \u0444\u043e\u0440\u043c\u044b \u00ab\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f\u00bb (\u043e\u0431\u0449\u0430\u044f) \u2014 \u0441\u0430\u0439\u0442 \u043f\u0438\u0448\u0435\u0442 \u0441\u044e\u0434\u0430 \u043d\u0430\u043f\u0440\u044f\u043c\u0443\u044e, \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0439 \u0437\u0430\u043f\u0438\u0441\u0438 \u0432 Directus \u043d\u0435\u0442",
+                    "note": "\u0417\u0430\u044f\u0432\u043a\u0438 \u0441 \u0444\u043e\u0440\u043c\u044b \u0437\u0430\u043f\u0438\u0441\u0438 \u043d\u0430 \u0441\u0430\u0439\u0442\u0435",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u043f\u0440\u0438\u0451\u043c",
+                            "singular": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u043f\u0440\u0438\u0451\u043c",
+                            "translation": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u043f\u0440\u0438\u0451\u043c"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -184,12 +226,19 @@
                     "hidden": false,
                     "icon": "assignment",
                     "item_duplication_fields": null,
-                    "note": "Nav folder for booking_requests/sterilization_requests \u2014 no real table",
+                    "note": "\u0417\u0430\u044f\u0432\u043a\u0438 \u0441 \u0444\u043e\u0440\u043c \u0441\u0430\u0439\u0442\u0430",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0424\u043e\u0440\u043c\u044b",
+                            "singular": "\u0424\u043e\u0440\u043c\u044b",
+                            "translation": "\u0424\u043e\u0440\u043c\u044b"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 }
@@ -207,14 +256,21 @@
                     "display_template": null,
                     "group": null,
                     "hidden": false,
-                    "icon": null,
+                    "icon": "translate",
                     "item_duplication_fields": null,
-                    "note": null,
+                    "note": "\u042f\u0437\u044b\u043a\u0438 \u0441\u0430\u0439\u0442\u0430",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": "sort",
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u042f\u0437\u044b\u043a\u0438",
+                            "singular": "\u042f\u0437\u044b\u043a\u0438",
+                            "translation": "\u042f\u0437\u044b\u043a\u0438"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -265,12 +321,19 @@
                     "hidden": false,
                     "icon": "auto_stories",
                     "item_duplication_fields": null,
-                    "note": "Page-builder pilot: one row per site page/route",
+                    "note": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0441\u0430\u0439\u0442\u0430 \u2014 \u0441\u043e\u0441\u0442\u0430\u0432 \u0441\u0435\u043a\u0446\u0438\u0439, \u043f\u043e\u0440\u044f\u0434\u043e\u043a, SEO",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
+                            "singular": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b",
+                            "translation": "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -321,12 +384,19 @@
                     "hidden": true,
                     "icon": "view_module",
                     "item_duplication_fields": null,
-                    "note": "Section: generic block grid, composed freely from block primitives",
+                    "note": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a, \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0438 \u043b\u044e\u0431\u044b\u0435 \u0431\u043b\u043e\u043a\u0438 \u043d\u0430 \u0432\u044b\u0431\u043e\u0440 \u2014 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u0430\u044f \u0441\u0435\u043a\u0446\u0438\u044f \u0431\u0435\u0437 \u0436\u0451\u0441\u0442\u043a\u043e\u0439 \u0441\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u044b",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0413\u0438\u0431\u043a\u0430\u044f \u0441\u0435\u043a\u0446\u0438\u044f (\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0440)",
+                            "singular": "\u0413\u0438\u0431\u043a\u0430\u044f \u0441\u0435\u043a\u0446\u0438\u044f (\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0440)",
+                            "translation": "\u0413\u0438\u0431\u043a\u0430\u044f \u0441\u0435\u043a\u0446\u0438\u044f (\u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0442\u043e\u0440)"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -347,14 +417,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "extension",
                     "item_duplication_fields": null,
-                    "note": "junction: M2A slot, restricted to all 4 block primitives",
+                    "note": "\u041e\u0434\u0438\u043d \u0431\u043b\u043e\u043a \u0432\u043d\u0443\u0442\u0440\u0438 \u0433\u0438\u0431\u043a\u043e\u0439 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0411\u043b\u043e\u043a",
+                            "singular": "\u0411\u043b\u043e\u043a",
+                            "translation": "\u0411\u043b\u043e\u043a"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -405,12 +482,19 @@
                     "hidden": true,
                     "icon": "location_on",
                     "item_duplication_fields": null,
-                    "note": "Section: contacts (thin marker, content from settings)",
+                    "note": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u043a\u043b\u0438\u043d\u0438\u043a\u0438 \u2014 \u043a\u0430\u0440\u0442\u0430, \u0430\u0434\u0440\u0435\u0441, \u0442\u0435\u043b\u0435\u0444\u043e\u043d (\u0431\u0435\u0440\u0443\u0442\u0441\u044f \u0438\u0437 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043a)",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b",
+                            "singular": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b",
+                            "translation": "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -461,12 +545,19 @@
                     "hidden": true,
                     "icon": "auto_awesome",
                     "item_duplication_fields": null,
-                    "note": "Section: hero",
+                    "note": "\u041f\u0435\u0440\u0432\u044b\u0439 \u044d\u043a\u0440\u0430\u043d \u0441\u0430\u0439\u0442\u0430: \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a, \u0444\u043e\u0442\u043e, \u043f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u0430, \u043a\u043d\u043e\u043f\u043a\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u044d\u043a\u0440\u0430\u043d",
+                            "singular": "\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u044d\u043a\u0440\u0430\u043d",
+                            "translation": "\u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u044d\u043a\u0440\u0430\u043d"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -487,14 +578,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "verified",
                     "item_duplication_fields": null,
-                    "note": "junction: M2A slot restricted to block_icon_label",
+                    "note": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0438 \u0442\u0435\u043a\u0441\u0442 \u043f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u043d\u0430 \u0433\u043b\u0430\u0432\u043d\u043e\u043c \u044d\u043a\u0440\u0430\u043d\u0435",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u043e",
+                            "singular": "\u041f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u043e",
+                            "translation": "\u041f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u043e"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -515,14 +613,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "link",
                     "item_duplication_fields": null,
-                    "note": "junction: M2A slot restricted to block_link",
+                    "note": "\u041a\u043d\u043e\u043f\u043a\u0430-\u0441\u0441\u044b\u043b\u043a\u0430 \u0432 \u0432\u0435\u0440\u0445\u043d\u0435\u0439 \u043f\u0430\u043d\u0435\u043b\u0438 \u0433\u043b\u0430\u0432\u043d\u043e\u0433\u043e \u044d\u043a\u0440\u0430\u043d\u0430",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u0441\u044b\u043b\u043a\u0430 hero",
+                            "singular": "\u0421\u0441\u044b\u043b\u043a\u0430 hero",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430 hero"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -543,14 +648,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "dashboard",
                     "item_duplication_fields": null,
-                    "note": "junction: role-tagged M2A slot, allows block_media_card or block_list",
+                    "note": "\u041e\u0434\u0438\u043d \u0431\u043b\u043e\u043a \u043d\u0430 \u0433\u043b\u0430\u0432\u043d\u043e\u043c \u044d\u043a\u0440\u0430\u043d\u0435 (\u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a/\u0444\u043e\u0442\u043e/\u043f\u0440\u043e\u043c\u043e/\u0440\u0435\u0437\u0435\u0440\u0432/\u043c\u0435\u0434\u0438\u0430)",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041f\u043b\u0438\u0442\u043a\u0430 hero",
+                            "singular": "\u041f\u043b\u0438\u0442\u043a\u0430 hero",
+                            "translation": "\u041f\u043b\u0438\u0442\u043a\u0430 hero"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -601,12 +713,19 @@
                     "hidden": true,
                     "icon": "medical_services",
                     "item_duplication_fields": null,
-                    "note": "Section: services",
+                    "note": "\u0411\u043b\u043e\u043a \u0441 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0430\u043c\u0438 \u0443\u0441\u043b\u0443\u0433",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0423\u0441\u043b\u0443\u0433\u0438",
+                            "singular": "\u0423\u0441\u043b\u0443\u0433\u0438",
+                            "translation": "\u0423\u0441\u043b\u0443\u0433\u0438"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -627,14 +746,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "medical_services",
                     "item_duplication_fields": null,
-                    "note": "junction: M2A slot restricted to block_media_card, + cta_label extension",
+                    "note": "\u041e\u0434\u043d\u0430 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u0443\u0441\u043b\u0443\u0433\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0423\u0441\u043b\u0443\u0433\u0430",
+                            "singular": "\u0423\u0441\u043b\u0443\u0433\u0430",
+                            "translation": "\u0423\u0441\u043b\u0443\u0433\u0430"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -657,12 +783,19 @@
                     "hidden": true,
                     "icon": "price_check",
                     "item_duplication_fields": null,
-                    "note": "Section: services price list",
+                    "note": "\u0422\u0430\u0431\u043b\u0438\u0446\u0430 \u0446\u0435\u043d \u043b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0438\u0438 \u043f\u043e \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f\u043c",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442",
+                            "singular": "\u041f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442",
+                            "translation": "\u041f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -713,12 +846,19 @@
                     "hidden": true,
                     "icon": "local_offer",
                     "item_duplication_fields": null,
-                    "note": "Section: services promo banner",
+                    "note": "\u0411\u0430\u043d\u043d\u0435\u0440 \u0430\u043a\u0446\u0438\u0438 \u2014 \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044f \u043f\u043e \u0441\u043f\u0435\u0446\u0446\u0435\u043d\u0435",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0410\u043a\u0446\u0438\u044f",
+                            "singular": "\u0410\u043a\u0446\u0438\u044f",
+                            "translation": "\u0410\u043a\u0446\u0438\u044f"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -795,14 +935,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "healing",
                     "item_duplication_fields": null,
-                    "note": null,
+                    "note": "\u041e\u0434\u0438\u043d \u043f\u0440\u0438\u0437\u043d\u0430\u043a \u0432 \u0441\u043f\u0438\u0441\u043a\u0435 \u00ab\u043f\u043e\u0440\u0430 \u043a \u0432\u0435\u0442\u0435\u0440\u0438\u043d\u0430\u0440\u0443\u00bb",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c",
+                            "singular": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c",
+                            "translation": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -825,12 +972,19 @@
                     "hidden": true,
                     "icon": "sick",
                     "item_duplication_fields": null,
-                    "note": "Section: symptoms",
+                    "note": "\u0421\u043f\u0438\u0441\u043e\u043a \u043f\u0440\u0438\u0437\u043d\u0430\u043a\u043e\u0432 \u00ab\u043f\u043e\u0440\u0430 \u043a \u0432\u0435\u0442\u0435\u0440\u0438\u043d\u0430\u0440\u0443\u00bb",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c\u044b",
+                            "singular": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c\u044b",
+                            "translation": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c\u044b"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -881,12 +1035,19 @@
                     "hidden": true,
                     "icon": "volunteer_activism",
                     "item_duplication_fields": null,
-                    "note": "Section: we-help",
+                    "note": "\u041f\u0440\u0438\u044e\u0442, \u0434\u043e\u043d\u043e\u0440\u044b \u043a\u0440\u043e\u0432\u0438, \u0431\u043b\u0430\u0433\u043e\u0442\u0432\u043e\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c",
+                            "singular": "\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c",
+                            "translation": "\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -907,14 +1068,21 @@
                     "display_template": null,
                     "group": "blocks",
                     "hidden": true,
-                    "icon": null,
+                    "icon": "favorite",
                     "item_duplication_fields": null,
-                    "note": "junction: M2A slot restricted to block_media_card, + featured extension",
+                    "note": "\u041e\u0434\u0438\u043d \u043f\u0443\u043d\u043a\u0442 \u0432 \u0431\u043b\u043e\u043a\u0435 \u0431\u043b\u0430\u0433\u043e\u0442\u0432\u043e\u0440\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u00ab\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c\u00bb",
+                            "singular": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u00ab\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c\u00bb",
+                            "translation": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u00ab\u041c\u044b \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u043c\u00bb"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -965,12 +1133,19 @@
                     "hidden": true,
                     "icon": "category",
                     "item_duplication_fields": null,
-                    "note": null,
+                    "note": "\u0420\u0430\u0437\u0434\u0435\u043b \u043f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442\u0430, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440 \u00ab\u0410\u043d\u0430\u043b\u0438\u0437 \u043a\u0440\u043e\u0432\u0438\u00bb",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430",
+                            "singular": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430",
+                            "translation": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -993,12 +1168,19 @@
                     "hidden": true,
                     "icon": "science",
                     "item_duplication_fields": null,
-                    "note": null,
+                    "note": "\u041e\u0434\u043d\u0430 \u0441\u0442\u0440\u043e\u043a\u0430 \u043f\u0440\u0430\u0439\u0441-\u043b\u0438\u0441\u0442\u0430 \u2014 \u0443\u0441\u043b\u0443\u0433\u0430 \u0438 \u0446\u0435\u043d\u0430",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041f\u043e\u0437\u0438\u0446\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430",
+                            "singular": "\u041f\u043e\u0437\u0438\u0446\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430",
+                            "translation": "\u041f\u043e\u0437\u0438\u0446\u0438\u044f \u043f\u0440\u0430\u0439\u0441\u0430"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -1026,7 +1208,14 @@
                     "singleton": true,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438",
+                            "singular": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438",
+                            "translation": "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -1077,12 +1266,19 @@
                     "hidden": false,
                     "icon": "share",
                     "item_duplication_fields": null,
-                    "note": "\u041f\u043b\u0430\u0432\u0430\u044e\u0449\u0430\u044f \u043a\u043d\u043e\u043f\u043a\u0430 \u0441\u043e\u0446\u0441\u0435\u0442\u0435\u0439/\u043c\u0435\u0441\u0441\u0435\u043d\u0434\u0436\u0435\u0440\u043e\u0432 (\u043f\u0440\u0430\u0432\u044b\u0439 \u043d\u0438\u0436\u043d\u0438\u0439 \u0443\u0433\u043e\u043b \u0441\u0430\u0439\u0442\u0430) \u2014 \u043f\u043e \u043e\u0434\u043d\u043e\u0439 \u0441\u0442\u0440\u043e\u043a\u0435 \u043d\u0430 \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0443",
+                    "note": "\u0421\u0441\u044b\u043b\u043a\u0438 \u043d\u0430 \u0441\u043e\u0446\u0441\u0435\u0442\u0438 \u043a\u043b\u0438\u043d\u0438\u043a\u0438",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": "sort",
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0421\u043e\u0446\u0441\u0435\u0442\u0438",
+                            "singular": "\u0421\u043e\u0446\u0441\u0435\u0442\u0438",
+                            "translation": "\u0421\u043e\u0446\u0441\u0435\u0442\u0438"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -1105,12 +1301,19 @@
                     "hidden": false,
                     "icon": "event_available",
                     "item_duplication_fields": null,
-                    "note": "\u0417\u0430\u044f\u0432\u043a\u0438 \u0441 \u0444\u043e\u0440\u043c\u044b \u00ab\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044e/\u043a\u0430\u0441\u0442\u0440\u0430\u0446\u0438\u044e\u00bb",
+                    "note": "\u0417\u0430\u044f\u0432\u043a\u0438 \u0441 \u0444\u043e\u0440\u043c\u044b \u0437\u0430\u043f\u0438\u0441\u0438 \u043d\u0430 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044e/\u043a\u0430\u0441\u0442\u0440\u0430\u0446\u0438\u044e",
                     "preview_url": null,
                     "singleton": false,
                     "sort": null,
                     "sort_field": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "plural": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044e",
+                            "singular": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044e",
+                            "translation": "\u0417\u0430\u044f\u0432\u043a\u0438 \u043d\u0430 \u0441\u0442\u0435\u0440\u0438\u043b\u0438\u0437\u0430\u0446\u0438\u044e"
+                        }
+                    ],
                     "unarchive_value": null,
                     "versioning": false
                 },
@@ -1177,14 +1380,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "Editor slug",
+                    "note": "\u0421\u043b\u0430\u0433 \u0434\u043b\u044f \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1228,7 +1436,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1272,7 +1485,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043a\u0441\u0442"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1353,14 +1571,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "Editor slug",
+                    "note": "\u0421\u043b\u0430\u0433 \u0434\u043b\u044f \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1404,7 +1627,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043a\u0441\u0442"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1448,7 +1676,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1617,14 +1850,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "Editor slug",
+                    "note": "\u0421\u043b\u0430\u0433 \u0434\u043b\u044f \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1668,7 +1906,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1716,7 +1959,12 @@
                     "special": [
                         "o2m"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1779,14 +2027,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "Editor slug",
+                    "note": "\u0421\u043b\u0430\u0433 \u0434\u043b\u044f \u0440\u0435\u0434\u0430\u043a\u0442\u043e\u0440\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1830,7 +2083,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1874,7 +2132,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1920,7 +2183,12 @@
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041c\u0435\u0434\u0438\u0430 (\u0444\u043e\u0442\u043e/\u0432\u0438\u0434\u0435\u043e)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -1964,7 +2232,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -2096,15 +2369,15 @@
                         "choices": [
                             {
                                 "text": "\u041f\u0440\u0438\u0451\u043c \u0432\u0440\u0430\u0447\u0430",
-                                "value": "\u041f\u0440\u0438\u0451\u043c \u0432\u0440\u0430\u0447\u0430"
+                                "value": "vet_visit"
                             },
                             {
                                 "text": "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0438\u044f",
-                                "value": "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u0438\u044f"
+                                "value": "lab"
                             },
                             {
                                 "text": "\u0423\u0417\u0418",
-                                "value": "\u0423\u0417\u0418"
+                                "value": "usg"
                             }
                         ]
                     },
@@ -2113,7 +2386,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0423\u0441\u043b\u0443\u0433\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -2174,7 +2452,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0412\u0438\u0434 \u0436\u0438\u0432\u043e\u0442\u043d\u043e\u0433\u043e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -2220,7 +2503,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0415\u0441\u043b\u0438 \u0432\u044b\u0431\u0440\u0430\u043b\u0438 \u00ab\u0414\u0440\u0443\u0433\u043e\u0435\u00bb"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -2266,7 +2554,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043c\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -2312,7 +2605,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -2356,7 +2654,12 @@
                     "searchable": true,
                     "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0416\u0435\u043b\u0430\u0435\u043c\u0430\u044f \u0434\u0430\u0442\u0430 \u0438 \u0432\u0440\u0435\u043c\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -2402,7 +2705,12 @@
                     "searchable": true,
                     "sort": 8,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0432\u043e\u0434 \u043e\u0431\u0440\u0430\u0449\u0435\u043d\u0438\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -2446,7 +2754,12 @@
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043e\u0434"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -2490,7 +2803,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -2557,7 +2875,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u043f\u0438\u0441\u044c\u043c\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3013,14 +3336,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "Route/page identifier, e.g. home",
+                    "note": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0434\u043b\u044f URL, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440 home",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -3066,11 +3394,16 @@
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 10,
+                    "sort": 20,
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0435\u043a\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3094,7 +3427,7 @@
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 20,
+                    "sort": 10,
                     "special": [
                         "alias",
                         "no-data",
@@ -3207,7 +3540,12 @@
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0442\u0430\u0442\u0443\u0441"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -3251,7 +3589,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u0432 \u043c\u0435\u043d\u044e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -3295,7 +3638,12 @@
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u043f\u0440\u0435\u0442 \u0438\u043d\u0434\u0435\u043a\u0441\u0430\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3333,11 +3681,13 @@
                     "hidden": false,
                     "interface": "translations",
                     "note": null,
-                    "options": null,
+                    "options": {
+                        "languageField": "code"
+                    },
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 10,
+                    "sort": 11,
                     "special": [
                         "translations"
                     ],
@@ -3431,8 +3781,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "pages",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -3475,8 +3825,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -3492,14 +3842,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0438\u043a\u043e\u0432 \u0438 \u0432\u043a\u043b\u0430\u0434\u043a\u0438 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a (SEO)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3536,14 +3891,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input-multiline",
-                    "note": null,
+                    "note": "\u041a\u0440\u0430\u0442\u043a\u043e\u0435 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u043e\u0432\u0438\u043a\u043e\u0432 \u0438 \u0441\u043e\u0446\u0441\u0435\u0442\u0435\u0439",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 (SEO)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3580,7 +3940,7 @@
                     "group": null,
                     "hidden": false,
                     "interface": "file-image",
-                    "note": null,
+                    "note": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043f\u0440\u0438 \u0440\u0430\u0441\u0448\u0430\u0440\u0438\u0432\u0430\u043d\u0438\u0438 \u0441\u0441\u044b\u043b\u043a\u0438 \u0432 \u0441\u043e\u0446\u0441\u0435\u0442\u044f\u0445/\u043c\u0435\u0441\u0441\u0435\u043d\u0434\u0436\u0435\u0440\u0430\u0445",
                     "options": null,
                     "readonly": false,
                     "required": false,
@@ -3589,7 +3949,12 @@
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u0430\u0440\u0442\u0438\u043d\u043a\u0430 \u0434\u043b\u044f \u0441\u043e\u0446\u0441\u0435\u0442\u0435\u0439 (Open Graph)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3677,7 +4042,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -3723,7 +4093,12 @@
                     "special": [
                         "translations"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0435\u0440\u0435\u0432\u043e\u0434\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4033,8 +4408,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_blocks",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -4077,8 +4452,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -4101,7 +4476,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4145,7 +4525,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4193,7 +4578,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0411\u043b\u043e\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4256,14 +4646,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4399,8 +4794,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_contacts",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -4443,8 +4838,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -4467,7 +4862,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4511,7 +4911,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -4592,14 +4997,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5192,7 +5602,7 @@
                     "group": null,
                     "hidden": false,
                     "interface": "select-dropdown",
-                    "note": null,
+                    "note": "\u041f\u043e\u0437\u0438\u0446\u0438\u044f \u043f\u043b\u0438\u0442\u043a\u0438 \u0432 \u0441\u0435\u0442\u043a\u0435 \u0433\u043b\u0430\u0432\u043d\u043e\u0433\u043e \u044d\u043a\u0440\u0430\u043d\u0430",
                     "options": {
                         "choices": [
                             {
@@ -5222,7 +5632,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0420\u043e\u043b\u044c"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5462,8 +5877,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_hero",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -5506,8 +5921,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -5530,7 +5945,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5574,7 +5994,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5613,7 +6038,7 @@
                     "group": null,
                     "hidden": false,
                     "interface": "list-m2a",
-                    "note": null,
+                    "note": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0438 \u0433\u043b\u0430\u0432\u043d\u043e\u0433\u043e \u044d\u043a\u0440\u0430\u043d\u0430",
                     "options": {
                         "enableSelect": true
                     },
@@ -5624,7 +6049,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043b\u0438\u0442\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5656,7 +6086,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0440\u0435\u0438\u043c\u0443\u0449\u0435\u0441\u0442\u0432\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5688,7 +6123,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -5751,14 +6191,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6043,14 +6488,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": "slot-level extension",
+                    "note": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c \u043a\u043d\u043e\u043f\u043a\u0438 \u0437\u0430\u043f\u0438\u0441\u0438 \u043d\u0430 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0435 \u0443\u0441\u043b\u0443\u0433\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043a\u0441\u0442 \u043a\u043d\u043e\u043f\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6138,7 +6588,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6184,7 +6639,12 @@
                     "special": [
                         "translations"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0435\u0440\u0435\u0432\u043e\u0434\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6274,8 +6734,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_services_pricelist",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -6318,8 +6778,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -6342,7 +6802,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6386,7 +6851,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0440\u0438\u043c\u0435\u0447\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6434,7 +6904,12 @@
                     "special": [
                         "o2m"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6504,7 +6979,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6548,7 +7028,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u0430\u043a\u0446\u0438\u044e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6592,7 +7077,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0426\u0435\u043d\u0430 \u043f\u043e \u0430\u043a\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6636,7 +7126,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0426\u0435\u043d\u0430 \u0431\u0435\u0437 \u0430\u043a\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6680,7 +7175,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0410\u043a\u0446\u0438\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442 \u0434\u043e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6726,7 +7226,12 @@
                     "special": [
                         "translations"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0435\u0440\u0435\u0432\u043e\u0434\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6816,8 +7321,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_services_promo",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -6860,8 +7365,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -6884,7 +7389,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -6928,7 +7438,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7036,8 +7551,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_services",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -7080,8 +7595,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -7104,7 +7619,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7148,7 +7668,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7198,7 +7723,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0423\u0441\u043b\u0443\u0433\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7356,7 +7886,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043a\u0441\u0442 \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7415,7 +7950,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0412\u0438\u0434 \u0436\u0438\u0432\u043e\u0442\u043d\u043e\u0433\u043e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7496,14 +8036,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7547,7 +8092,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0410\u0432\u0442\u043e\u043f\u0440\u043e\u043a\u0440\u0443\u0442\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7584,14 +8134,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u043c\u0441",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u043a\u043e\u0440\u043e\u0441\u0442\u044c \u0430\u043d\u0438\u043c\u0430\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7628,14 +8183,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u043c\u0441",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043d\u0442\u0435\u0440\u0432\u0430\u043b \u0430\u0432\u0442\u043e\u043f\u0440\u043e\u043a\u0440\u0443\u0442\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7679,7 +8239,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430 \u00ab\u043a\u043e\u0448\u043a\u0438\u00bb"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7723,7 +8288,12 @@
                     "searchable": true,
                     "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430 \u00ab\u0441\u043e\u0431\u0430\u043a\u0438\u00bb"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7859,8 +8429,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_symptoms",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -7903,8 +8473,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -7927,7 +8497,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -7971,7 +8546,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8015,7 +8595,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0434\u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8059,7 +8644,12 @@
                     "searchable": true,
                     "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c \u00ab\u043a\u043e\u0448\u043a\u0438\u00bb"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8103,7 +8693,12 @@
                     "searchable": true,
                     "sort": 8,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c \u00ab\u0441\u043e\u0431\u0430\u043a\u0438\u00bb"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8151,7 +8746,12 @@
                     "special": [
                         "o2m"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0438\u043c\u043f\u0442\u043e\u043c\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8214,14 +8814,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u0441\u0435\u043a\u0446\u0438\u0438",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043b\u044e\u0447"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8265,7 +8870,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0410\u0432\u0442\u043e\u043f\u0440\u043e\u043a\u0440\u0443\u0442\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8302,14 +8912,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u043c\u0441",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u043a\u043e\u0440\u043e\u0441\u0442\u044c \u0430\u043d\u0438\u043c\u0430\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8346,14 +8961,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u043c\u0441",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043d\u0442\u0435\u0440\u0432\u0430\u043b \u0430\u0432\u0442\u043e\u043f\u0440\u043e\u043a\u0440\u0443\u0442\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8638,14 +9258,19 @@
                     "group": null,
                     "hidden": false,
                     "interface": "boolean",
-                    "note": "slot-level extension",
+                    "note": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u0443\u0432\u0435\u043b\u0438\u0447\u0435\u043d\u043d\u043e\u0439 \u0432 \u0441\u0435\u0442\u043a\u0435",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u0440\u0443\u043f\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8753,8 +9378,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "section_we_help",
-                    "foreign_key_column": "id"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -8797,8 +9422,8 @@
                     "is_generated": false,
                     "generation_expression": null,
                     "has_auto_increment": false,
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code"
+                    "foreign_key_table": null,
+                    "foreign_key_column": null
                 }
             },
             {
@@ -8821,7 +9446,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8865,7 +9495,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -8915,7 +9550,12 @@
                     "special": [
                         "m2a"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9029,7 +9669,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9121,7 +9766,12 @@
                     "special": [
                         "o2m"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0437\u0438\u0446\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9235,7 +9885,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0443\u0441\u043b\u0443\u0433\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9279,7 +9934,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0426\u0435\u043d\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9404,14 +10064,19 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043a\u043b\u0438\u043d\u0438\u043a\u0438, \u043a\u0430\u043a \u043e\u043d\u043e \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043d\u0430 \u0441\u0430\u0439\u0442\u0435",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0441\u0430\u0439\u0442\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9448,14 +10113,19 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u041e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 \u0442\u0435\u043b\u0435\u0444\u043e\u043d \u2014 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442\u0441\u044f \u0432 \u0448\u0430\u043f\u043a\u0435, \u0444\u0443\u0442\u0435\u0440\u0435, \u043a\u043d\u043e\u043f\u043a\u0430\u0445 \u0437\u0432\u043e\u043d\u043a\u0430",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9492,14 +10162,19 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u041d\u043e\u043c\u0435\u0440\u0430 \u0432\u044b\u0445\u043e\u0434\u043d\u044b\u0445 \u0434\u043d\u0435\u0439 \u043d\u0435\u0434\u0435\u043b\u0438 \u0447\u0435\u0440\u0435\u0437 \u0437\u0430\u043f\u044f\u0442\u0443\u044e (0=\u0432\u0441...6=\u0441\u0431)",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 5,
+                    "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0412\u044b\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u043d\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9536,14 +10211,19 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0427\u0438\u0441\u043b\u043e\u0432\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0440\u0435\u0439\u0442\u0438\u043d\u0433\u0430, \u043d\u0430\u043f\u0440\u0438\u043c\u0435\u0440 4.9",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 6,
+                    "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0420\u0435\u0439\u0442\u0438\u043d\u0433 (\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9580,14 +10260,19 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "input",
-                    "note": null,
+                    "note": "\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u0442\u0437\u044b\u0432\u044b (2\u0413\u0418\u0421/Google)",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 7,
+                    "sort": 8,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430 \u043d\u0430 \u043e\u0442\u0437\u044b\u0432\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9629,11 +10314,16 @@
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 4,
+                    "sort": 5,
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0424\u043e\u0442\u043e \u043a\u043b\u0438\u043d\u0438\u043a\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9675,11 +10365,16 @@
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 2,
+                    "sort": 3,
                     "special": [
                         "translations"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u0435\u0440\u0435\u0432\u043e\u0434\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9698,7 +10393,7 @@
                     "group": "tab_general",
                     "hidden": false,
                     "interface": "file-image",
-                    "note": null,
+                    "note": "\u041b\u043e\u0433\u043e\u0442\u0438\u043f \u043a\u043b\u0438\u043d\u0438\u043a\u0438 (SVG \u0438\u043b\u0438 PNG)",
                     "options": {},
                     "readonly": false,
                     "required": false,
@@ -9707,7 +10402,12 @@
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041b\u043e\u0433\u043e\u0442\u0438\u043f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9751,7 +10451,12 @@
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043f\u043b\u0430\u0448\u043a\u0443 \u0433\u043e\u0440\u044f\u0447\u0435\u0439 \u043b\u0438\u043d\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9788,14 +10493,19 @@
                     "group": "tab_map",
                     "hidden": false,
                     "interface": "input",
-                    "note": "Mapbox public access token (pk.***)",
+                    "note": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0442\u043e\u043a\u0435\u043d Mapbox (\u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0441\u044f \u0441 pk.)",
                     "options": null,
                     "readonly": false,
                     "required": false,
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "Mapbox-\u0442\u043e\u043a\u0435\u043d"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9839,7 +10549,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0442\u0438\u043b\u044c \u043a\u0430\u0440\u0442\u044b (Mapbox)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -9883,7 +10598,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041c\u0430\u0441\u0448\u0442\u0430\u0431 \u043a\u0430\u0440\u0442\u044b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9927,7 +10647,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0420\u0435\u0436\u0438\u043c \u0442\u0435\u0445\u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -9982,7 +10707,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u043e\u0447\u043a\u0430 \u043d\u0430 \u043a\u0430\u0440\u0442\u0435"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10024,7 +10754,7 @@
                     "readonly": false,
                     "required": false,
                     "searchable": true,
-                    "sort": 3,
+                    "sort": 2,
                     "special": [
                         "alias",
                         "no-data",
@@ -10163,7 +10893,12 @@
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430 \u0441\u0430\u0439\u0442\u0430 (favicon)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -10185,50 +10920,6 @@
                     "has_auto_increment": false,
                     "foreign_key_table": "directus_files",
                     "foreign_key_column": "id"
-                }
-            },
-            {
-                "collection": "settings",
-                "field": "test",
-                "type": "dateTime",
-                "meta": {
-                    "collection": "settings",
-                    "conditions": null,
-                    "display": null,
-                    "display_options": null,
-                    "field": "test",
-                    "group": null,
-                    "hidden": false,
-                    "interface": "datetime",
-                    "note": null,
-                    "options": {},
-                    "readonly": false,
-                    "required": false,
-                    "searchable": true,
-                    "sort": 8,
-                    "special": null,
-                    "translations": null,
-                    "validation": null,
-                    "validation_message": null,
-                    "width": "full"
-                },
-                "schema": {
-                    "name": "test",
-                    "table": "settings",
-                    "data_type": "timestamp without time zone",
-                    "default_value": null,
-                    "max_length": null,
-                    "numeric_precision": null,
-                    "numeric_scale": null,
-                    "is_nullable": true,
-                    "is_unique": false,
-                    "is_indexed": false,
-                    "is_primary_key": false,
-                    "is_generated": false,
-                    "generation_expression": null,
-                    "has_auto_increment": false,
-                    "foreign_key_table": null,
-                    "foreign_key_column": null
                 }
             },
             {
@@ -10383,7 +11074,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0410\u0434\u0440\u0435\u0441"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10427,7 +11123,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0427\u0430\u0441\u044b \u0440\u0430\u0431\u043e\u0442\u044b (\u0431\u0443\u0434\u043d\u0438)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10471,7 +11172,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0427\u0430\u0441\u044b \u0440\u0430\u0431\u043e\u0442\u044b (\u0441\u0443\u0431\u0431\u043e\u0442\u0430)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10515,7 +11221,12 @@
                     "searchable": true,
                     "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c \u0440\u0435\u0439\u0442\u0438\u043d\u0433\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10559,7 +11270,12 @@
                     "searchable": true,
                     "sort": 8,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043a\u0441\u0442 \u043f\u043b\u0430\u0448\u043a\u0438 \u0433\u043e\u0440\u044f\u0447\u0435\u0439 \u043b\u0438\u043d\u0438\u0438"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10691,7 +11407,12 @@
                     "searchable": true,
                     "sort": 1,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u0434\u043f\u0438\u0441\u044c"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -10735,7 +11456,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0441\u044b\u043b\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -10779,7 +11505,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -10823,7 +11554,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0426\u0432\u0435\u0442"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -10869,7 +11605,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043a\u043e\u043d\u043a\u0430"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -10915,7 +11656,12 @@
                     "special": [
                         "file"
                     ],
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0421\u0432\u043e\u044f \u0438\u043a\u043e\u043d\u043a\u0430 (\u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430)"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -11062,7 +11808,12 @@
                     "searchable": true,
                     "sort": 2,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0412\u0438\u0434 \u0436\u0438\u0432\u043e\u0442\u043d\u043e\u0433\u043e"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -11117,7 +11868,12 @@
                     "searchable": true,
                     "sort": 3,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041f\u043e\u043b"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -11163,7 +11919,12 @@
                     "searchable": true,
                     "sort": 4,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0418\u043c\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -11209,7 +11970,12 @@
                     "searchable": true,
                     "sort": 5,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -11253,7 +12019,12 @@
                     "searchable": true,
                     "sort": 6,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u0416\u0435\u043b\u0430\u0435\u043c\u0430\u044f \u0434\u0430\u0442\u0430 \u0438 \u0432\u0440\u0435\u043c\u044f"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "half"
@@ -11299,7 +12070,12 @@
                     "searchable": true,
                     "sort": 7,
                     "special": null,
-                    "translations": null,
+                    "translations": [
+                        {
+                            "language": "ru-RU",
+                            "translation": "\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439"
+                        }
+                    ],
                     "validation": null,
                     "validation_message": null,
                     "width": "full"
@@ -11427,7 +12203,10 @@
                         "section_services",
                         "section_symptoms",
                         "section_we_help",
-                        "section_contacts"
+                        "section_contacts",
+                        "section_blocks",
+                        "section_services_promo",
+                        "section_services_pricelist"
                     ],
                     "one_collection": null,
                     "one_collection_field": "collection",
@@ -11441,7 +12220,7 @@
                 "field": "page_id",
                 "related_collection": "pages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "pages_translations",
                     "many_field": "page_id",
                     "one_allowed_collections": null,
@@ -11450,15 +12229,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "pages_translations",
-                    "column": "page_id",
-                    "foreign_key_table": "pages",
-                    "foreign_key_column": "id",
-                    "constraint_name": "pages_translations_page_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11466,7 +12236,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "page_id",
                     "many_collection": "pages_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11475,15 +12245,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "pages_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "pages_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11562,7 +12323,7 @@
                 "field": "section_blocks_id",
                 "related_collection": "section_blocks",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_blocks_translations",
                     "many_field": "section_blocks_id",
                     "one_allowed_collections": null,
@@ -11571,15 +12332,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_blocks_translations",
-                    "column": "section_blocks_id",
-                    "foreign_key_table": "section_blocks",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_blocks_translations_section_blocks_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11587,7 +12339,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_blocks_id",
                     "many_collection": "section_blocks_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11596,15 +12348,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_blocks_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_blocks_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11612,7 +12355,7 @@
                 "field": "section_contacts_id",
                 "related_collection": "section_contacts",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_contacts_translations",
                     "many_field": "section_contacts_id",
                     "one_allowed_collections": null,
@@ -11621,15 +12364,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_contacts_translations",
-                    "column": "section_contacts_id",
-                    "foreign_key_table": "section_contacts",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_contacts_translations_section_contacts_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11637,7 +12371,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_contacts_id",
                     "many_collection": "section_contacts_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11646,15 +12380,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_contacts_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_contacts_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11765,7 +12490,7 @@
                 "field": "section_hero_id",
                 "related_collection": "section_hero",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_hero_translations",
                     "many_field": "section_hero_id",
                     "one_allowed_collections": null,
@@ -11774,15 +12499,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_hero_translations",
-                    "column": "section_hero_id",
-                    "foreign_key_table": "section_hero",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_hero_translations_section_hero_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11790,7 +12506,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_hero_id",
                     "many_collection": "section_hero_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11799,15 +12515,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_hero_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_hero_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11849,7 +12556,7 @@
                 "field": "section_services_pricelist_id",
                 "related_collection": "section_services_pricelist",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_services_pricelist_translations",
                     "many_field": "section_services_pricelist_id",
                     "one_allowed_collections": null,
@@ -11858,15 +12565,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_pricelist_translations",
-                    "column": "section_services_pricelist_id",
-                    "foreign_key_table": "section_services_pricelist",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_services_pricelist_translations_se__521ce16f_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11874,7 +12572,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_services_pricelist_id",
                     "many_collection": "section_services_pricelist_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11883,15 +12581,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_pricelist_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_services_pricelist_translations_la__50d60b3c_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11899,7 +12588,7 @@
                 "field": "section_services_promo_id",
                 "related_collection": "section_services_promo",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_services_promo_translations",
                     "many_field": "section_services_promo_id",
                     "one_allowed_collections": null,
@@ -11908,15 +12597,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_promo_translations",
-                    "column": "section_services_promo_id",
-                    "foreign_key_table": "section_services_promo",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_services_promo_translations_sectio__5586cebf_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11924,7 +12604,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_services_promo_id",
                     "many_collection": "section_services_promo_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11933,15 +12613,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_promo_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_services_promo_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11949,7 +12620,7 @@
                 "field": "section_services_id",
                 "related_collection": "section_services",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_services_translations",
                     "many_field": "section_services_id",
                     "one_allowed_collections": null,
@@ -11958,15 +12629,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_translations",
-                    "column": "section_services_id",
-                    "foreign_key_table": "section_services",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_services_translations_section_services_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -11974,7 +12636,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_services_id",
                     "many_collection": "section_services_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -11983,15 +12645,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_services_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_services_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -12024,7 +12677,7 @@
                 "field": "section_symptoms_id",
                 "related_collection": "section_symptoms",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_symptoms_translations",
                     "many_field": "section_symptoms_id",
                     "one_allowed_collections": null,
@@ -12033,15 +12686,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_symptoms_translations",
-                    "column": "section_symptoms_id",
-                    "foreign_key_table": "section_symptoms",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_symptoms_translations_section_symptoms_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -12049,7 +12693,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_symptoms_id",
                     "many_collection": "section_symptoms_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -12058,15 +12702,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_symptoms_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_symptoms_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -12108,7 +12743,7 @@
                 "field": "section_we_help_id",
                 "related_collection": "section_we_help",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "languages_code",
                     "many_collection": "section_we_help_translations",
                     "many_field": "section_we_help_id",
                     "one_allowed_collections": null,
@@ -12117,15 +12752,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": "translations",
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_we_help_translations",
-                    "column": "section_we_help_id",
-                    "foreign_key_table": "section_we_help",
-                    "foreign_key_column": "id",
-                    "constraint_name": "section_we_help_translations_section_we_help_id_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {
@@ -12133,7 +12759,7 @@
                 "field": "languages_code",
                 "related_collection": "languages",
                 "meta": {
-                    "junction_field": null,
+                    "junction_field": "section_we_help_id",
                     "many_collection": "section_we_help_translations",
                     "many_field": "languages_code",
                     "one_allowed_collections": null,
@@ -12142,15 +12768,6 @@
                     "one_deselect_action": "nullify",
                     "one_field": null,
                     "sort_field": null
-                },
-                "schema": {
-                    "table": "section_we_help_translations",
-                    "column": "languages_code",
-                    "foreign_key_table": "languages",
-                    "foreign_key_column": "code",
-                    "constraint_name": "section_we_help_translations_languages_code_foreign",
-                    "on_update": "NO ACTION",
-                    "on_delete": "NO ACTION"
                 }
             },
             {

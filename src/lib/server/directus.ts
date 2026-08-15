@@ -305,7 +305,7 @@ export async function getSettings(locale: string): Promise<Settings> {
 			fields: [
 				'*',
 				{
-					logo: ['id', 'description'],
+					logo: ['id', 'description', 'type'],
 					clinic_photo: ['id', 'description'],
 					favicon: ['id', 'description']
 				},
@@ -321,6 +321,7 @@ export async function getSettings(locale: string): Promise<Settings> {
 		phone: row.phone,
 		logoId: row.logo?.id || undefined,
 		logoAlt: row.logo?.description || undefined,
+		logoIsSvg: row.logo?.type === 'image/svg+xml',
 		faviconId: row.favicon?.id || undefined,
 		address: t?.address || undefined,
 		hoursWeekday: t?.hours_weekday || undefined,

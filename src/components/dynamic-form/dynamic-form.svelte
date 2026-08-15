@@ -82,8 +82,8 @@
 </script>
 
 <div data-slot="dynamic-form" class={className}>
-	<div class="flex items-center justify-between">
-		<h2 class="font-heading text-[26px] text-white">{title}</h2>
+	<div class="flex items-start justify-between">
+		<h2 class="mb-5 font-heading text-[26px] text-white">{title}</h2>
 		{#if onClose}
 			<button
 				type="button"

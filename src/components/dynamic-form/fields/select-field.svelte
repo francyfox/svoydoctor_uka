@@ -17,10 +17,12 @@
 <div class="flex flex-col gap-2">
 	<ULabel class="text-[15px] font-normal text-white">{schema.label}</ULabel>
 	<Select.Root type="single" bind:value>
-		<Select.Trigger class="h-[52px] w-full bg-background px-4 text-[15px] text-foreground">
+		<Select.Trigger
+			class="h-[52px] w-full border border-white/15 bg-white/5 px-4 text-[15px] text-white data-placeholder:text-white/40 [&>svg]:text-white/60"
+		>
 			{selectedLabel ?? schema.placeholder ?? 'Выберите...'}
 		</Select.Trigger>
-		<Select.Content>
+		<Select.Content class="bg-[color:var(--color-brand-ink)] text-white ring-white/10">
 			{#each schema.choices ?? [] as choice (choice.value)}
 				<Select.Item value={choice.value} label={choice.text}>{choice.text}</Select.Item>
 			{/each}

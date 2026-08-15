@@ -62,6 +62,7 @@
 				address={settingsQuery.data.address}
 				logoId={settingsQuery.data.logoId}
 				logoAlt={settingsQuery.data.logoAlt}
+				logoIsSvg={settingsQuery.data.logoIsSvg}
 			/>
 		{:else}
 			<div class="flex min-h-dvh flex-col">
@@ -74,6 +75,7 @@
 						phone={settingsQuery.data.phone}
 						logoId={settingsQuery.data.logoId}
 						logoAlt={settingsQuery.data.logoAlt}
+						logoIsSvg={settingsQuery.data.logoIsSvg}
 						directusAttr={settingsQuery.data.directusId
 							? setAttr({
 									collection: 'settings',
@@ -94,6 +96,7 @@
 							siteName={settingsQuery.data.siteName}
 							logoId={settingsQuery.data.logoId}
 							logoAlt={settingsQuery.data.logoAlt}
+							logoIsSvg={settingsQuery.data.logoIsSvg}
 					/>
 				{/if}
 			</div>

@@ -8,13 +8,15 @@
 		phone,
 		address,
 		logoId,
-		logoAlt
+		logoAlt,
+		logoIsSvg = false
 	}: {
 		siteName: string;
 		phone: string;
 		address?: string;
 		logoId?: string;
 		logoAlt?: string;
+		logoIsSvg?: boolean;
 	} = $props();
 </script>
 
@@ -23,7 +25,7 @@
 	class="bg-secondary flex min-h-dvh flex-col items-center justify-center gap-6 px-4 py-10 text-center"
 >
 	<span class="bg-primary relative size-16 shrink-0 overflow-hidden rounded-full">
-		<Image id={logoId} alt={logoAlt ?? ''} width={64} height={64} priority />
+		<Image id={logoId} alt={logoAlt ?? ''} width={64} height={64} priority svg={logoIsSvg} />
 	</span>
 
 	<div class="flex flex-col gap-2">

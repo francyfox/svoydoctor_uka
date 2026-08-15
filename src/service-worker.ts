@@ -28,7 +28,16 @@ self.addEventListener('activate', (event) => {
 // Cache-first for the app shell/static assets, network-first (falling back to cache) for
 // everything else — but /api/* is always network-only: it carries live operational data
 // (maintenance mode, hotline banner, page SEO) that must never be served stale from cache.
+//
+// In dev, skip interception entirely. Vite's own module URLs (/src/*, /node_modules/.vite/deps/*,
+// /@vite/client, ...) aren't in the precached ASSETS list, so they'd fall into the network-first
+// branch below and get cached — but those URLs are volatile in dev (their content changes across
+// every dev-server restart/re-optimization), so a stale cached response gets served back on the
+// next load instead of the fresh module, breaking HMR/imports with confusing "unrecognized MIME
+// type"/"error loading dynamically imported module" errors that look like a Vite bug but aren't.
 self.addEventListener('fetch', (event) => {
+	if (import.meta.env.DEV) return;
+
 	const { request } = event;
 	if (request.method !== 'GET') return;
 

@@ -10,11 +10,13 @@
 		siteName,
 		logoId,
 		logoAlt,
+		logoIsSvg = false,
 		class: className
 	}: {
 		siteName: string;
 		logoId?: string;
 		logoAlt?: string;
+		logoIsSvg?: boolean;
 		class?: string;
 	} = $props();
 
@@ -31,7 +33,14 @@
 			class="hover-zoom flex shrink-0 items-center gap-3"
 		>
 			<span class="flex justify-center items-center bg-primary relative size-11 shrink-0 overflow-hidden rounded-full">
-				<Image id={logoId} alt={logoAlt ?? ''} width={32} height={32} class="size-[32px] inset-auto" />
+				<Image
+				id={logoId}
+				alt={logoAlt ?? ''}
+				width={32}
+				height={32}
+				svg={logoIsSvg}
+				class="!size-[32px] inset-auto"
+			/>
 			</span>
 			<span class="font-heading text-xl whitespace-nowrap">{siteName}</span>
 		</a>

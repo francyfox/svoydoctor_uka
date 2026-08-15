@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Image as UnpicImage, Source } from '@unpic/svelte';
-	import { PUBLIC_DIRECTUS_URL } from '$env/static/public';
 	import { cn } from '$lib/utils.js';
 	import ImageOff from '@lucide/svelte/icons/image-off';
 	import ImageIcon from '@lucide/svelte/icons/image';
@@ -12,6 +11,7 @@
 		height,
 		fit = 'cover',
 		priority = false,
+		svg = false,
 		class: className
 	}: {
 		id: string | null | undefined;
@@ -20,6 +20,11 @@
 		height: number;
 		fit?: 'cover' | 'contain';
 		priority?: boolean;
+		/** Directus doesn't rasterize SVG files — it always returns them as-is regardless of
+		 * a requested format=avif/webp, which breaks the <picture><source type="image/avif">
+		 * negotiation below (declared type doesn't match the actual SVG bytes, so the browser
+		 * fails to decode it). Skip the format-negotiation dance entirely for SVG sources. */
+		svg?: boolean;
 		class?: string;
 	} = $props();
 
@@ -49,7 +54,28 @@
 	}
 </script>
 
-{#if id}
+{#if id && svg}
+	<!--
+		SVGs skip the whole loaded/errored state machine below: Directus never rasterizes
+		SVG files (always returns them as-is regardless of a requested format=avif/webp,
+		which would otherwise break the <picture><source type="image/avif"> negotiation —
+		declared type wouldn't match the actual SVG bytes). They also commonly report
+		naturalWidth/naturalHeight as 0 even once fully loaded (an SVG with no explicit
+		width/height/viewBox has no "natural size" by spec), which made watchLoadState's
+		`naturalWidth > 0` completion check below hang forever in the loading-skeleton
+		state for a perfectly fine logo. Small brand-asset SVGs don't need the fade-in
+		treatment anyway — just render the <img> directly.
+	-->
+	<img
+		src="/img/{id}"
+		{alt}
+		{width}
+		{height}
+		loading={priority ? 'eager' : 'lazy'}
+		decoding="async"
+		class={cn('absolute inset-0 flex !w-full object-cover object-center', className)}
+	/>
+{:else if id}
 	<div class={cn('absolute inset-0', className)} {@attach watchLoadState}>
 		{#if !loaded && !errored}
 			<div class="absolute inset-0 animate-pulse bg-[color:var(--color-photo-placeholder)]"></div>
@@ -75,7 +101,7 @@
 			<div class={cn('w-full size-full transition-opacity', loaded ? 'opacity-100' : 'opacity-0')}>
 				<picture class="w-full h-full flex">
 					<Source
-						src="{PUBLIC_DIRECTUS_URL}/assets/{id}"
+						src="/img/{id}"
 						cdn="directus"
 						type="image/avif"
 						operations={{ directus: { fit } }}
@@ -84,7 +110,7 @@
 						{height}
 					/>
 					<Source
-						src="{PUBLIC_DIRECTUS_URL}/assets/{id}"
+						src="/img/{id}"
 						cdn="directus"
 						type="image/webp"
 						operations={{ directus: { fit } }}
@@ -93,7 +119,7 @@
 						{height}
 					/>
 					<UnpicImage
-						src="{PUBLIC_DIRECTUS_URL}/assets/{id}"
+						src="/img/{id}"
 						cdn="directus"
 						operations={{ directus: { fit } }}
 						layout="fixed"
