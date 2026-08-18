@@ -39,7 +39,11 @@
     speed,
     interval,
     autoHeight: false,
-    drag: 'free',
+    // `drag: 'free'` lets you fling past the snap point without settling on a slide index,
+    // so `moved`/`index` (and the pagination dots below) never fire mid-swipe — only on an
+    // explicit `go()` from the arrow buttons. Regular drag still respects `snap: true`, but
+    // always resolves to a real slide index, keeping the dots in sync while swiping too.
+    drag: true,
     snap: true,
   });
 </script>

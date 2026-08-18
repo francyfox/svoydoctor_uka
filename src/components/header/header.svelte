@@ -9,6 +9,7 @@
 	import PhoneLink from './phone-link.svelte';
 	import LocaleSwitch from './locale-switch.svelte';
 	import NavMenu from './nav-menu.svelte';
+	import type { MenuItem } from '$lib/types/content';
 
 	let {
 		siteName,
@@ -16,6 +17,7 @@
 		logoId,
 		logoAlt,
 		logoIsSvg = false,
+		menuItems,
 		directusAttr,
 		class: className
 	}: {
@@ -24,6 +26,7 @@
 		logoId?: string;
 		logoAlt?: string;
 		logoIsSvg?: boolean;
+		menuItems: MenuItem[];
 		directusAttr?: string;
 		class?: string;
 	} = $props();
@@ -57,6 +60,6 @@
 			<LocaleSwitch variant="pill" />
 		</div>
 
-		<NavMenu {phone} {applyHref} />
+		<NavMenu {phone} {applyHref} {menuItems} />
 	</div>
 </header>

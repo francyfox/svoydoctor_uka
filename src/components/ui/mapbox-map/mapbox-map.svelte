@@ -31,8 +31,21 @@
 				container: node,
 				style: styleUrl,
 				center: [lng, lat],
-				zoom
+				zoom,
+				// Marker sits at a fixed point — panning would drag it away from the
+				// viewport center, and double-click zoom always zooms toward the click
+				// point (no `around: 'center'` option on that handler, unlike scroll/pinch
+				// below), so both are disabled to keep the marker centered at all times.
+				// Zoom range itself is left unrestricted — scroll/pinch/± zoom freely.
+				dragPan: false,
+				doubleClickZoom: false
 			});
+			// `ScrollZoomHandler#enable` no-ops if scroll-zoom is already enabled (true by
+			// default on an interactive map), silently ignoring the `around` option passed
+			// here — has to be disabled first so the re-enable actually takes effect.
+			map.scrollZoom.disable();
+			map.scrollZoom.enable({ around: 'center' });
+			map.touchZoomRotate.enable({ around: 'center' });
 			map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 			new mapboxgl.Marker({ color: '#6e2c8c' }).setLngLat([lng, lat]).addTo(map);
 		});

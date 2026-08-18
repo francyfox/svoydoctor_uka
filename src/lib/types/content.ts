@@ -155,6 +155,12 @@ export type SliderOptions = {
 	interval: number;
 };
 
+export type MenuItem = {
+	key: string;
+	title: string;
+	href: string;
+};
+
 export type SocialLink = {
 	id: number;
 	label: string;
@@ -232,6 +238,7 @@ export type WeHelpItem = {
 	photoAlt: string | undefined;
 	link: string | undefined;
 	featured: boolean;
+	ctaLabel: string | undefined;
 };
 
 export type SectionWeHelp = {

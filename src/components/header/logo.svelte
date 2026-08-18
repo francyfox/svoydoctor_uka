@@ -29,7 +29,7 @@
 			height={48}
 			priority
 			svg={logoIsSvg}
-			class="!size-[48px] inset-auto"
+			class="p-1 object-contain h-full"
 		/>
 	</span>
 	<span

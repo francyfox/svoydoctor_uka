@@ -3,7 +3,7 @@
 	import { tv, type VariantProps } from 'tailwind-variants';
 
 	export const daySquareVariants = tv({
-		base: 'inline-flex size-10 shrink-0 items-center justify-center font-sans text-sm',
+		base: 'inline-flex size-8 lg:size-10 shrink-0 items-center justify-center font-sans text-sm',
 		variants: {
 			variant: {
 				default: 'bg-background border-border text-foreground border',

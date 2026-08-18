@@ -13,7 +13,7 @@
 	data-active={active}
 	class={cn(
 		'inline-block shrink-0 rounded-full transition-all duration-300',
-		active ? 'bg-primary size-5' : 'size-3.5 bg-[#D9C9D3]',
+		active ? 'bg-primary size-2.5 lg:size-4' : 'size-1.5 lg:size-3.5 bg-[#D9C9D3]',
 		className
 	)}
 	{...restProps}

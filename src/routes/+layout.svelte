@@ -11,6 +11,7 @@
 	import { BookingSheet } from '$components/booking-sheet/index.js';
 	import { settingsQueryOptions } from '$lib/queries/settings';
 	import { socialLinksQueryOptions } from '$lib/queries/social-links';
+	import { menuQueryOptions } from '$lib/queries/menu';
 	import { localeFromPathname } from '$lib/locale';
 	import { initializeVisualEditor, cleanupVisualEditor, setAttr } from '$lib/visual-editor';
 	import { buildAssetUrl } from '$lib/directus/assets';
@@ -24,6 +25,10 @@
 	);
 	const socialLinksQuery = createQuery(
 		() => socialLinksQueryOptions(),
+		() => data.queryClient
+	);
+	const menuQuery = createQuery(
+		() => menuQueryOptions(localeFromPathname(page.url.pathname)),
 		() => data.queryClient
 	);
 
@@ -76,6 +81,7 @@
 						logoId={settingsQuery.data.logoId}
 						logoAlt={settingsQuery.data.logoAlt}
 						logoIsSvg={settingsQuery.data.logoIsSvg}
+						menuItems={menuQuery.data ?? []}
 						directusAttr={settingsQuery.data.directusId
 							? setAttr({
 									collection: 'settings',

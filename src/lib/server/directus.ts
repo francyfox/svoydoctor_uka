@@ -19,6 +19,7 @@ import type {
 	SectionServicesPricelist,
 	ServicesPromo,
 	SocialLink,
+	MenuItem,
 	FormCollection,
 	FormFieldSchema,
 	ServicePriceItem,
@@ -44,6 +45,7 @@ export type {
 	SectionServicesPricelist,
 	ServicesPromo,
 	SocialLink,
+	MenuItem,
 	FormCollection,
 	FormFieldSchema,
 	ServicePriceItem,
@@ -77,7 +79,12 @@ type SectionServicesItemRow = { id: number; cta_label: string | null; item: Bloc
 
 type SymptomItemRow = { id: number; text: string; species: 'cat' | 'dog' | 'both' | null };
 
-type SectionWeHelpItemRow = { id: number; featured: boolean; item: BlockMediaCardRow };
+type SectionWeHelpItemRow = {
+	id: number;
+	featured: boolean;
+	cta_label: string | null;
+	item: BlockMediaCardRow;
+};
 
 type SettingsTranslationRow = {
 	id: number;
@@ -163,12 +170,14 @@ type PageTranslationRow = {
 	id: number;
 	languages_code: string;
 	title: string;
+	menu_label: string | null;
 	description: string | null;
 	og_image: DirectusFileRow | null;
 };
 type PageRow = {
 	id: number;
 	key: string;
+	sort: number | null;
 	noindex: boolean;
 	status: string;
 	show_in_menu: boolean;
@@ -563,6 +572,7 @@ async function getSectionWeHelp(id: number, locale: string): Promise<SectionWeHe
 							items: [
 								'id',
 								'featured',
+								'cta_label',
 								{ item: ['id', 'title', 'description', 'href', { media: ['id', 'description'] }] }
 							]
 						}
@@ -587,7 +597,8 @@ async function getSectionWeHelp(id: number, locale: string): Promise<SectionWeHe
 			photoId: weHelpItem.item.media?.id || undefined,
 			photoAlt: weHelpItem.item.media?.description || undefined,
 			link: weHelpItem.item.href || undefined,
-			featured: weHelpItem.featured ?? false
+			featured: weHelpItem.featured ?? false,
+			ctaLabel: weHelpItem.cta_label || undefined
 		})),
 		slider: {
 			autoplay: row0?.slider_autoplay ?? true,
@@ -849,6 +860,26 @@ export async function getSocialLinks(): Promise<SocialLink[]> {
 		imageId: row.image?.id || undefined,
 		color: row.color || undefined
 	}));
+}
+
+export async function getMenuPages(locale: string): Promise<MenuItem[]> {
+	const rows = await client.request(
+		readItems('pages', {
+			filter: { status: { _eq: 'published' }, show_in_menu: { _eq: true } },
+			fields: ['key', { translations: ['title', 'menu_label'] }],
+			deep: { translations: { _filter: { languages_code: { _eq: locale } } } },
+			sort: ['sort']
+		})
+	);
+
+	return rows.map((row) => {
+		const t = row.translations?.[0];
+		return {
+			key: row.key,
+			title: t?.menu_label || t?.title || row.key,
+			href: row.key === 'home' ? '/' : `/${row.key}`
+		};
+	});
 }
 
 export async function getFormSchema(collection: FormCollection): Promise<FormFieldSchema[]> {

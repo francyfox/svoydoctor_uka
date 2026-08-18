@@ -1,11 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "Hello, {name} from ru!",
-	"nav_home": "Главная",
-	"nav_services": "Услуги",
-	"nav_about": "О клинике",
-	"nav_we_help": "Мы помогаем",
-	"nav_contacts": "Контакты",
 	"cta_apply": "Записаться",
 	"nav_menu_open": "Открыть меню",
 	"nav_menu_close": "Закрыть меню",

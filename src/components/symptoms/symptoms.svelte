@@ -52,7 +52,7 @@
 		id="symptoms"
 		data-slot="symptoms"
 		class={cn(
-			'relative flex min-h-dvh flex-col justify-center overflow-hidden py-10 lg:py-16',
+			'relative flex min-h-auto lg:min-h-dvh flex-col justify-center overflow-hidden py-10 lg:py-16',
 			className
 		)}
 		data-directus={directusAttr}
@@ -78,7 +78,9 @@
 						interval={slider.interval}
 					>
 						{#snippet card(symptom: SymptomItem)}
-							<div class="tile-frame flex h-32 w-56 items-center bg-primary p-5 sm:w-64">
+							<div
+								class="symptom-card tile-frame flex h-32 w-56 items-center bg-primary p-5 transition-colors duration-300 sm:w-64"
+							>
 								<p class="font-heading text-lg leading-tight text-white sm:text-xl">
 									{symptom.text}
 								</p>
@@ -90,3 +92,11 @@
 		</Reveal>
 	</section>
 {/if}
+
+<style>
+	/* Splide marks the active slide's own <li> with `.is-active` — highlight the card
+	   inside it pink (brand accent) so the active symptom stands out in the strip. */
+	:global(.splide__slide.is-active) .symptom-card {
+		background-color: var(--color-brand-accent);
+	}
+</style>

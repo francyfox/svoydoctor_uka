@@ -1,11 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "Hello, {name} from kk!",
-	"nav_home": "Басты бет",
-	"nav_services": "Қызметтер",
-	"nav_about": "Клиника туралы",
-	"nav_we_help": "Біз көмектесеміз",
-	"nav_contacts": "Байланыс",
 	"cta_apply": "Жазылу",
 	"nav_menu_open": "Мәзірді ашу",
 	"nav_menu_close": "Мәзірді жабу",

@@ -7,16 +7,18 @@
 	import { UButton } from '$components/ui/button/index.js';
 	import { Icon } from '$components/ui/icon/index.js';
 	import * as Sheet from '$components/ui/sheet/index.js';
-	import { navItems } from './header.data';
+	import type { MenuItem } from '$lib/types/content';
 	import PhoneLink from './phone-link.svelte';
 	import LocaleSwitch from './locale-switch.svelte';
 
 	let {
 		phone,
-		applyHref
+		applyHref,
+		menuItems
 	}: {
 		phone: string;
 		applyHref: string;
+		menuItems: MenuItem[];
 	} = $props();
 
 	let open = $state(false);
@@ -37,13 +39,13 @@
 	<Sheet.Content class="flex flex-col gap-6 p-6">
 		<Sheet.Title class="sr-only">{m.nav_menu_open()}</Sheet.Title>
 		<nav class="mt-8 flex flex-col gap-4">
-			{#each navItems as item (item.path)}
+			{#each menuItems as item (item.key)}
 				<a
-					href={resolve(localizeHref(item.path) as Pathname)}
+					href={resolve(localizeHref(item.href) as Pathname)}
 					class="hover-zoom text-lg font-medium"
 					onclick={() => (open = false)}
 				>
-					{item.label()}
+					{item.title}
 				</a>
 			{/each}
 		</nav>
